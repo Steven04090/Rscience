@@ -1,0 +1,11 @@
+
+    {
+    "objects":[    
+        {"name":"腦施", "Virtual_currency":"60", "Damage":"500","job":"盧","server":"波利"},
+        {"name":"郵筒", "Virtual_currency":"150", "Damage":"1600","job":"皇","server":"巴基力"},
+        {"name":"可撥", "Virtual_currency":"72", "Damage":"10000","job":"遊","server":"愛麗絲"},
+        {"name":"來一下", "Virtual_currency":"0.9", "Damage":"200","job":"斬","server":"查爾斯"},
+        {"name":"明年一定", "Virtual_currency":"110", "Damage":"1000","job":"基","server":"沙拉"}
+    ]       
+}
+

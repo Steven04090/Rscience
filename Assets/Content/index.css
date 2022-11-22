@@ -1,0 +1,20 @@
+
+body{
+  background-color: #f2f6f7;
+  padding-top:40px;
+}
+.content-body{
+}
+.chart-container{
+  position: relative;
+  margin: auto;
+  height: calc(100vh - 40px);
+  width: 100vw;
+  max-width: 100%;
+}
+canvas{
+  cursor: grab;
+}
+section{
+  min-height: 100vh;
+}
