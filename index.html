@@ -47,6 +47,9 @@
   </nav>
   <div class="content-body p-2">
     <div id="chart-box-layout">
+      <div class="controler mb-2">
+        <button class="btn btn-dark" onclick="find();">很盧</button>
+      </div>
       <div class="chart-container">
         <canvas id="canvas"></canvas>
       </div>
@@ -61,27 +64,37 @@
 <script>
   var nav_height = $('#nav').outerHeight();
   var content_height = $('.content-body').innerHeight();
-  console.log(nav_height);
   $('body').css( "padding-top", nav_height );
   $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
 </script>
 <script>
-  const imageURLs = [
-  'Assets/image/job1.png',
-  'Assets/image/job2.png',
-  'Assets/image/job3.png',
-  'Assets/image/job4.png',
-  'Assets/image/job5.png',
-  'Assets/image/job6.png',
+  var chart;
+  var counter1 = 0;//Onhover只計算一次器
+  const imageURLs = [ 
+  'Assets/image/job/Dragon_Knight.bmp',//盧
+  'Assets/image/job/ImperialGuard.bmp',//皇
+  'Assets/image/job/Shadow_cross.bmp',//斬
+  'Assets/image/job/Abyss_Chaser.bmp',//魅
+  'Assets/image/job/Arch_Mage.bmp',//咒
+  'Assets/image/job/Elmental_Master.bmp',//元
+  'Assets/image/job/Meister.bmp',//機
+  'Assets/image/job/Biolo.bmp',//基
+  'Assets/image/job/Cardinal.bmp',//主
+  'Assets/image/job/Imquisitor.bmp',//修
+  'Assets/image/job/WindHawk.bmp',//遊
+  'Assets/image/job/Troubadour.bmp',//詩
+  'Assets/image/job/dancing.bmp',//舞
   ];
   const images = imageURLs.map(v => {
-  var image = new Image(40,40);
+  var image = new Image(30,30);
   image.src = v;
   return image;
   });
-
-  var currency_ratio=[13,13,12,18,12];//波巴查愛莎 E計算
-    $.getJSON("Assets/graph.json", function(json_file) {
+  var job;
+  var sites = [];
+  var currency_ratio=[13,13,12,18,12];//波巴查愛莎 E轉$
+  var data = {datasets: sites};
+  $.getJSON("Assets/graph.json", function(json_file) {
    var x_array= json_file.objects.map(function(item) {
      switch(item.server){
        case '波利':{
@@ -104,110 +117,95 @@
      }
     }
    });
+   //json轉單一array[]
    var y_array = json_file.objects.map(function(item) {
       return item.Damage;
    });
    var name = json_file.objects.map(function(item) {
       return item.name;
    });
-   var job = json_file.objects.map(function(item) {
+   job = json_file.objects.map(function(item) {
       return item.job;
    });
-          
-   var sites = [];
-   for(var i = 0; i < json_file.objects.length; i++){
+   //1.每次重劃,檢查職業 直接判斷 
+   //2.更新時,將舊的暫存,拿需要得出來
+   if(true){
+   for(var i = 0; i < job.length; i++){
     var job_selector = job[i];
         switch (job_selector) {
-          case '盧':
-            job_number = 1;
-            break;
-          case '皇':
-            job_number = 2;
-            break;
-          case '遊':
-            job_number = 3;
-            break;
-          case '斬':
-            job_number = 4;
-            break;
-          case '基':
-            job_number = 5;
-            break;
+          case '盧':job_number = 0;break;
+          case '皇':job_number = 1;break;
+          case '斬':job_number = 2;break;
+          case '魅':job_number = 3;break;
+          case '咒':job_number = 4;break;
+          case '元':job_number = 5;break;
+          case '機':job_number = 6;break;
+          case '基':job_number = 7;break;
+          case '主':job_number = 8;break;
+          case '修':job_number = 9;break;
+          case '遊':job_number = 10;break;
+          case '詩':job_number = 11;break;
+          case '舞':job_number = 12;break;
           default:
-            console.log(`Sorry, we are out of`);
+            console.log(`涼了`);
         }
-
         var site = {
             label:name[i],
             backgroundColor: '#ffe2c9',
             borderColor: '#fdb5b5',
-            pointRadius: 10,
-            pointHoverRadius: 14,
+            pointRadius: 14,
             borderWidth:2,
-            pointStyle:(images[job_number]),
+            pointStyle:images[job_number],
             data:[{
             x: Number(x_array[i]),
             y: Number(y_array[i]),
-            
             }],
       };
       sites.push(site);
     }
-    var data = {datasets: sites};
-    var ctx = document.getElementById('canvas').getContext('2d');
-    var chart = new Chart(ctx, {
-      type: 'scatter',
-      data: data,
-      options: {
-         maintainAspectRatio:false,
+  }
+    // Create chart
+    init();
+  });
+//  const panStatus = () => zoomOptions.pan.enabled ? 'enabled' : 'disabled';
+//  const zoomStatus = (chart) => (zoomOptions.zoom.wheel.enabled ? 'enabled' : 'disabled') + ' (' + chart.getZoomLevel() + 'x)';
+
+  const zoomOptions = {
+      limits:{
+        y:{min:0,max:100000,minRange:20000},//minRange控制滾輪放大程度
+        x:{min:0,max:150000,minRange:3000},
+      },
+      pan: {
+        enabled: true,
+        mode: 'xy',
+      },
+      zoom:{
+        wheel: {
+          enabled: true,
+        },
+        pinch: {
+          enabled: true,
+        },
+        mode: 'xy',
+        onZoomComplete({chart}) {
+        // This update is needed to display up to date zoom level in the title.
+        // Without this, previous zoom level is displayed.
+        // The reason is: title uses the same beforeUpdate hook, and is evaluated before zoom.
+        chart.update('none');
+        },
+      },
+    }
+  const options ={
+        maintainAspectRatio:false,
          responsive: true,
          clip: false,
-         onHover: function (evt, elements) {
-          if (elements.length === 0 ) {
-              //沒hover element時
-              chart.data.datasets.forEach(dataset => {
-              dataset.pointStyle.height = 40;
-              dataset.pointStyle.width = 40;
-              });
-              return;
-            }
-            else
-            data.datasets[elements[0].datasetIndex].pointStyle.height = 50;
-            data.datasets[elements[0].datasetIndex].pointStyle.width = 50; 
-          },
-
          plugins:{
-            zoom: {
-              limits:{
-                y:{min:-0,max:100000,minRange:1000},
-                x:{min:-0,max:150000,minRange:1000},
-              },
-              pan: {
-                enabled: true,
-                mode: 'xy',
-                
-              },
-              zoom: {
-                wheel: {
-                  enabled: true,
-                },
-                pinch: {
-                  enabled: true,
-                },
-                mode: 'xy',
-                onZoomComplete({chart}) {
-                // This update is needed to display up to date zoom level in the title.
-                // Without this, previous zoom level is displayed.
-                // The reason is: title uses the same beforeUpdate hook, and is evaluated before zoom.
-                chart.update('none');
-              }
-              },
-            },
+            zoom: zoomOptions,
             title:{
-              text:'關係圖',
               display:false,
               color:'#fff',
               position:"bottom",
+             //text: (ctx) => 'Zoom: ' + zoomStatus(ctx.chart) + ', Pan: ' + panStatus(),
               font:{
                 size:20,
               },
@@ -216,7 +214,7 @@
             display: false,
             },
           },
-         
+
           scales: {
             y:{
               grid: {
@@ -228,22 +226,22 @@
                 },
                 display:true,
                 max:10000,
+                min:0,
                 ticks: {
                     color:"#f1f1f1",
                     beginAtZero: true,
                     precision:0,
                     callback: (value, index, ticks) => {
-                        if(index === ticks.length - 1){
-                          return null;
-                        }
-                        else
-                              if(value >= 10000){
-                                return Math.floor(value/1000) + 'M';
-                              }
-                              else
-                            return Math.floor(value) + 'K';
-                          
+                      if(index === ticks.length - 1){
+                        return null;
                       }
+                      else
+                          if(value >= 10000){
+                            return Math.floor(value/1000) + 'M';
+                            }
+                          else
+                            return Math.floor(value) + 'K';
+                    }
                 }
             },
             x: {
@@ -254,7 +252,8 @@
                   display:false,
                 },
                 display: true,
-                max: 50000,
+                min:0,
+                max: 30000,
                 ticks: {
                     color:"#f1f1f1",
                     beginAtZero: true,
@@ -267,11 +266,57 @@
                             return Math.floor(value) + '$';
                         }
                 }
-            },
-        }
-      },
-   });
-});
+            },      
+          },
+          
+           onHover: function (evt, elements) {
+             evt.native.target.style.cursor = elements[0] ? 'pointer' : 'grab';
+          // //圖片會一起變大 目前無解#11/24
+          //   if (elements.length === 0) {
+          //     //沒hover element時
+          //     if(counter1==0){
+          //       counter1 = 1;//防止一直執行
+          //       chart.data.datasets.forEach(dataset => {
+          //       dataset.pointStyle.height = 30;
+          //       dataset.pointStyle.width = 30;
+          //       });
+          //     }
+          //     return;
+          //   }
+          //   else
+          //   counter1 = 0;
+          //   if(data.datasets[elements[0].datasetIndex]){
+          //     console.log(data.datasets[elements[0].datasetIndex]);
+          //   data.datasets[elements[0].datasetIndex].pointStyle.height = 42;
+          //   data.datasets[elements[0].datasetIndex].pointStyle.width = 42; 
+          //   };
+           
+           },
 
+        };
+  var ctx = document.getElementById('canvas').getContext('2d');
+  const config = {
+      type: 'scatter',
+      data: data,
+      options:options,
+      };
+  function init() {
+  chart = new Chart(ctx, config);
+    };
+
+</script>
+<script>
+  
+    function find() {
+      const indexes = [];
+    for (let index = 0; index < job.length; index++) {
+        if (job[index] === '盧') {
+          indexes.push(index);
+        }
+      }
+      chart.update();
+    console.log(indexes);
+    return
+    }
 </script>
 </html>
