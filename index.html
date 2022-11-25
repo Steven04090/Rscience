@@ -48,7 +48,20 @@
   <div class="content-body p-2">
     <div id="chart-box-layout">
       <div class="controler mb-2">
-        <button class="btn btn-dark" onclick="find();">很盧</button>
+        <button class="btn btn-dark" value="all" onclick="change_data(this.value);">all</button>
+        <button class="btn btn-dark" value="盧" onclick="change_data(this.value);">盧</button>
+        <button class="btn btn-dark" value="皇" onclick="change_data(this.value);">皇</button>
+        <button class="btn btn-dark" value="斬" onclick="change_data(this.value);">斬</button>
+        <button class="btn btn-dark" value="魅" onclick="change_data(this.value);">魅</button>
+        <button class="btn btn-dark" value="咒" onclick="change_data(this.value);">咒</button>
+        <button class="btn btn-dark" value="元" onclick="change_data(this.value);">元</button>
+        <button class="btn btn-dark" value="機" onclick="change_data(this.value);">機</button>
+        <button class="btn btn-dark" value="基" onclick="change_data(this.value);">基</button>
+        <button class="btn btn-dark" value="主" onclick="change_data(this.value);">主</button>
+        <button class="btn btn-dark" value="修" onclick="change_data(this.value);">修</button>
+        <button class="btn btn-dark" value="遊" onclick="change_data(this.value);">遊</button>
+        <button class="btn btn-dark" value="詩" onclick="change_data(this.value);">詩</button>
+        <button class="btn btn-dark" value="舞" onclick="change_data(this.value);">舞</button>
       </div>
       <div class="chart-container">
         <canvas id="canvas"></canvas>
@@ -90,12 +103,24 @@
   image.src = v;
   return image;
   });
-  var job;
+  var x_array =[];
+  var y_array = [];
+  var username = [];
+  var job = [];
   var sites = [];
+  var temp = [];
+  var temp_job = [];
+  var temp_sites = [];
   var currency_ratio=[13,13,12,18,12];//波巴查愛莎 E轉$
   var data = {datasets: sites};
+  var change_data_controler = 0;
+  var job_value;
+  var counter2 = 0;
+  //json轉檔
+  JsonTransition();
+  function JsonTransition(){
   $.getJSON("Assets/graph.json", function(json_file) {
-   var x_array= json_file.objects.map(function(item) {
+   x_array= json_file.objects.map(function(item) {
      switch(item.server){
        case '波利':{
         return Math.floor((item.Virtual_currency/currency_ratio[0])*10000);
@@ -117,58 +142,23 @@
      }
     }
    });
-   //json轉單一array[]
-   var y_array = json_file.objects.map(function(item) {
+   //json轉成單一array
+   y_array = json_file.objects.map(function(item) {
       return item.Damage;
    });
-   var name = json_file.objects.map(function(item) {
-      return item.name;
+   username = json_file.objects.map(function(item) {
+      return item.username;
    });
    job = json_file.objects.map(function(item) {
       return item.job;
    });
-   //1.每次重劃,檢查職業 直接判斷 
-   //2.更新時,將舊的暫存,拿需要得出來
-   if(true){
-   for(var i = 0; i < job.length; i++){
-    var job_selector = job[i];
-        switch (job_selector) {
-          case '盧':job_number = 0;break;
-          case '皇':job_number = 1;break;
-          case '斬':job_number = 2;break;
-          case '魅':job_number = 3;break;
-          case '咒':job_number = 4;break;
-          case '元':job_number = 5;break;
-          case '機':job_number = 6;break;
-          case '基':job_number = 7;break;
-          case '主':job_number = 8;break;
-          case '修':job_number = 9;break;
-          case '遊':job_number = 10;break;
-          case '詩':job_number = 11;break;
-          case '舞':job_number = 12;break;
-          default:
-            console.log(`涼了`);
-        }
-        var site = {
-            label:name[i],
-            backgroundColor: '#ffe2c9',
-            borderColor: '#fdb5b5',
-            pointRadius: 14,
-            borderWidth:2,
-            pointStyle:images[job_number],
-            data:[{
-            x: Number(x_array[i]),
-            y: Number(y_array[i]),
-            }],
-      };
-      sites.push(site);
-    }
-  }
-    // Create chart
+
+    job_sort();
+    // 畫表格
     init();
+    temp = chart.data;
   });
-//  const panStatus = () => zoomOptions.pan.enabled ? 'enabled' : 'disabled';
-//  const zoomStatus = (chart) => (zoomOptions.zoom.wheel.enabled ? 'enabled' : 'disabled') + ' (' + chart.getZoomLevel() + 'x)';
+};
 
   const zoomOptions = {
       limits:{
@@ -205,13 +195,12 @@
               display:false,
               color:'#fff',
               position:"bottom",
-             //text: (ctx) => 'Zoom: ' + zoomStatus(ctx.chart) + ', Pan: ' + panStatus(),
               font:{
                 size:20,
               },
             },
             legend: {
-            display: false,
+            display: true,
             },
           },
 
@@ -303,20 +292,68 @@
   function init() {
   chart = new Chart(ctx, config);
     };
-
 </script>
 <script>
-  
-    function find() {
-      const indexes = [];
-    for (let index = 0; index < job.length; index++) {
-        if (job[index] === '盧') {
-          indexes.push(index);
+    function job_sort(){
+      for(var i = 0; i < job.length; i++){
+        var job_selector = job[i];
+            switch (job_selector) {
+              case '盧':job_number = 0;break;
+              case '皇':job_number = 1;break;
+              case '斬':job_number = 2;break;
+              case '魅':job_number = 3;break;
+              case '咒':job_number = 4;break;
+              case '元':job_number = 5;break;
+              case '機':job_number = 6;break;
+              case '基':job_number = 7;break;
+              case '主':job_number = 8;break;
+              case '修':job_number = 9;break;
+              case '遊':job_number = 10;break;
+              case '詩':job_number = 11;break;
+              case '舞':job_number = 12;break;
+              default:
+                console.log(`涼了`);
+            }
+            var site = {
+                label:username[i],
+                backgroundColor: '#ffe2c9',
+                borderColor: '#fdb5b5',
+                pointRadius: 14,
+                borderWidth:job_number,
+                pointStyle:images[job_number],
+                data:[{
+                x: Number(x_array[i]),
+                y: Number(y_array[i]),
+                }],
+            };
+          sites.push(site);
+          
         }
-      }
+    };
+
+    function change_data(val) {
+      console.log(temp);
+      console.log(chart.data.datasets);
+      job_value = val;
+      change_data_controler = 1;
+      if(change_data_controler == 1 && job_value != 'all'){
+        for_index();
+        change_data_controler = 0;
+      };
       chart.update();
-    console.log(indexes);
-    return
-    }
+    };
+
+    function for_index(){
+      let indexes = [];
+          for (let index = 0; index < job.length; index++) {
+              if (job[index] != job_value) {
+                indexes.push(index);
+              }
+          };
+          for (var i = indexes.length -1; i >= 0; i--){
+              //sites.splice(indexes[i],1);
+          };
+          
+    };
 </script>
 </html>

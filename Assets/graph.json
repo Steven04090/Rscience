@@ -1,30 +1,29 @@
 
 {
   "objects":[
-    {"name":"腦施", "Virtual_currency":"60", "Damage":"500","server":"波利","job":"盧"},
-    {"name":"郵筒", "Virtual_currency":"150", "Damage":"1600","server":"巴基力","job":"遊"},
-    {"name":"可撥", "Virtual_currency":"72", "Damage":"10000","server":"查爾斯","job":"詩"},
-    {"name":"來一下", "Virtual_currency":"0.9", "Damage":"50","server":"愛麗絲","job":"基"},
-    {"name":"明年一定", "Virtual_currency":"110", "Damage":"1000","server":"沙拉","job":"盧"},
-    {"name":"來1", "Virtual_currency":"23", "Damage":"180","server":"波利","job":"盧"},
-    {"name":"來2", "Virtual_currency":"70", "Damage":"1700","server":"波利","job":"盧"},
-    {"name":"來3", "Virtual_currency":"33", "Damage":"680","server":"波利","job":"斬"},
-    {"name":"來4", "Virtual_currency":"0.5", "Damage":"90","server":"波利","job":"盧"},
-    {"name":"來5", "Virtual_currency":"21", "Damage":"220","server":"波利","job":"斬"},
-    {"name":"來6", "Virtual_currency":"39", "Damage":"360","server":"波利","job":"盧"},
-    {"name":"來7", "Virtual_currency":"50", "Damage":"1300","server":"波利","job":"盧"},
-    {"name":"來8", "Virtual_currency":"11", "Damage":"370","server":"波利","job":"斬"},
-    {"name":"來9", "Virtual_currency":"6", "Damage":"150","server":"波利","job":"盧"},
-    {"name":"來10", "Virtual_currency":"3", "Damage":"60","server":"波利","job":"盧"},
-    {"name":"來11", "Virtual_currency":"0.2", "Damage":"40","server":"波利","job":"盧"},
-    {"name":"來12", "Virtual_currency":"24", "Damage":"460","server":"波利","job":"基"},
-    {"name":"來13", "Virtual_currency":"44", "Damage":"890","server":"波利","job":"基"},
-    {"name":"來14", "Virtual_currency":"36", "Damage":"630","server":"波利","job":"基"},
-    {"name":"來15", "Virtual_currency":"21", "Damage":"550","server":"波利","job":"基"},
-    {"name":"來16", "Virtual_currency":"0.3", "Damage":"45","server":"波利","job":"基"},
-    {"name":"來17", "Virtual_currency":"0.33", "Damage":"48","server":"波利","job":"基"},
-    {"name":"來18", "Virtual_currency":"44", "Damage":"1000","server":"波利","job":"基"}
-      
-    ] 
+    {"username":"腦施", "Virtual_currency":"60", "Damage":"500","server":"波利","job":"盧"},
+    {"username":"郵筒", "Virtual_currency":"150", "Damage":"1600","server":"巴基力","job":"遊"},
+    {"username":"可撥", "Virtual_currency":"72", "Damage":"10000","server":"查爾斯","job":"盧"},
+    {"username":"來一下", "Virtual_currency":"0.9", "Damage":"50","server":"愛麗絲","job":"基"},
+    {"username":"明年一定", "Virtual_currency":"110", "Damage":"1000","server":"沙拉","job":"盧"},
+    {"username":"來1", "Virtual_currency":"23", "Damage":"180","server":"波利","job":"盧"},
+    {"username":"來2", "Virtual_currency":"70", "Damage":"1700","server":"波利","job":"盧"},
+    {"username":"來3", "Virtual_currency":"33", "Damage":"680","server":"波利","job":"斬"},
+    {"username":"來4", "Virtual_currency":"0.5", "Damage":"90","server":"波利","job":"盧"},
+    {"username":"來5", "Virtual_currency":"21", "Damage":"220","server":"波利","job":"斬"},
+    {"username":"來6", "Virtual_currency":"39", "Damage":"360","server":"波利","job":"盧"},
+    {"username":"來7", "Virtual_currency":"50", "Damage":"1300","server":"波利","job":"皇"},
+    {"username":"來8", "Virtual_currency":"11", "Damage":"370","server":"波利","job":"斬"},
+    {"username":"來9", "Virtual_currency":"6", "Damage":"150","server":"波利","job":"盧"},
+    {"username":"來10", "Virtual_currency":"3", "Damage":"60","server":"波利","job":"盧"},
+    {"username":"來11", "Virtual_currency":"0.2", "Damage":"40","server":"波利","job":"盧"},
+    {"username":"來12", "Virtual_currency":"24", "Damage":"460","server":"波利","job":"基"},
+    {"username":"來13", "Virtual_currency":"44", "Damage":"890","server":"波利","job":"基"},
+    {"username":"來14", "Virtual_currency":"36", "Damage":"630","server":"波利","job":"基"},
+    {"username":"來15", "Virtual_currency":"21", "Damage":"550","server":"波利","job":"基"},
+    {"username":"來16", "Virtual_currency":"0.3", "Damage":"45","server":"波利","job":"基"},
+    {"username":"來17", "Virtual_currency":"0.33", "Damage":"48","server":"波利","job":"基"},
+    {"username":"來18", "Virtual_currency":"44", "Damage":"1000","server":"波利","job":"基"}
+  ]   
 }
 
