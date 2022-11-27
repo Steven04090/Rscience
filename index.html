@@ -109,42 +109,47 @@
   var job = [];
   var sites = [];
   var temp = [];
+  var temp_sites = new Object();
+  var temp_sites2 = [];
   var temp_job = [];
-  var temp_sites = [];
-  var currency_ratio=[13,13,12,18,12];//波巴查愛莎 E轉$
+  var temp_job2 = [];
+  var indexes = [];
+  var whole_job_length;
+  //var currency_ratio=[13,13,12,25,17];//波巴查愛莎 E轉$
   var data = {datasets: sites};
   var change_data_controler = 0;
   var job_value;
-  var counter2 = 0;
+
   //json轉檔
   JsonTransition();
   function JsonTransition(){
   $.getJSON("Assets/graph.json", function(json_file) {
    x_array= json_file.objects.map(function(item) {
+
      switch(item.server){
        case '波利':{
-        return Math.floor((item.Virtual_currency/currency_ratio[0])*10000);
+        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
        }
        case '巴基力':{
-        return Math.floor((item.Virtual_currency/currency_ratio[1])*10000);
+        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
        }
        case '查爾斯':{
-        return Math.floor((item.Virtual_currency/currency_ratio[2])*10000);
+        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
        }
        case '愛麗絲':{
-        return Math.floor((item.Virtual_currency/currency_ratio[3])*10000);
+        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
        }
        case '沙拉':{
-        return Math.floor((item.Virtual_currency/currency_ratio[4])*10000);
+        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
        }
        default: {
         console.log('Empty action received.');
      }
-    }
+  }
    });
    //json轉成單一array
    y_array = json_file.objects.map(function(item) {
-      return item.Damage;
+      return item.Every_Damage;
    });
    username = json_file.objects.map(function(item) {
       return item.username;
@@ -156,14 +161,13 @@
     job_sort();
     // 畫表格
     init();
-    temp = chart.data;
   });
 };
 
   const zoomOptions = {
       limits:{
-        y:{min:0,max:100000,minRange:20000},//minRange控制滾輪放大程度
-        x:{min:0,max:150000,minRange:3000},
+        y:{min:0,max:60000,minRange:20000},//minRange控制滾輪放大程度
+        x:{min:0,max:400000,minRange:3000},
       },
       pan: {
         enabled: true,
@@ -200,7 +204,7 @@
               },
             },
             legend: {
-            display: true,
+            display: false,
             },
           },
 
@@ -295,6 +299,7 @@
 </script>
 <script>
     function job_sort(){
+      whole_job_length = job.length;
       for(var i = 0; i < job.length; i++){
         var job_selector = job[i];
             switch (job_selector) {
@@ -319,41 +324,78 @@
                 backgroundColor: '#ffe2c9',
                 borderColor: '#fdb5b5',
                 pointRadius: 14,
-                borderWidth:job_number,
                 pointStyle:images[job_number],
                 data:[{
                 x: Number(x_array[i]),
                 y: Number(y_array[i]),
                 }],
             };
+            //console.log(site);
           sites.push(site);
           
         }
     };
 
     function change_data(val) {
-      console.log(temp);
-      console.log(chart.data.datasets);
       job_value = val;
-      change_data_controler = 1;
-      if(change_data_controler == 1 && job_value != 'all'){
-        for_index();
-        change_data_controler = 0;
-      };
-      chart.update();
+      indexes = [];
+      //如果目前資料(長度) 不等於 全部資料(長度)，先把暫存移除的資料回復，再做filter，如果已經相等，直接偵測點選的job
+      if(whole_job_length != sites.length){
+        restore_sites();
+        detect_job_value();
+        chart.update();
+      }
+      else{
+        detect_job_value();
+      }
+  };
+
+    function detect_job_value(){ 
+      if(job_value != 'all'){
+          for_index();
+          chart.update();
+        }
+        else{
+          chart.update();
+        }
+         
     };
 
     function for_index(){
-      let indexes = [];
-          for (let index = 0; index < job.length; index++) {
+      //重製indexes
+      indexes = [];
+          for (var index = 0; index < whole_job_length; index++) {
+            //job的index也要改
               if (job[index] != job_value) {
                 indexes.push(index);
+                console.log(index);
               }
-          };
+          }
           for (var i = indexes.length -1; i >= 0; i--){
-              //sites.splice(indexes[i],1);
-          };
-          
+            temp_sites = Object.assign({}, sites.splice(indexes[i],1));
+            temp_job = job.splice(indexes[i],1);  
+            temp_sites2.push(temp_sites[0]);
+            temp_job2.push(temp_job[0]);
+          }
+    };
+
+    function restore_sites(){
+      
+      temp_sites = undefined;
+      temp_job = undefined;
+        for (var index = 0; index < temp_sites2.length; index++) {
+                indexes.push(index);
+        }
+        
+        //先取temp_site2的長度出來，寫一個for迴圈，再用Object.assign一個個存入sites
+        for (var b = indexes.length -1; b >= 0; b--){
+          temp_sites = Object.assign({}, temp_sites2.splice(indexes[b],1));
+          temp_job = temp_job2.splice(indexes[b],1);
+          sites.push(temp_sites[0]);
+          job.push(temp_job[0]);
+        }
+        temp_job2 = [];
+        temp_sites2 = [];
     };
 </script>
 </html>
