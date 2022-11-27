@@ -1,6 +1,15 @@
 
 {
   "objects":[
+    {"username":"200幻象遊俠","job":"遊", "Virtual_currency":"2.2","Every_Damage":"0.68", "Total_Damage":"4.08","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"200恩典遊俠","job":"遊", "Virtual_currency":"0.85","Every_Damage":"0.76", "Total_Damage":"4.5","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"170幻象遊俠","job":"遊", "Virtual_currency":"2.2","Every_Damage":"0.57", "Total_Damage":"3.4","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"170恩典遊俠","job":"遊", "Virtual_currency":"0.85","Every_Damage":"0.62", "Total_Damage":"4.2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"150幻象遊俠","job":"遊", "Virtual_currency":"2.2","Every_Damage":"0.4", "Total_Damage":"2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"150恩典遊俠","job":"遊", "Virtual_currency":"0.15","Every_Damage":"0.42", "Total_Damage":"2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"130幻象遊俠","job":"遊", "Virtual_currency":"1","Every_Damage":"0.27", "Total_Damage":"1","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    
+
     {"username":"致爆盧恩龍爵","job":"盧", "Virtual_currency":"25.96","Every_Damage":"6041", "Total_Damage":"34434","status":"on", "server":"波利","Time":"2022/05/29","currency_ratio":"13"},
     {"username":"致命威脅深淵追跡者","job":"魅", "Virtual_currency":"31.95","Every_Damage":"3700", "Total_Damage":"20000","status":"on","server":"波利","Time":"2022/09/26","currency_ratio":"13"},
     {"username":"生命締造者(燒瓶)","job":"基", "Virtual_currency":"7.62","Every_Damage":"1957", "Total_Damage":"4434","status":"on","server":"波利","Time":"2022/05/29","currency_ratio":"13"},
