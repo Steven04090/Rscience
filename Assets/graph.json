@@ -9,7 +9,6 @@
     {"username":"150恩典遊俠","job":"遊", "Virtual_currency":"0.15","Every_Damage":"0.42", "Total_Damage":"2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
     {"username":"130幻象遊俠","job":"遊", "Virtual_currency":"1","Every_Damage":"0.27", "Total_Damage":"1","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
     
-
     {"username":"致爆盧恩龍爵","job":"盧", "Virtual_currency":"25.96","Every_Damage":"6041", "Total_Damage":"34434","status":"on", "server":"波利","Time":"2022/05/29","currency_ratio":"13"},
     {"username":"致命威脅深淵追跡者","job":"魅", "Virtual_currency":"31.95","Every_Damage":"3700", "Total_Damage":"20000","status":"on","server":"波利","Time":"2022/09/26","currency_ratio":"13"},
     {"username":"生命締造者(燒瓶)","job":"基", "Virtual_currency":"7.62","Every_Damage":"1957", "Total_Damage":"4434","status":"on","server":"波利","Time":"2022/05/29","currency_ratio":"13"},
@@ -29,7 +28,7 @@
     {"username":"235等超級主教工具人...元素支配者","job":"遊", "Virtual_currency":"0","Every_Damage":"3000", "Total_Damage":"15000","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
 
     {"username":"234等 機械神匠","job":"機", "Virtual_currency":"10.29","Every_Damage":"3156", "Total_Damage":"13,413","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
-    {"username":"234等 機械神匠","job":"詩", "Virtual_currency":"0","Every_Damage":"8700", "Total_Damage":"8700","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"詩人","job":"詩", "Virtual_currency":"0","Every_Damage":"8700", "Total_Damage":"8700","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
     {"username":"250等 帝國聖衛軍(法皇)","job":"皇", "Virtual_currency":"437","Every_Damage":"10796", "Total_Damage":"64500","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
     {"username":"250等 標靶、漸進雙修 風鷹狩獵者","job":"遊", "Virtual_currency":"103.2","Every_Damage":"5800", "Total_Damage":"40600","status":"on","server":"愛麗絲","Time":"2022/05/31","currency_ratio":"13"},
     {"username":"240等 風鷹","job":"遊", "Virtual_currency":"460","Every_Damage":"20778", "Total_Damage":"124670","status":"on","server":"波利","Time":"2022/06/03","currency_ratio":"13"},

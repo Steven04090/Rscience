@@ -21,8 +21,14 @@
         <li class="nav-item">
           <a class="nav-link" href="#">首頁</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">資訊圖表 <span class="sr-only">(current)</span></a>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="infographicLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊圖表 <span class="sr-only">(current)</span></a>
+          <div class="dropdown-menu" aria-labelledby="infographicLink">
+            <a class="dropdown-item" href="#">職業DPS</a>
+            <a class="dropdown-item" href="#">停權人數</a>
+            <a class="dropdown-item" href="#">雲圖</a>
+            <a class="dropdown-item" href="#">人數</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">未來UI設計</a>
@@ -38,33 +44,80 @@
             <a class="dropdown-item" href="#">爬爬爬</a>
             <a class="dropdown-item" href="#">3d Modal</a>
             <a class="dropdown-item" href="#">秒7抽抽抽</a>
-            <a class="dropdown-item" href="#">資訊圖表-雲圖 人數</a>
           </div>
         </li>
       </ul>
     </div>
 
   </nav>
-  <div class="content-body p-2">
+  <div class="content-body p-1">
     <div id="chart-box-layout">
-      <div class="controler mb-2">
-        <button class="btn btn-dark" value="all" onclick="change_data(this.value);">all</button>
-        <button class="btn btn-dark" value="盧" onclick="change_data(this.value);">盧</button>
-        <button class="btn btn-dark" value="皇" onclick="change_data(this.value);">皇</button>
-        <button class="btn btn-dark" value="斬" onclick="change_data(this.value);">斬</button>
-        <button class="btn btn-dark" value="魅" onclick="change_data(this.value);">魅</button>
-        <button class="btn btn-dark" value="咒" onclick="change_data(this.value);">咒</button>
-        <button class="btn btn-dark" value="元" onclick="change_data(this.value);">元</button>
-        <button class="btn btn-dark" value="機" onclick="change_data(this.value);">機</button>
-        <button class="btn btn-dark" value="基" onclick="change_data(this.value);">基</button>
-        <button class="btn btn-dark" value="主" onclick="change_data(this.value);">主</button>
-        <button class="btn btn-dark" value="修" onclick="change_data(this.value);">修</button>
-        <button class="btn btn-dark" value="遊" onclick="change_data(this.value);">遊</button>
-        <button class="btn btn-dark" value="詩" onclick="change_data(this.value);">詩</button>
-        <button class="btn btn-dark" value="舞" onclick="change_data(this.value);">舞</button>
-      </div>
-      <div class="chart-container">
-        <canvas id="canvas"></canvas>
+      <div class="infographic_graphic_section p-1">
+        <div id="controler" class="controler mb-2">
+          <div id="controler_job" class="controler_job d-flex flex-wrap">
+          <button class="btn btn-dark mr-1 active" value="all" onclick="change_data(this.value);">全部</button>
+          <button class="btn btn-dark d-flex mr-1" value="盧" onclick="change_data(this.value);"><img src="Assets/image/job/Dragon_Knight.bmp" class="pr-1">盧恩</button>
+          <button class="btn btn-dark d-flex mr-1" value="皇" onclick="change_data(this.value);"><img src="Assets/image/job/ImperialGuard.bmp" class="pr-1">皇家</button>
+          <button class="btn btn-dark d-flex mr-1" value="斬" onclick="change_data(this.value);"><img src="Assets/image/job/Shadow_cross.bmp" class="pr-1">斬首</button>
+          <button class="btn btn-dark d-flex mr-1" value="魅" onclick="change_data(this.value);"><img src="Assets/image/job/Abyss_Chaser.bmp" class="pr-1">魅影</button>
+          <button class="btn btn-dark d-flex mr-1" value="咒" onclick="change_data(this.value);"><img src="Assets/image/job/Arch_Mage.bmp" class="pr-1">咒術</button>
+          <button class="btn btn-dark d-flex mr-1" value="元" onclick="change_data(this.value);"><img src="Assets/image/job/Elmental_Master.bmp" class="pr-1">元素</button>
+          <button class="btn btn-dark d-flex mr-1" value="機" onclick="change_data(this.value);"><img src="Assets/image/job/Meister.bmp" class="pr-1">機匠</button>
+          <button class="btn btn-dark d-flex mr-1" value="基" onclick="change_data(this.value);"><img src="Assets/image/job/Biolo.bmp" class="pr-1">基因</button>
+          <button class="btn btn-dark d-flex mr-1" value="主" onclick="change_data(this.value);"><img src="Assets/image/job/Cardinal.bmp" class="pr-1">主教</button>
+          <button class="btn btn-dark d-flex mr-1" value="修" onclick="change_data(this.value);"><img src="Assets/image/job/Imquisitor.bmp" class="pr-1">修羅</button>
+          <button class="btn btn-dark d-flex mr-1" value="遊" onclick="change_data(this.value);"><img src="Assets/image/job/WindHawk.bmp" class="pr-1">遊俠</button>
+          <button class="btn btn-dark d-flex mr-1" value="詩" onclick="change_data(this.value);"><img src="Assets/image/job/Troubadour.bmp" class="pr-1">詩人</button>
+          <button class="btn btn-dark d-flex mr-1" value="舞" onclick="change_data(this.value);"><img src="Assets/image/job/dancing.bmp" class="pr-1">舞孃</button>
+        </div>
+          <button class="btn btn-dark d-flex mr-1" onclick="resetZoom()">起始大小</button>
+        </div>
+        <div class="chart-container">
+          <canvas id="canvas"></canvas>
+          <div id ="equip_table_box" class="position-absolute p-2" style="display: none;">
+            <div>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="front-tab" data-toggle="tab" href="#front" role="tab" aria-controls="front" aria-selected="true">正面</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">背面</a>
+                </li>
+                <li class="nav-item close-item" style="margin-left: auto;">
+                  <a class="nav-link" id="x-tab" data-toggle="tab" aria-controls="x" aria-selected="false">x</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="front" role="tabpanel" aria-labelledby="front-tab">
+                  <table class="equip-table">
+                    <thead>
+                      <tbody>
+                        <tr><td class="top">時光時光時光</td><td rowspan="5" class="text-center">圖片</td class="top_middle"><td>愛情</td></tr>
+                        <tr><td class="top_down">泡泡</td><td class="cloth">幻象</td></tr>
+                        <tr><td class="weapon">弓</td><td class="shield">盾</td></tr>
+                        <tr><td class="shawl">披肩</td><td class="shoes">鞋</td></tr>
+                        <tr><td class="accessories_right">右</td><td class="accessories_left">左</td></tr>
+                      </tbody>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
+                  <table class="equip-table">
+                    <thead>
+                      <tbody>
+                        <tr><td class="back_top">時光時光時光</td><td rowspan="5" class="text-center">圖片</td class="back_top_middle"><td>愛情</td></tr>
+                        <tr><td class="back_top_down">泡泡</td><td class="back_cloth">幻象</td></tr>
+                        <tr><td class="back_weapon">弓</td><td class="back_shield">盾</td></tr>
+                        <tr><td class="back_shawl">披肩</td><td class="back_shoes">鞋</td></tr>
+                        <tr><td class="back_accessories_right">右</td><td class="back_accessories_left">左</td></tr>
+                      </tbody>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -74,11 +127,25 @@
 <script src="Assets/javascript/chart.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
 <script src="Assets/javascript/chartjs-plugin-zoom.min.js"></script>
+
 <script>
   var nav_height = $('#nav').outerHeight();
   var content_height = $('.content-body').innerHeight();
   $('body').css( "padding-top", nav_height );
   $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+</script>
+<script>
+  // controler active
+var btnContainer = document.getElementById("controler_job");
+var btns = btnContainer.getElementsByClassName("btn");
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = btnContainer.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+} 
 </script>
 <script>
   var chart;
@@ -99,7 +166,7 @@
   'Assets/image/job/dancing.bmp',//舞
   ];
   const images = imageURLs.map(v => {
-  var image = new Image(30,30);
+  var image = new Image();
   image.src = v;
   return image;
   });
@@ -115,17 +182,65 @@
   var temp_job2 = [];
   var indexes = [];
   var whole_job_length;
-  //var currency_ratio=[13,13,12,25,17];//波巴查愛莎 E轉$
   var data = {datasets: sites};
   var change_data_controler = 0;
   var job_value;
+  
+  Chart.register({
+       id: 'draw_img',
+       beforeDraw: (c) => {
+       let datasets = c.data.datasets;
+       var counter2 = 0;
+       datasets.forEach((e, i) => {
+       if (counter2 < whole_job_length) {
+         let data = c.getDatasetMeta(i).data;
+         var job_selector = job[counter2];
+                switch (job_selector) {
+                  case '盧':job_number = 0;break;
+                  case '皇':job_number = 1;break;
+                  case '斬':job_number = 2;break;
+                  case '魅':job_number = 3;break;
+                  case '咒':job_number = 4;break;
+                  case '元':job_number = 5;break;
+                  case '機':job_number = 6;break;
+                  case '基':job_number = 7;break;
+                  case '主':job_number = 8;break;
+                  case '修':job_number = 9;break;
+                  case '遊':job_number = 10;break;
+                  case '詩':job_number = 11;break;
+                  case '舞':job_number = 12;break;
+                  default:
+                    console.log(`涼了`);
+                }
+                counter2++;
+            data.forEach( function(e) {
+              let ctx = c.ctx;
+              let x = e.x;
+              let y = e.y;
+              let r = e.options.radius + 24;
+              //圖片蓋到axis時不顯示
+              if(x <40 ||ctx.canvas.height - y < 20){
+                return;
+              }
+              else{
+                ctx.save();
+                ctx.beginPath();
+                ctx.drawImage(images[job_number], x-r/2, y-r/2, r, r);
+                ctx.stroke();
+                ctx.restore();
+              }
+              });
+        }
+        });
+        },
+});
+  const ctx = document.getElementById('canvas').getContext('2d');
 
   //json轉檔
   JsonTransition();
   function JsonTransition(){
   $.getJSON("Assets/graph.json", function(json_file) {
    x_array= json_file.objects.map(function(item) {
-
      switch(item.server){
        case '波利':{
         return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
@@ -157,16 +272,17 @@
    job = json_file.objects.map(function(item) {
       return item.job;
    });
-
     job_sort();
     // 畫表格
+    
     init();
+    
   });
 };
 
   const zoomOptions = {
       limits:{
-        y:{min:0,max:60000,minRange:20000},//minRange控制滾輪放大程度
+        y:{min:0,max:60000,minRange:3000},//minRange控制滾輪放大程度
         x:{min:0,max:400000,minRange:3000},
       },
       pan: {
@@ -176,6 +292,7 @@
       zoom:{
         wheel: {
           enabled: true,
+          //speed:0.05,
         },
         pinch: {
           enabled: true,
@@ -191,32 +308,33 @@
     }
   const options ={
         maintainAspectRatio:false,
-         responsive: true,
-         clip: false,
+        responsive: true,
+        clip: false,
+        interaction: {
+            mode: 'point'
+        },
          plugins:{
             zoom: zoomOptions,
             title:{
               display:false,
               color:'#fff',
               position:"bottom",
-              font:{
-                size:20,
-              },
+              font:{size:20,},
             },
             legend: {
             display: false,
             },
+            tooltip: {
+                events: ['mousemove'],
+                enabled: true,
+            },
+            
           },
-
+         
           scales: {
             y:{
-              grid: {
-                color: 'rgba( 255, 255, 255, 0.15)',
-              },
-                border:{
-                  color:"rgba( 255, 255, 255, 0.15)",
-                  width:2,
-                },
+                grid: {color: 'rgba( 255, 255, 255, 0.35)',},
+                border:{color:"rgba( 255, 255, 255, 0.15)",width:2,},
                 display:true,
                 max:10000,
                 min:0,
@@ -224,26 +342,20 @@
                     color:"#f1f1f1",
                     beginAtZero: true,
                     precision:0,
+                    padding: 8,
+                    crossAlign: 'start',
                     callback: (value, index, ticks) => {
-                      if(index === ticks.length - 1){
-                        return null;
-                      }
+                      if(index === ticks.length - 1){return null;}
                       else
-                          if(value >= 10000){
-                            return Math.floor(value/1000) + 'M';
-                            }
+                          if(value >= 10000){return Math.floor(value/1000) + 'M';}
                           else
                             return Math.floor(value) + 'K';
                     }
                 }
             },
             x: {
-              grid: {
-                color: 'rgba( 255, 255, 255, 0.15)',
-              },
-                border:{
-                  display:false,
-                },
+              grid: {color: 'rgba( 255, 255, 255, 0.35)',},
+                border:{display:false,},
                 display: true,
                 min:0,
                 max: 30000,
@@ -252,87 +364,77 @@
                     beginAtZero: true,
                     precision:0,
                     callback: (value, index, ticks) => {
-                      if(index === ticks.length - 1){
-                          return null;
-                        }
+                      if(index === ticks.length - 1){return null;}
                         else
                             return Math.floor(value) + '$';
                         }
                 }
             },      
           },
-          
            onHover: function (evt, elements) {
              evt.native.target.style.cursor = elements[0] ? 'pointer' : 'grab';
-          // //圖片會一起變大 目前無解#11/24
-          //   if (elements.length === 0) {
-          //     //沒hover element時
-          //     if(counter1==0){
-          //       counter1 = 1;//防止一直執行
-          //       chart.data.datasets.forEach(dataset => {
-          //       dataset.pointStyle.height = 30;
-          //       dataset.pointStyle.width = 30;
-          //       });
-          //     }
-          //     return;
-          //   }
-          //   else
-          //   counter1 = 0;
-          //   if(data.datasets[elements[0].datasetIndex]){
-          //     console.log(data.datasets[elements[0].datasetIndex]);
-          //   data.datasets[elements[0].datasetIndex].pointStyle.height = 42;
-          //   data.datasets[elements[0].datasetIndex].pointStyle.width = 42; 
-          //   };
-           
            },
-
         };
-  var ctx = document.getElementById('canvas').getContext('2d');
+  
   const config = {
       type: 'scatter',
       data: data,
       options:options,
+      //point click 點data時event
+      plugins: [
+        {
+            afterEvent(chart, args, options) {
+                if (
+                    args.event.type === "click" && typeof chart.tooltip.dataPoints !== "undefined"
+                ) {
+                    // note the cursor position upon clicking
+                    const { x, y } = args.event;
+                    // note the boundary positions of the nearest chart element
+                    const left = chart.tooltip.dataPoints[0].element.x - chart.tooltip.dataPoints[0].element.options.radius - 14;
+                    const right = chart.tooltip.dataPoints[0].element.x + chart.tooltip.dataPoints[0].element.options.radius + 14;
+                    const top = chart.tooltip.dataPoints[0].element.y - chart.tooltip.dataPoints[0].element.options.radius - 14;
+                    const bottom = chart.tooltip.dataPoints[0].element.y + chart.tooltip.dataPoints[0].element.options.radius + 14;
+                    const div = document.getElementById("equip_table_box");
+                    
+                    // proceed if the cursor is within the element boundaries
+                    if (x >= left && x <= right && y >= top && y <= bottom) {
+                      div.style.display = "block";
+                    }
+                    else{
+                      div.style.display = "none";
+                    }
+                }
+            }
+        }
+    ]
       };
   function init() {
   chart = new Chart(ctx, config);
     };
 </script>
 <script>
+  //job部分
     function job_sort(){
       whole_job_length = job.length;
       for(var i = 0; i < job.length; i++){
-        var job_selector = job[i];
-            switch (job_selector) {
-              case '盧':job_number = 0;break;
-              case '皇':job_number = 1;break;
-              case '斬':job_number = 2;break;
-              case '魅':job_number = 3;break;
-              case '咒':job_number = 4;break;
-              case '元':job_number = 5;break;
-              case '機':job_number = 6;break;
-              case '基':job_number = 7;break;
-              case '主':job_number = 8;break;
-              case '修':job_number = 9;break;
-              case '遊':job_number = 10;break;
-              case '詩':job_number = 11;break;
-              case '舞':job_number = 12;break;
-              default:
-                console.log(`涼了`);
-            }
             var site = {
                 label:username[i],
-                backgroundColor: '#ffe2c9',
-                borderColor: '#fdb5b5',
-                pointRadius: 14,
-                pointStyle:images[job_number],
+                pointRadius: 6,
+                borderWidth: 0,
+                radius:0,
+                hitRadius:14,
+                hoverRadius:10,
+                borderColor: '#ffffff00',
+                backgroundColor: '#ffffff00',
+                hidden:false,
+                pointStyle:'circle',
+                //pointStyle:images[job_number],
                 data:[{
                 x: Number(x_array[i]),
                 y: Number(y_array[i]),
                 }],
             };
-            //console.log(site);
           sites.push(site);
-          
         }
     };
 
@@ -368,7 +470,6 @@
             //job的index也要改
               if (job[index] != job_value) {
                 indexes.push(index);
-                console.log(index);
               }
           }
           for (var i = indexes.length -1; i >= 0; i--){
@@ -397,5 +498,12 @@
         temp_job2 = [];
         temp_sites2 = [];
     };
+</script>
+<script>
+  //zoom區
+  function resetZoom() {
+  chart.resetZoom();
+}
+
 </script>
 </html>
