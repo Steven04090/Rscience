@@ -22,10 +22,10 @@
           <a class="nav-link" href="#">首頁</a>
         </li>
         <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="infographicLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊圖表 <span class="sr-only">(current)</span></a>
+          <a class="nav-link dropdown-toggle" href="#" id="infographicLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊圖表<span class="sr-only">(current)</span></a>
           <div class="dropdown-menu" aria-labelledby="infographicLink">
-            <a class="dropdown-item" href="#">職業DPS</a>
-            <a class="dropdown-item" href="#">停權人數</a>
+            <a class="dropdown-item" href="index.html">職業DPS</a>
+            <a class="dropdown-item" href="suspension.html">停權人數</a>
             <a class="dropdown-item" href="#">雲圖</a>
             <a class="dropdown-item" href="#">人數</a>
           </div>
@@ -34,21 +34,16 @@
           <a class="nav-link" href="#">未來UI設計</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Noob攻略</a>
+          <a class="nav-link" href="#">MVP</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            其他
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">爬爬爬</a>
-            <a class="dropdown-item" href="#">3d Modal</a>
-            <a class="dropdown-item" href="#">秒7抽抽抽</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" href="#">3D Modal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">秒7抽抽抽</a>
         </li>
       </ul>
     </div>
-
   </nav>
   <div class="content-body p-1">
     <div id="chart-box-layout">
@@ -129,10 +124,13 @@
 <script src="Assets/javascript/chartjs-plugin-zoom.min.js"></script>
 
 <script>
-  var nav_height = $('#nav').outerHeight();
+  $(document).ready(function () {
+    var nav_height = $('#nav').outerHeight();
   var content_height = $('.content-body').innerHeight();
   $('body').css( "padding-top", nav_height );
   $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+        });
+ 
 </script>
 <script>
   // controler active

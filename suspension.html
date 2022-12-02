@@ -1,0 +1,223 @@
+<!DOCTYPE html><html>
+<head>
+   <title>StevenWu Design</title>
+   <meta name="description" content="Steven Wu The F2E Web Redesign">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="Assets/image/favicon.png" type="image/x-icon">
+   <link rel="stylesheet" href="Assets/Content/bootstrap.css">
+   <link rel="stylesheet" href="Assets/Content/index.css">
+</head>
+<body>
+  <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-1">
+    <a class="navbar-brand" href="#">RReality</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">首頁</a>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="infographicLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">資訊圖表<span class="sr-only">(current)</span></a>
+          <div class="dropdown-menu" aria-labelledby="infographicLink">
+            <a class="dropdown-item" href="index.html">職業DPS</a>
+            <a class="dropdown-item" href="suspension.html">停權人數</a>
+            <a class="dropdown-item" href="#">雲圖</a>
+            <a class="dropdown-item" href="#">人數</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">未來UI設計</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">MVP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">3D Modal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">秒7抽抽抽</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="content-body p-1">
+    <div id="chart-box-layout">
+      <div class="infographic_graphic_section p-1">
+        <div id="controler" class="controler mb-2">
+          
+        </div>
+        <div class="chart-container">
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="Assets/javascript/jquery.min.js"></script>
+<script src="Assets/javascript/bootstrap.min.js"></script>
+<script src="Assets/javascript/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+<script src="Assets/javascript/chartjs-plugin-zoom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+<script>
+  $(document).ready(function () {
+    var nav_height = $('#nav').outerHeight();
+  var content_height = $('.content-body').innerHeight();
+  $('body').css( "padding-top", nav_height );
+  $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+        });
+ 
+</script>
+<script>
+
+</script>
+<script>
+  var chart;
+  var sites = [];
+  //月份日數
+  var month_day = [31,30,31,30,31,30,31,31,30,31,30,31];
+  var data = {datasets: sites};
+  var everyday_number = [];
+  const ctx = document.getElementById('canvas').getContext('2d');
+
+  //json轉檔
+  JsonTransition();
+  function JsonTransition(){
+  $.getJSON("Assets/json/suspension/suspension_20221129.json", function(json_file) {
+   //json轉成單一array
+   x_array = json_file.map(function(item) {
+      return item.month;
+   });
+   y_array = json_file.map(function(item) {
+      return item.suspension_number;
+   });
+   z_array = json_file.map(function(item) {
+      return item.day;
+   });
+   //先把資料組起來 2022-01-02
+   //先找月份再找日
+   for(var m = 0 ;m < 12 ;m++){
+     for(var d = 0 ; d < month_day[m]; d++){
+      console.log((m+1) +'月'+ (d+1) +'日');
+     }
+     
+   }
+   //load data
+   load_data();
+    // 畫表格
+    init();
+  });
+};
+
+  const zoomOptions = {
+      limits:{
+        y:{min:0,max:1000},//minRange控制滾輪放大程度
+   //     x:{min:0,max:400000,minRange:3000},
+      },
+      pan: {
+        enabled: true,
+        mode: 'xy',
+      },
+      zoom:{
+        wheel: {
+          enabled: true,
+          //speed:0.05,
+        },
+        pinch: {
+          enabled: true,
+        },
+        mode: 'xy',
+        onZoomComplete({chart}) {
+        // This update is needed to display up to date zoom level in the title.
+        // Without this, previous zoom level is displayed.
+        // The reason is: title uses the same beforeUpdate hook, and is evaluated before zoom.
+        chart.update('none');
+        },
+      },
+    }
+  const options ={
+        maintainAspectRatio:false,
+        responsive: true,
+        clip: false,
+        interaction: {
+          mode: "nearest",
+          axis: "x",
+          intersect: true,
+        },
+         plugins:{
+            zoom: zoomOptions,
+            title:{
+              display:false,
+              color:'#fff',
+              position:"bottom",
+              font:{size:20,},
+            },
+            legend: {
+            display: false,
+            }, 
+          },
+         
+          scales: {
+            y:{
+                grid: {color: 'rgba( 160, 255, 240, 0.2)',},
+                border:{color:"rgba( 160, 255, 240, 0.25)",width:1,},
+                display:true,
+
+            },
+            x: {
+              grid: {color: 'rgba( 160, 255, 240, 0.2)',},
+              type: 'time',
+                time: {
+                  displayFormats: {
+                        quarter: 'MMM YYYY'
+                    }
+                },
+                border:{display:false,},
+                display: true,
+            },      
+          },
+        };
+  
+  const config = {
+      type: 'line',
+      data: data,
+      options:options,
+      //point click 點data時event
+      };
+  function init() {
+  chart = new Chart(ctx, config);
+    };
+</script>
+<script>
+  //job部分
+  function load_data(){
+      for(var i = 0; i < y_array.length; i++){
+            var site = {
+                label:y_array[i],
+                pointRadius: 6,
+                hitRadius:14,
+                hoverRadius:10,
+                pointStyle:'circle',
+                data:[{
+                x:'Feb 2023',
+                y: y_array[i],
+                }],
+            };
+          sites.push(site);
+        }
+    };
+</script>
+<script>
+  //zoom區
+  function resetZoom() {
+  chart.resetZoom();
+}
+
+</script>
+</html>
