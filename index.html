@@ -92,11 +92,11 @@
                   <table class="equip-table">
                     <thead>
                       <tbody>
-                        <tr><td class="top">時光時光時光</td><td rowspan="5" class="text-center">圖片</td class="top_middle"><td>愛情</td></tr>
-                        <tr><td class="top_down">泡泡</td><td class="cloth">幻象</td></tr>
-                        <tr><td class="weapon">弓</td><td class="shield">盾</td></tr>
-                        <tr><td class="shawl">披肩</td><td class="shoes">鞋</td></tr>
-                        <tr><td class="accessories_right">右</td><td class="accessories_left">左</td></tr>
+                        <tr><td id="e_top"></td><td rowspan="5" id="text-center"></td ><td id="e_top_middle"></td></tr>
+                        <tr><td id="e_top_down"></td><td id="e_cloth"></td></tr>
+                        <tr><td id="e_weapon"></td><td id="e_shield"></td></tr>
+                        <tr><td id="e_shawl"></td><td id="e_shoes"></td></tr>
+                        <tr><td id="e_accessories_right"></td><td id="e_accessories_left"></td></tr>
                       </tbody>
                     </thead>
                   </table>
@@ -105,11 +105,11 @@
                   <table class="equip-table">
                     <thead>
                       <tbody>
-                        <tr><td class="back_top">時光時光時光</td><td rowspan="5" class="text-center">圖片</td class="back_top_middle"><td>愛情</td></tr>
-                        <tr><td class="back_top_down">泡泡</td><td class="back_cloth">幻象</td></tr>
-                        <tr><td class="back_weapon">弓</td><td class="back_shield">盾</td></tr>
-                        <tr><td class="back_shawl">披肩</td><td class="back_shoes">鞋</td></tr>
-                        <tr><td class="back_accessories_right">右</td><td class="back_accessories_left">左</td></tr>
+                        <tr><td id="b_top"></td><td rowspan="5" id="text-center"></td><td id="b_top_middle"></td></tr>
+                        <tr><td id="b_top_down"></td><td id="b_cloth"></td></tr>
+                        <tr><td id="b_hand"></td><td id="b_shield"></td></tr>
+                        <tr><td id="b_shawl"></td><td id="b_shoes"></td></tr>
+                        <tr><td id="b_accessories_right"></td><td id="b_accessories_left"></td></tr>
                       </tbody>
                     </thead>
                   </table>
@@ -149,7 +149,6 @@ for (var i = 0; i < btns.length; i++) {
 </script>
 <script>
   var chart;
-  var counter1 = 0;//Onhover只計算一次器
   const imageURLs = [ 
   'Assets/image/job/Dragon_Knight.bmp',//盧
   'Assets/image/job/ImperialGuard.bmp',//皇
@@ -183,7 +182,6 @@ for (var i = 0; i < btns.length; i++) {
   var indexes = [];
   var whole_job_length;
   var data = {datasets: sites};
-  var change_data_controler = 0;
   var job_value;
   
   Chart.register({
@@ -239,7 +237,7 @@ for (var i = 0; i < btns.length; i++) {
   //json轉檔
   JsonTransition();
   function JsonTransition(){
-  $.getJSON("Assets/graph.json", function(json_file) {
+  $.getJSON("Assets/json/job_damage.json", function(json_file) {
    x_array= json_file.objects.map(function(item) {
      switch(item.server){
        case '波利':{
@@ -274,9 +272,7 @@ for (var i = 0; i < btns.length; i++) {
    });
     job_sort();
     // 畫表格
-    
     init();
-    
   });
 };
 
@@ -311,7 +307,9 @@ for (var i = 0; i < btns.length; i++) {
         responsive: true,
         clip: false,
         interaction: {
-            mode: 'point'
+          mode: "nearest",
+          axis: "x",
+          intersect: true,
         },
          plugins:{
             zoom: zoomOptions,
@@ -327,6 +325,31 @@ for (var i = 0; i < btns.length; i++) {
             tooltip: {
                 events: ['mousemove'],
                 enabled: true,
+                displayColors: false,
+                mode: "nearest",
+                axis: "x",
+                intersect: true,
+                //鳥爛排版
+                padding:{
+                  x:30,
+                  top:30,
+                },
+                backgroundColor:"#11172fd6",
+                bodyFont: {
+                  size: 20
+                },
+                callbacks: {
+                  beforeLabel:function(tooltipItems){
+                    var title =  tooltipItems.dataset.label;
+                    return [title];
+                  },
+                    label: function(tooltipItems) {
+                      let label = "花費: " + (tooltipItems.raw.x) + "$";
+                      let label2 = "傷害: " + (tooltipItems.raw.y) + "K";
+                      //用空格排版
+                      return [label, label2,""];
+                    },
+                }
             },
             
           },
@@ -395,10 +418,41 @@ for (var i = 0; i < btns.length; i++) {
                     const top = chart.tooltip.dataPoints[0].element.y - chart.tooltip.dataPoints[0].element.options.radius - 14;
                     const bottom = chart.tooltip.dataPoints[0].element.y + chart.tooltip.dataPoints[0].element.options.radius + 14;
                     const div = document.getElementById("equip_table_box");
-                    
+
+                    const title = chart.tooltip.dataPoints[0].dataset.label;
                     // proceed if the cursor is within the element boundaries
                     if (x >= left && x <= right && y >= top && y <= bottom) {
                       div.style.display = "block";
+                      //先找到點到的物件的username
+                      //比對equip_data的username
+                      //再將內容一個一個map過去
+                      $.getJSON("Assets/json/equip_data.json", function(json_file) {
+                        for(var i = 0 ;i < json_file.objects.length; i++){
+                          if (title == json_file.objects[i].username){
+                            document.getElementById("e_top").innerText = json_file.objects[i].e_top;
+                            document.getElementById("e_top_middle").innerText = json_file.objects[i].e_top_middle;
+                            document.getElementById("e_top_down").innerText = json_file.objects[i].e_top_down;
+                            document.getElementById("e_cloth").innerText = json_file.objects[i].e_cloth;
+                            document.getElementById("e_weapon").innerText = json_file.objects[i].e_weapon;
+                            document.getElementById("e_shield").innerText = json_file.objects[i].e_shield;
+                            document.getElementById("e_shawl").innerText = json_file.objects[i].e_shawl;
+                            document.getElementById("e_shoes").innerText = json_file.objects[i].e_shoes;
+                            document.getElementById("e_accessories_right").innerText = json_file.objects[i].e_accessories_right;
+                            document.getElementById("e_accessories_left").innerText = json_file.objects[i].e_accessories_left;
+                            document.getElementById("b_top").innerText = json_file.objects[i].b_top;
+                            document.getElementById("b_top_middle").innerText = json_file.objects[i].b_top_middle;
+                            document.getElementById("b_top_down").innerText = json_file.objects[i].b_top_down;
+                            document.getElementById("b_cloth").innerText = json_file.objects[i].b_cloth;
+                            document.getElementById("b_hand").innerText = json_file.objects[i].b_hand;
+                            document.getElementById("b_shield").innerText = json_file.objects[i].b_shield;
+                            document.getElementById("b_shawl").innerText = json_file.objects[i].b_shawl;
+                            document.getElementById("b_shoes").innerText = json_file.objects[i].b_shoes;
+                            document.getElementById("b_accessories_right").innerText = json_file.objects[i].b_accessories_right;
+                            document.getElementById("b_accessories_left").innerText = json_file.objects[i].b_accessories_left;
+                          }
+                          
+                        }
+                      })
                     }
                     else{
                       div.style.display = "none";
@@ -424,8 +478,8 @@ for (var i = 0; i < btns.length; i++) {
                 radius:0,
                 hitRadius:14,
                 hoverRadius:10,
-                borderColor: '#ffffff00',
-                backgroundColor: '#ffffff00',
+                borderColor: 'transparent',
+                backgroundColor: 'transparent',
                 hidden:false,
                 pointStyle:'circle',
                 //pointStyle:images[job_number],

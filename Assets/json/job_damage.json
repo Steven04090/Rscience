@@ -1,0 +1,77 @@
+
+{
+  "objects":[
+    {"username":"200幻象遊俠","job":"遊", "Virtual_currency":"2.2","Every_Damage":"0.68", "Total_Damage":"4.08","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"200恩典遊俠","job":"遊", "Virtual_currency":"0.85","Every_Damage":"0.76", "Total_Damage":"4.5","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"170幻象遊俠","job":"遊", "Virtual_currency":"2.2","Every_Damage":"0.57", "Total_Damage":"3.4","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"170恩典遊俠","job":"遊", "Virtual_currency":"0.85","Every_Damage":"0.62", "Total_Damage":"4.2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"150幻象遊俠","job":"遊", "Virtual_currency":"2.2","Every_Damage":"0.4", "Total_Damage":"2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"150恩典遊俠","job":"遊", "Virtual_currency":"0.15","Every_Damage":"0.42", "Total_Damage":"2","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    {"username":"130幻象遊俠","job":"遊", "Virtual_currency":"1","Every_Damage":"0.27", "Total_Damage":"1","status":"off", "server":"巴基力","Time":"2022/11/27","currency_ratio":"13"},
+    
+    {"username":"致爆盧恩龍爵","job":"盧", "Virtual_currency":"25.96","Every_Damage":"6041", "Total_Damage":"34434","status":"on", "server":"波利","Time":"2022/05/29","currency_ratio":"13"},
+    {"username":"致命威脅深淵追跡者","job":"魅", "Virtual_currency":"31.95","Every_Damage":"3700", "Total_Damage":"20000","status":"on","server":"波利","Time":"2022/09/26","currency_ratio":"13"},
+    {"username":"生命締造者(燒瓶)","job":"基", "Virtual_currency":"7.62","Every_Damage":"1957", "Total_Damage":"4434","status":"on","server":"波利","Time":"2022/05/29","currency_ratio":"13"},
+    {"username":"弓刀雙修魅影(刀)","job":"魅", "Virtual_currency":"5.18","Every_Damage":"1800", "Total_Damage":"2700","status":"on","server":"愛麗絲","Time":"2022/05/29","currency_ratio":"25"},
+    {"username":"弓刀雙修魅影(三角)","job":"魅", "Virtual_currency":"5.18","Every_Damage":"2000", "Total_Damage":"4000","status":"on","server":"愛麗絲","Time":"2022/05/29","currency_ratio":"25"},
+    {"username":"242致命威脅流深淵","job":"魅", "Virtual_currency":"0","Every_Damage":"8000", "Total_Damage":"30000","status":"on","server":"波利","Time":"2022/05/29","currency_ratio":"13"},
+    {"username":"250暴雨樂之舞靈","job":"舞", "Virtual_currency":"0","Every_Damage":"3000", "Total_Damage":"94000","server":"波利","Time":"2022/10/20","currency_ratio":"13"},
+    {"username":"243等 彗星禁咒","job":"咒", "Virtual_currency":"280","Every_Damage":"8000", "Total_Damage":"16000","status":"on","server":"波利","Time":"2022/05/30","currency_ratio":"13"},
+    {"username":"230等 聖裁者","job":"修", "Virtual_currency":"143","Every_Damage":"11000", "Total_Damage":"27000","status":"on","server":"巴基力","Time":"2022/05/30","currency_ratio":"13"},
+    {"username":"裸奔龍爵","job":"盧", "Virtual_currency":"0","Every_Damage":"7000", "Total_Damage":"3500","status":"on","server":"波利","Time":"2022/05/30","currency_ratio":"13"},
+    {"username":"237等 聖裁者","job":"修", "Virtual_currency":"43.71","Every_Damage":"13000", "Total_Damage":"35000","status":"on","server":"波利","Time":"2022/05/30","currency_ratio":"13"},
+    {"username":"246等 痛苦中求生存聖衛軍","job":"皇", "Virtual_currency":"0","Every_Damage":"4400", "Total_Damage":"35000","status":"off","server":"波利","Time":"2022/05/30","currency_ratio":"13"},
+    {"username":"240等放棄人生聖裁者","job":"修", "Virtual_currency":"0","Every_Damage":"22000", "Total_Damage":"55000","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"250等龍火","job":"盧", "Virtual_currency":"157.59","Every_Damage":"11648", "Total_Damage":"77000","status":"on","server":"波利","Time":"2022/05/30","currency_ratio":"13"},
+    {"username":"弓型深淵","job":"魅", "Virtual_currency":"0","Every_Damage":"7500", "Total_Damage":"77000","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"248等 漸進風鷹","job":"遊", "Virtual_currency":"298.6","Every_Damage":"16500", "Total_Damage":"97630","status":"on","server":"巴基力","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"235等超級主教工具人...元素支配者","job":"遊", "Virtual_currency":"0","Every_Damage":"3000", "Total_Damage":"15000","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+
+    {"username":"234等 機械神匠","job":"機", "Virtual_currency":"10.29","Every_Damage":"3156", "Total_Damage":"13,413","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"詩人","job":"詩", "Virtual_currency":"0","Every_Damage":"8700", "Total_Damage":"8700","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"250等 帝國聖衛軍(法皇)","job":"皇", "Virtual_currency":"437","Every_Damage":"10796", "Total_Damage":"64500","status":"on","server":"波利","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"250等 標靶、漸進雙修 風鷹狩獵者","job":"遊", "Virtual_currency":"103.2","Every_Damage":"5800", "Total_Damage":"40600","status":"on","server":"愛麗絲","Time":"2022/05/31","currency_ratio":"13"},
+    {"username":"240等 風鷹","job":"遊", "Virtual_currency":"460","Every_Damage":"20778", "Total_Damage":"124670","status":"on","server":"波利","Time":"2022/06/03","currency_ratio":"13"},
+    {"username":"240等 十字影武","job":"斬", "Virtual_currency":"39","Every_Damage":"35000", "Total_Damage":"70000","status":"on","server":"波利","Time":"2022/06/03","currency_ratio":"13"},
+    {"username":"244等!!!十字影武","job":"斬", "Virtual_currency":"115.33","Every_Damage":"51100", "Total_Damage":"102200","status":"on","server":"沙拉","Time":"2022/06/03","currency_ratio":"17"},
+    {"username":"248等 漸進風鷹","job":"遊", "Virtual_currency":"222","Every_Damage":"13378", "Total_Damage":"80271","status":"on","server":"波利","Time":"2022/06/04","currency_ratio":"13"},
+    {"username":"241級基因","job":"基", "Virtual_currency":"0","Every_Damage":"11000", "Total_Damage":"44000","status":"on","server":"波利","Time":"2022/07/08","currency_ratio":"13"},
+
+    {"username":"245等 銳射、漸進風鷹","job":"遊", "Virtual_currency":"34.8","Every_Damage":"7817", "Total_Damage":"46904","status":"on","server":"波利","Time":"2022/06/05","currency_ratio":"13"},
+    {"username":"250 加農砲-帝國聖衛軍","job":"皇", "Virtual_currency":"54.31","Every_Damage":"13500", "Total_Damage":"6750","status":"on","server":"波利","Time":"2022/06/06","currency_ratio":"13"},
+    {"username":"245 風鷹狩獵者","job":"遊", "Virtual_currency":"289.34","Every_Damage":"21723", "Total_Damage":"130342","status":"on","server":"波利","Time":"2022/06/06","currency_ratio":"13"},
+    {"username":"裝備無詠的砲匠(232)","job":"機", "Virtual_currency":"26.1","Every_Damage":"1031", "Total_Damage":"6057","status":"on","server":"波利","Time":"2022/06/06","currency_ratio":"13"},
+    {"username":"227 生命締造者","job":"基", "Virtual_currency":"0","Every_Damage":"6000", "Total_Damage":"30000","status":"on","server":"波利","Time":"2022/06/11","currency_ratio":"13"},
+    {"username":"Lv230刀系深淵追跡者/刀魅/致命威脅","job":"魅", "Virtual_currency":"50","Every_Damage":"4000", "Total_Damage":"24000","status":"on","server":"波利","Time":"2022/06/12","currency_ratio":"13"},
+    {"username":"243等 漸進風鷹","job":"遊", "Virtual_currency":"124.5","Every_Damage":"16004", "Total_Damage":"96026","status":"on","server":"波利","Time":"2022/06/15","currency_ratio":"13"},
+    {"username":"226等 摳機主教","job":"主", "Virtual_currency":"0","Every_Damage":"4100", "Total_Damage":"8200","status":"on","server":"波利","Time":"2022/06/15","currency_ratio":"13"},
+
+    {"username":"梳機主教","job":"主", "Virtual_currency":"0","Every_Damage":"7300", "Total_Damage":"42000","status":"on","server":"波利","Time":"2022/07/12","currency_ratio":"13"},
+    {"username":"法魅","job":"魅", "Virtual_currency":"77.33","Every_Damage":"12678", "Total_Damage":"38034","status":"on","server":"波利","Time":"2022/07/13","currency_ratio":"13"},
+    {"username":"242等 機械神匠","job":"機", "Virtual_currency":"0","Every_Damage":"2107", "Total_Damage":"14700","status":"on","server":"波利","Time":"2022/09/20","currency_ratio":"13"},
+    {"username":"250等 風鷹","job":"遊", "Virtual_currency":"0","Every_Damage":"43935", "Total_Damage":"240000","status":"on","server":"波利","Time":"2022/06/15","currency_ratio":"13"},
+    {"username":"元素支配者","job":"元", "Virtual_currency":"17.23","Every_Damage":"6333", "Total_Damage":"26732","status":"on","server":"波利","Time":"2022/07/31","currency_ratio":"18"},
+    {"username":"250 影武","job":"斬", "Virtual_currency":"0","Every_Damage":"49000", "Total_Damage":"98000","status":"on","server":"波利","Time":"2022/08/01","currency_ratio":"13"},
+    {"username":"240等 聖裁者","job":"修", "Virtual_currency":"18","Every_Damage":"14000", "Total_Damage":"56000","status":"on","server":"波利","Time":"2022/08/01","currency_ratio":"13"},
+
+    {"username":"232等 盧恩龍爵 - 致命爆裂","job":"盧", "Virtual_currency":"0","Every_Damage":"6597", "Total_Damage":"42000","status":"on","server":"波利","Time":"2022/08/12","currency_ratio":"13"},
+    {"username":"240等 火禁咒(魔矢+巨石秒6) 、彗星咒雙修","job":"咒", "Virtual_currency":"375","Every_Damage":"18000", "Total_Damage":"90000","status":"on","server":"波利","Time":"2022/09/14","currency_ratio":"13"},
+    {"username":"機甲神匠 - 戰斧颶風","job":"機", "Virtual_currency":"0","Every_Damage":"4879", "Total_Damage":"34153","status":"on","server":"波利","Time":"2022/08/30","currency_ratio":"13"},
+    {"username":"240等 十字影武","job":"斬", "Virtual_currency":"185.28","Every_Damage":"57500", "Total_Damage":"115000","status":"on","server":"波利","Time":"2022/08/13","currency_ratio":"13"},
+    {"username":"240等 樂之舞靈","job":"舞", "Virtual_currency":"148.6","Every_Damage":"15200", "Total_Damage":"30000","status":"on","server":"波利","Time":"2022/08/13","currency_ratio":"13"},
+    {"username":"242等 深淵追跡者","job":"魅", "Virtual_currency":"0","Every_Damage":"12600", "Total_Damage":"37890","status":"on","server":"波利","Time":"2022/09/04","currency_ratio":"13"},
+    {"username":"236十字影武-永恆斬/野蠻衝擊/神力撞擊","job":"斬", "Virtual_currency":"48","Every_Damage":"233000", "Total_Damage":"233000","status":"on","server":"波利","Time":"2022/09/15","currency_ratio":"16"},
+    
+    {"username":"246級 聖裁者","job":"修", "Virtual_currency":"0","Every_Damage":"1600", "Total_Damage":"4250","status":"on","server":"查爾斯","Time":"2022/09/15","currency_ratio":"16"},
+    {"username":"235等 聖裁者","job":"修", "Virtual_currency":"0","Every_Damage":"26000", "Total_Damage":"82000","status":"on","server":"查爾斯","Time":"2022/09/15","currency_ratio":"16"},
+    {"username":"斬但者","job":"斬", "Virtual_currency":"0","Every_Damage":"660000", "Total_Damage":"660000","status":"on","server":"波利","Time":"2022/09/28","currency_ratio":"13"},
+    {"username":"234等 聖裁者","job":"修", "Virtual_currency":"20.46","Every_Damage":"13000", "Total_Damage":"34822","status":"on","server":"波利","Time":"2022/10/02","currency_ratio":"15"},
+    {"username":"234等 聖裁者","job":"修", "Virtual_currency":"5.61","Every_Damage":"8000", "Total_Damage":"25055","status":"on","server":"波利","Time":"2022/10/02","currency_ratio":"15"},
+
+    {"username":"231等 機甲神匠 (加農砲機匠)","job":"機", "Virtual_currency":"0","Every_Damage":"15000", "Total_Damage":"90000","status":"on","server":"波利","Time":"2022/10/13","currency_ratio":"13"},
+    {"username":"237等   致命爆裂-盧恩龍爵","job":"盧", "Virtual_currency":"0","Every_Damage":"9900", "Total_Damage":"65000","status":"on","server":"波利","Time":"2022/11/01","currency_ratio":"14"}
+
+
+  ]   
+}
+
