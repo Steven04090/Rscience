@@ -181,7 +181,8 @@ for (var i = 0; i < btns.length; i++) {
   var whole_job_length;
   var data = {datasets: sites};
   var job_value;
-  
+  var guess_index = [];
+
   Chart.register({
        id: 'draw_img',
        beforeDraw: (c) => {
@@ -236,27 +237,15 @@ for (var i = 0; i < btns.length; i++) {
   JsonTransition();
   function JsonTransition(){
   $.getJSON("Assets/json/job_damage.json", function(json_file) {
-   x_array= json_file.objects.map(function(item) {
-     switch(item.server){
-       case '波利':{
-        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
-       }
-       case '巴基力':{
-        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
-       }
-       case '查爾斯':{
-        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
-       }
-       case '愛麗絲':{
-        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
-       }
-       case '沙拉':{
-        return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
-       }
-       default: {
-        console.log('Empty action received.');
-     }
-  }
+    
+   x_array= json_file.objects.map(function(item ,index) {
+      if(item.guess_currency){
+        //得知guess的index 存成一個陣列
+        guess_index.push(index);
+        return Math.floor((item.guess_currency/item.currency_ratio)*10000);
+      }
+      else
+    return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
    });
    //json轉成單一array
    y_array = json_file.objects.map(function(item) {
@@ -277,7 +266,7 @@ for (var i = 0; i < btns.length; i++) {
   const zoomOptions = {
       limits:{
         y:{min:0,max:60000,minRange:3000},//minRange控制滾輪放大程度
-        x:{min:0,max:400000,minRange:3000},
+        x:{min:0,max:500000,minRange:3000},
       },
       pan: {
         enabled: true,
@@ -304,7 +293,7 @@ for (var i = 0; i < btns.length; i++) {
         maintainAspectRatio:false,
         responsive: true,
         clip: false,
-        interaction: {
+        hover: {
           mode: "nearest",
           axis: "x",
           intersect: true,
@@ -325,27 +314,43 @@ for (var i = 0; i < btns.length; i++) {
                 enabled: true,
                 displayColors: false,
                 mode: "nearest",
-                axis: "x",
+                axis: "y",
                 intersect: true,
                 //鳥爛排版
                 padding:{
                   x:30,
-                  top:30,
+                  y:20,
                 },
-                backgroundColor:"#11172fd6",
+                titleAlign:"center",
+                titleFont:{
+                  size: 24,
+                  family:'Microsoft JhengHei',
+                },
+                titleColor:'#fff',
+                titleMarginBottom:12,
+                backgroundColor:"#122833ed",
                 bodyFont: {
-                  size: 20
+                  size: 20,
+                  family:'Microsoft JhengHei',
                 },
+                borderColor:'#92f2e9',
+                borderWidth:0.15,
                 callbacks: {
-                  beforeLabel:function(tooltipItems){
-                    var title =  tooltipItems.dataset.label;
-                    return [title];
+                  title:function(tooltipItems){
+                    var title =  tooltipItems[0].dataset.label;
+                    return title;
                   },
                     label: function(tooltipItems) {
+                      //不=0 代表是我預估的
+                      let iamguess =" (玩家提供)";
+                      if(tooltipItems.dataset.iamguess !=0){
+                        iamguess =" (我預估)";
+                      }
                       let label = "花費: " + (tooltipItems.raw.x) + "$";
                       let label2 = "傷害: " + (tooltipItems.raw.y) + "K";
+                      
                       //用空格排版
-                      return [label, label2,""];
+                      return [label + iamguess, label2];
                     },
                 }
             },
@@ -468,7 +473,15 @@ for (var i = 0; i < btns.length; i++) {
   //job部分
     function job_sort(){
       whole_job_length = job.length;
+      var m = 0;
+      
       for(var i = 0; i < job.length; i++){
+        //找到guess位置
+        var index = 0;
+        if(i == guess_index[m]){
+          index = guess_index[m];
+          m ++;
+        };
             var site = {
                 label:username[i],
                 pointRadius: 6,
@@ -480,6 +493,8 @@ for (var i = 0; i < btns.length; i++) {
                 backgroundColor: 'transparent',
                 hidden:false,
                 pointStyle:'circle',
+                //測試
+                iamguess:index,
                 //pointStyle:images[job_number],
                 data:[{
                 x: Number(x_array[i]),
