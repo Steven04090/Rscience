@@ -1,0 +1,66 @@
+{
+    "Blacksmith_Blessing":[
+        {"date":"2022/11/23","sell_price":"3998888","buy_price":"3700000"},
+        {"date":"2022/11/24","sell_price":"3844444"},
+        {"date":"2022/11/25","sell_price":"3800000"},
+        {"date":"2022/11/26","sell_price":"3955555"},
+        {"date":"2022/11/27","sell_price":"3944444"},
+        {"date":"2022/11/28","sell_price":"3999999"},
+        {"date":"2022/11/29","sell_price":"3897775","buy_price":"3700000"},
+        {"date":"2022/11/30","sell_price":"3990000"},
+        {"date":"2022/12/01","sell_price":"3877777"},
+        {"date":"2022/12/02","sell_price":"3865555"},
+        {"date":"2022/12/03","sell_price":"3843333"},
+        {"date":"2022/12/04","sell_price":"3842111"}
+
+    ],
+    "Hyperspace Gem Rough Stone":[
+        {"date":"2022/11/23","sell_price":"689997"},
+        {"date":"2022/11/24","sell_price":"669997"},
+        {"date":"2022/11/25","sell_price":"749998"},
+        {"date":"2022/11/26","sell_price":"700000"},
+        {"date":"2022/11/27","sell_price":"679997"},
+        {"date":"2022/11/28","sell_price":"649998"},
+        {"date":"2022/11/29","sell_price":"755555"},
+        {"date":"2022/11/30","sell_price":"699997"},
+        {"date":"2022/12/01","sell_price":"649998"},
+        {"date":"2022/12/02","sell_price":"610000"},
+        {"date":"2022/12/03","sell_price":"589998"},
+        {"date":"2022/12/04","sell_price":"540000"}
+
+    ],
+    "Old_Card_Album":[
+        {"date":"2022/11/23","sell_price":"340000"},
+        {"date":"2022/11/27","sell_price":"340000"},
+        {"date":"2022/11/30","sell_price":"340000"},
+        {"date":"2022/12/03","sell_price":"320000"},
+        {"date":"2022/12/04","sell_price":"319999"}
+
+    ],
+    "ether_stardust":[
+        {"date":"2022/11/23","sell_price":"95000"},
+        {"date":"2022/12/04","sell_price":"84987"}
+
+    ],
+    "honor_rose":[
+        {"date":"2022/11/23","sell_price":"7388","buy_price":"6550"},
+        {"date":"2022/12/03","sell_price":"5000","buy_price":"4550"},
+        {"date":"2022/12/04","sell_price":"5600","buy_price":"4750"}
+    ],
+    "mystery_spell_book":[
+        {"date":"2022/11/27","sell_price":"309999"},
+        {"date":"2022/11/30","sell_price":"310000"},
+        {"date":"2022/12/04","sell_price":"292000"}
+
+    ],
+    "Enriched_Elunium_Box":[
+        {"date":"2022/11/28","sell_price":"8400000"},
+        {"date":"2022/11/29","sell_price":"8399000"},
+        {"date":"2022/11/30","sell_price":"8199980"},
+        {"date":"2022/12/01","sell_price":"7849999"},
+        {"date":"2022/12/02","sell_price":"7939998"},
+        {"date":"2022/12/03","sell_price":"7929999"},
+        {"date":"2022/12/04","sell_price":"7849998"}
+
+    ]
+}  
