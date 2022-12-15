@@ -65,7 +65,121 @@
 <script src="Assets/javascript/chartjs-plugin-zoom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+
 <script>
+  //moment.js轉中文
+  moment.locale('zh-tw', {
+      months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
+      monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
+      weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
+      weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
+      weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
+      longDateFormat: {
+        LT: 'Ah點mm分',
+        LTS: 'Ah點m分s秒',
+        L: 'YYYY-MM-DD',
+        LL: 'YYYY年MMMD日',
+        LLL: 'YYYY年MMMD日Ah點mm分',
+        LLLL: 'YYYY年MMMD日ddddAh點mm分',
+        l: 'YYYY-MM-DD',
+        ll: 'YYYY年MMMD日',
+        lll: 'YYYY年MMMD日Ah點mm分',
+        llll: 'YYYY年MMMD日ddddAh點mm分'
+      },
+      meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+      meridiemHour: function (h, meridiem) {
+        let hour = h;
+        if (hour === 12) {
+          hour = 0;
+        }
+        if (meridiem === '凌晨' || meridiem === '早上' ||
+          meridiem === '上午') {
+          return hour;
+        } else if (meridiem === '下午' || meridiem === '晚上') {
+          return hour + 12;
+        } else {
+          // '中午'
+          return hour >= 11 ? hour : hour + 12;
+        }
+      },
+      meridiem: function (hour, minute, isLower) {
+        const hm = hour * 100 + minute;
+        if (hm < 600) {
+          return '凌晨';
+        } else if (hm < 900) {
+          return '早上';
+        } else if (hm < 1130) {
+          return '上午';
+        } else if (hm < 1230) {
+          return '中午';
+        } else if (hm < 1800) {
+          return '下午';
+        } else {
+          return '晚上';
+        }
+      },
+      calendar: {
+        sameDay: function () {
+          return this.minutes() === 0 ? '[今天]Ah[點整]' : '[今天]LT';
+        },
+        nextDay: function () {
+          return this.minutes() === 0 ? '[明天]Ah[點整]' : '[明天]LT';
+        },
+        lastDay: function () {
+          return this.minutes() === 0 ? '[昨天]Ah[點整]' : '[昨天]LT';
+        },
+        nextWeek: function () {
+          let startOfWeek, prefix;
+          startOfWeek = moment().startOf('week');
+          prefix = this.diff(startOfWeek, 'days') >= 7 ? '[下]' : '[本]';
+          return this.minutes() === 0 ? prefix + 'dddA點整' : prefix + 'dddAh點mm';
+        },
+        lastWeek: function () {
+          let startOfWeek, prefix;
+          startOfWeek = moment().startOf('week');
+          prefix = this.unix() < startOfWeek.unix() ? '[上]' : '[本]';
+          return this.minutes() === 0 ? prefix + 'dddAh點整' : prefix + 'dddAh點mm';
+        },
+        sameElse: 'LL'
+      },
+      ordinalParse: /\d{1,2}(日|月|周)/,
+      ordinal: function (number, period) {
+        switch (period) {
+          case 'd':
+          case 'D':
+          case 'DDD':
+            return number + '日';
+          case 'M':
+            return number + '月';
+          case 'w':
+          case 'W':
+            return number + '周';
+          default:
+            return number;
+        }
+      },
+      relativeTime: {
+        future: '%s内',
+        past: '%s前',
+        s: '幾秒',
+        m: '1 分鐘',
+        mm: '%d 分鐘',
+        h: '1 小時',
+        hh: '%d 小時',
+        d: '1 天',
+        dd: '%d 天',
+        M: '1 個月',
+        MM: '%d 个月',
+        y: '1 年',
+        yy: '%d 年'
+      },
+      week: {
+        // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
+        dow: 1, // Monday is the first day of the week.
+        doy: 4  // The week that contains Jan 4th is the first week of the year.
+      }
+    });
+
   $(document).ready(function () {
     var nav_height = $('#nav').outerHeight();
   var content_height = $('.content-body').innerHeight();
@@ -80,8 +194,6 @@
 <script>
   var chart;
   var sites = [];
-  //月份日數
-  var month_day = [31,30,31,30,31,30,31,31,30,31,30,31];
   var data = {datasets: sites};
   var everyday_number = [];
   const ctx = document.getElementById('canvas').getContext('2d');
@@ -89,25 +201,15 @@
   //json轉檔
   JsonTransition();
   function JsonTransition(){
-  $.getJSON("Assets/json/suspension/suspension_20221129.json", function(json_file) {
+  $.getJSON("Assets/json/suspension/suspension_20221215.json", function(json_file) {
    //json轉成單一array
    x_array = json_file.map(function(item) {
-      return item.month;
+      return {
+        'x':item.whole,
+        'y':item.suspension_number
+      };
    });
-   y_array = json_file.map(function(item) {
-      return item.suspension_number;
-   });
-   z_array = json_file.map(function(item) {
-      return item.day;
-   });
-   //先把資料組起來 2022-01-02
-   //先找月份再找日
-   for(var m = 0 ;m < 12 ;m++){
-     for(var d = 0 ; d < month_day[m]; d++){
-      console.log((m+1) +'月'+ (d+1) +'日');
-     }
-     
-   }
+
    //load data
    load_data();
     // 畫表格
@@ -116,35 +218,27 @@
 };
 
   const zoomOptions = {
-      limits:{
-        y:{min:0,max:1000},//minRange控制滾輪放大程度
-   //     x:{min:0,max:400000,minRange:3000},
+    limits:{
+     //   x:{min:'original', max: 'original'},
       },
       pan: {
         enabled: true,
-        mode: 'xy',
+        mode: 'x',
       },
       zoom:{
+        mode: 'x',
         wheel: {
           enabled: true,
-          //speed:0.05,
         },
         pinch: {
           enabled: true,
         },
-        mode: 'xy',
-        onZoomComplete({chart}) {
-        // This update is needed to display up to date zoom level in the title.
-        // Without this, previous zoom level is displayed.
-        // The reason is: title uses the same beforeUpdate hook, and is evaluated before zoom.
-        chart.update('none');
-        },
+        
       },
     }
   const options ={
         maintainAspectRatio:false,
         responsive: true,
-        clip: false,
         interaction: {
           mode: "nearest",
           axis: "x",
@@ -174,21 +268,19 @@
               grid: {color: 'rgba( 160, 255, 240, 0.2)',},
               type: 'time',
                 time: {
-                  displayFormats: {
-                        quarter: 'MMM YYYY'
-                    }
+                  unit: 'month',
                 },
                 border:{display:false,},
                 display: true,
+                
             },      
           },
         };
   
   const config = {
-      type: 'line',
+      type: 'bar',
       data: data,
       options:options,
-      //point click 點data時event
       };
   function init() {
   chart = new Chart(ctx, config);
@@ -197,20 +289,12 @@
 <script>
   //job部分
   function load_data(){
-      for(var i = 0; i < y_array.length; i++){
             var site = {
-                label:y_array[i],
-                pointRadius: 6,
-                hitRadius:14,
-                hoverRadius:10,
-                pointStyle:'circle',
-                data:[{
-                x:'Feb 2023',
-                y: y_array[i],
-                }],
+                //label:y_array[i],
+                data:x_array,     
             };
           sites.push(site);
-        }
+   //     }
     };
 </script>
 <script>
