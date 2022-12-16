@@ -1,6 +1,6 @@
 <!DOCTYPE html><html>
 <head>
-   <title>RReality-資訊圖表(停權人數)</title>
+   <title>RReality-資訊圖表(87z物價走勢)</title>
    <meta name="description" content="RReality">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta charset="utf-8">
@@ -197,15 +197,45 @@
   //json轉檔
   JsonTransition();
   function JsonTransition(){
-  $.getJSON("Assets/json/suspension/suspension_20221215.json", function(json_file) {
+  $.getJSON("Assets/json/game_price.json", function(json_file) {
    //json to array
-   x_array = json_file.map(function(item) {
+   x_array = json_file.Blacksmith_Blessing.map(function(item) {
       return {
-        'x':item.whole,
-        'y':item.suspension_number
+        'x':item.date,
+        'y':item.sell_price
+      };
+   });
+   y_array = json_file.Hyperspace_Gem_Rough_Stone.map(function(item) {
+      return {
+        'x':item.date,
+        'y':item.sell_price
       };
    });
 
+   z_array = json_file.Old_Card_Album.map(function(item) {
+      return {
+        'x':item.date,
+        'y':item.sell_price
+      };
+   });
+   a_array = json_file.honor_rose.map(function(item) {
+      return {
+        'x':item.date,
+        'y':item.sell_price
+      };
+   });
+   b_array = json_file.mystery_spell_book.map(function(item) {
+      return {
+        'x':item.date,
+        'y':item.sell_price
+      };
+   });
+   c_array = json_file.Enriched_Elunium_Box.map(function(item) {
+      return {
+        'x':item.date,
+        'y':item.sell_price
+      };
+   });
    //load data
    load_data();
     // draw chart
@@ -215,15 +245,15 @@
 
   const zoomOptions = {
     limits:{
-        y:{min:0},
-        x:{min:'original', max: 'original',minRange:3600*1000*24*24 },//time base on 1000
+        y:{min:'original',max:'original'},
+        x:{min:'original', max: 'original',minRange:3600*1000*24 },//time base on 1000
       },
       pan: {
         enabled: true,
-        mode: 'x',
+        mode: 'xy',
       },
       zoom:{
-        mode: 'x',
+        mode: 'xy',
         wheel: {
           enabled: true,
         },
@@ -232,12 +262,7 @@
         },
         //zoom 改變x軸顯示
         onZoomComplete({chart}) {
-          if ((chart.getZoomLevel()) > (1.2)) {
-          options.scales.x.time.unit = "day";
-        }
-        else{
-          options.scales.x.time.unit = "month";
-        }
+
         chart.update('none');
        }
       },
@@ -245,7 +270,6 @@
   const options ={
         maintainAspectRatio:false,
         responsive: true,
-
          plugins:{
             zoom: zoomOptions,
             title:{
@@ -264,16 +288,23 @@
                 grid: {color: 'rgba( 160, 255, 240, 0.2)',},
                 border:{color:"rgba( 160, 255, 240, 0.25)",width:1,},
                 display:true,
+                min:0,
+                ticks: {
+                    color:"#f1f1f1",
+                    beginAtZero: true,
+                    precision:0,
+                    padding: 8,
+                    crossAlign: 'start',
+                }
             },
             x: {
               grid: {
                 color: 'rgba( 160, 255, 240, 0.2)',
-                offset:false,
                 },
                 type: 'time',
                   time: {
                     tooltipFormat: 'YYYY/MM/DD',
-                    unit:  'month',
+                    unit:  'day',
                 },
                 border:{display:false,},
                 display: true,
@@ -283,7 +314,7 @@
         };
   
   const config = {
-      type: 'bar',
+      type: 'line',
       data: data,
       options:options,
       };
@@ -294,12 +325,47 @@
 <script>
   function load_data(){
             var site = {
-                //label:y_array[i],
+                label:'鐵匠的祝福',
                 data:x_array,
-                minBarLength:10,
+                tension: 1,
+                pointRadius:5,
+            };
+            var site2 = {
+                label:'超時空寶石原石',
+                data:y_array,
+                tension: 1,
+                pointRadius:5,
+            };
+            var site3 = {
+                label:'老舊收集冊',
+                data:z_array,
+                tension: 1,
+                pointRadius:5,
+            };
+            var site4 = {
+                label:'榮譽玫瑰',
+                data:a_array,
+                tension: 1,
+                pointRadius:5,
+            };
+            var site5 = {
+                label:'神秘咒語集',
+                data:b_array,
+                tension: 1,
+                pointRadius:5,
+            };
+            var site6 = {
+                label:'濃縮鋁箱子',
+                data:c_array,
+                tension: 1,
+                pointRadius:5,
             };
           sites.push(site);
-   //     }
+          sites.push(site2);
+          sites.push(site3);
+          sites.push(site4);
+          sites.push(site5);
+          sites.push(site6);
     };
 </script>
 <script>
