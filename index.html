@@ -1,7 +1,7 @@
 <!DOCTYPE html><html>
 <head>
-   <title>StevenWu Design</title>
-   <meta name="description" content="Steven Wu The F2E Web Redesign">
+   <title>RReality</title>
+   <meta name="description" content="RReality">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,21 +26,18 @@
           <div class="dropdown-menu" aria-labelledby="infographicLink">
             <a class="dropdown-item" href="index.html">職業DPS</a>
             <a class="dropdown-item" href="suspension.html">停權人數</a>
+            <a class="dropdown-item" href="goodsprice.html">物價</a>
             <a class="dropdown-item" href="#">雲圖</a>
-            <a class="dropdown-item" href="#">人數</a>
           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">未來UI設計</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">MVP</a>
+          <a class="nav-link" href="#">低成本三王</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">3D Modal</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">秒7抽抽抽</a>
         </li>
       </ul>
     </div>
@@ -121,7 +118,7 @@
 <script src="Assets/javascript/bootstrap.min.js"></script>
 <script src="Assets/javascript/chart.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
-<script src="Assets/javascript/chartjs-plugin-zoom.min.js"></script>
+<script src="Assets/javascript/chartjs-plugin-zoom.js"></script>
 
 <script>
   $(document).ready(function () {
@@ -242,10 +239,10 @@ for (var i = 0; i < btns.length; i++) {
       if(item.guess_currency){
         //得知guess的index 存成一個陣列
         guess_index.push(index);
-        return Math.floor((item.guess_currency/item.currency_ratio)*10000);
+        return Math.floor((item.guess_currency/item.currency_ratio)*10000/39);
       }
       else
-    return Math.floor((item.Virtual_currency/item.currency_ratio)*10000);
+    return Math.floor((item.Virtual_currency/item.currency_ratio)*10000/39);
    });
    //json轉成單一array
    y_array = json_file.objects.map(function(item) {
@@ -266,7 +263,7 @@ for (var i = 0; i < btns.length; i++) {
   const zoomOptions = {
       limits:{
         y:{min:0,max:60000,minRange:3000},//minRange控制滾輪放大程度
-        x:{min:0,max:500000,minRange:3000},
+        x:{min:0,max:12000,minRange:500},
       },
       pan: {
         enabled: true,
@@ -346,7 +343,7 @@ for (var i = 0; i < btns.length; i++) {
                       if(tooltipItems.dataset.iamguess !=0){
                         iamguess =" (我預估)";
                       }
-                      let label = "花費: " + (tooltipItems.raw.x) + "$";
+                      let label = "花費: " + (tooltipItems.raw.x) + "顆";
                       let label2 = "傷害: " + (tooltipItems.raw.y) + "K";
                       
                       //用空格排版
@@ -362,7 +359,7 @@ for (var i = 0; i < btns.length; i++) {
                 grid: {color: 'rgba( 160, 255, 240, 0.2)',},
                 border:{color:"rgba( 160, 255, 240, 0.25)",width:1,},
                 display:true,
-                max:10000,
+                max:20000,
                 min:0,
                 ticks: {
                     color:"#f1f1f1",
@@ -384,7 +381,7 @@ for (var i = 0; i < btns.length; i++) {
                 border:{display:false,},
                 display: true,
                 min:0,
-                max: 30000,
+                max: 1000,
                 ticks: {
                     color:"#f1f1f1",
                     beginAtZero: true,
@@ -392,7 +389,7 @@ for (var i = 0; i < btns.length; i++) {
                     callback: (value, index, ticks) => {
                       if(index === ticks.length - 1){return null;}
                         else
-                            return Math.floor(value) + '$';
+                            return Math.floor(value) + '顆';
                         }
                 }
             },      
