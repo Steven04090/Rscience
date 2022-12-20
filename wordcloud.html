@@ -1,6 +1,6 @@
 <!DOCTYPE html><html>
 <head>
-      <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SQDMHMSS12"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -9,7 +9,7 @@
 
   gtag('config', 'G-SQDMHMSS12');
 </script>
-   <title>RReality-資訊圖表中心</title>
+   <title>RReality-資訊圖表(文字雲)</title>
    <meta name="description" content="RReality">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta charset="utf-8">
@@ -28,8 +28,8 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">資訊圖表中心</a>
-          </li>
+          <a class="nav-link" href="index.html">資訊圖表中心</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#">未來UI設計</a>
         </li>
@@ -43,18 +43,16 @@
     </div>
   </nav>
   <div class="content-body p-1">
-        <div>
-            <a class="" href="Job_DPS.html">職業DPS</a>
+    <div id="chart-box-layout">
+      <div class="infographic_graphic_section p-1">
+        <div id="controler" class="controler mb-2">
+          
         </div>
-        <div>
-            <a class="" href="suspension.html">停權人數</a>
+        <div style="text-align: center;" class="chart-container">
+          <img style="height:100%;" src="/Assets/image/wordcloud/1219-1215_wordcloud.png">
         </div>
-        <div>
-            <a class="" href="goodsprice.html">物價走勢</a>
-        </div>
-        <div>
-            <a class="" href="wordcloud.html">文字雲</a>
-        </div>
+      </div>
+    </div>
   </div>
 </body>
 <script src="Assets/javascript/jquery.min.js"></script>
@@ -65,4 +63,16 @@
 <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
 
+<script>
+  $(document).ready(function () {
+    var nav_height = $('#nav').outerHeight();
+  var content_height = $('.content-body').innerHeight();
+  $('body').css( "padding-top", nav_height );
+  $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+        });
+ 
+</script>
+<script>
+
+</script>
 </html>

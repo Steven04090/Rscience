@@ -1,0 +1,572 @@
+<!DOCTYPE html><html>
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQDMHMSS12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SQDMHMSS12');
+</script>
+   <title>RReality-資訊圖表(職業DPS)</title>
+   <meta name="description" content="RReality">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="Assets/image/favicon.png" type="image/x-icon">
+   <link rel="stylesheet" href="Assets/Content/bootstrap.css">
+   <link rel="stylesheet" href="Assets/Content/index.css">
+</head>
+<body>
+  <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-1">
+    <a class="navbar-brand" href="#">RReality</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">資訊圖表中心</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">未來UI設計</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">低成本三王</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">3D Modal</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="content-body p-1">
+    <div id="chart-box-layout">
+      <div class="infographic_graphic_section p-1">
+        <div id="controler" class="controler mb-2">
+          <div id="controler_job" class="controler_job d-flex flex-wrap">
+          <button class="btn btn-dark mr-1 active" value="all" onclick="change_data(this.value);">全部</button>
+          <button class="btn btn-dark d-flex mr-1" value="盧" onclick="change_data(this.value);"><img src="Assets/image/job/Dragon_Knight.bmp" class="pr-1">盧恩</button>
+          <button class="btn btn-dark d-flex mr-1" value="皇" onclick="change_data(this.value);"><img src="Assets/image/job/ImperialGuard.bmp" class="pr-1">皇家</button>
+          <button class="btn btn-dark d-flex mr-1" value="斬" onclick="change_data(this.value);"><img src="Assets/image/job/Shadow_cross.bmp" class="pr-1">斬首</button>
+          <button class="btn btn-dark d-flex mr-1" value="魅" onclick="change_data(this.value);"><img src="Assets/image/job/Abyss_Chaser.bmp" class="pr-1">魅影</button>
+          <button class="btn btn-dark d-flex mr-1" value="咒" onclick="change_data(this.value);"><img src="Assets/image/job/Arch_Mage.bmp" class="pr-1">咒術</button>
+          <button class="btn btn-dark d-flex mr-1" value="元" onclick="change_data(this.value);"><img src="Assets/image/job/Elmental_Master.bmp" class="pr-1">元素</button>
+          <button class="btn btn-dark d-flex mr-1" value="機" onclick="change_data(this.value);"><img src="Assets/image/job/Meister.bmp" class="pr-1">機匠</button>
+          <button class="btn btn-dark d-flex mr-1" value="基" onclick="change_data(this.value);"><img src="Assets/image/job/Biolo.bmp" class="pr-1">基因</button>
+          <button class="btn btn-dark d-flex mr-1" value="主" onclick="change_data(this.value);"><img src="Assets/image/job/Cardinal.bmp" class="pr-1">主教</button>
+          <button class="btn btn-dark d-flex mr-1" value="修" onclick="change_data(this.value);"><img src="Assets/image/job/Imquisitor.bmp" class="pr-1">修羅</button>
+          <button class="btn btn-dark d-flex mr-1" value="遊" onclick="change_data(this.value);"><img src="Assets/image/job/WindHawk.bmp" class="pr-1">遊俠</button>
+          <button class="btn btn-dark d-flex mr-1" value="詩" onclick="change_data(this.value);"><img src="Assets/image/job/Troubadour.bmp" class="pr-1">詩人</button>
+          <button class="btn btn-dark d-flex mr-1" value="舞" onclick="change_data(this.value);"><img src="Assets/image/job/dancing.bmp" class="pr-1">舞孃</button>
+        </div>
+          <button class="btn btn-dark d-flex mr-1" onclick="resetZoom()">起始大小</button>
+        </div>
+        <div class="chart-container">
+          <canvas id="canvas"></canvas>
+          <div id ="equip_table_box" class="position-absolute p-2" style="display: none;">
+            <div>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="front-tab" data-toggle="tab" href="#front" role="tab" aria-controls="front" aria-selected="true">正面</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">背面</a>
+                </li>
+                <li class="nav-item close-item" style="margin-left: auto;">
+                  <a class="nav-link" id="x-tab" data-toggle="tab" aria-controls="x" aria-selected="false">x</a>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="front" role="tabpanel" aria-labelledby="front-tab">
+                  <table class="equip-table">
+                    <thead>
+                      <tbody>
+                        <tr><td id="e_top"></td><td rowspan="5" id="text-center"></td><td id="e_top_middle"></td></tr>
+                        <tr><td id="e_top_down"></td><td id="e_cloth"></td></tr>
+                        <tr><td id="e_weapon"></td><td id="e_shield"></td></tr>
+                        <tr><td id="e_shawl"></td><td id="e_shoes"></td></tr>
+                        <tr><td id="e_accessories_right"></td><td id="e_accessories_left"></td></tr>
+                      </tbody>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
+                  <table class="equip-table">
+                    <thead>
+                      <tbody>
+                        <tr><td id="b_top"></td><td rowspan="5" id="text-center"></td><td id="b_top_middle"></td></tr>
+                        <tr><td id="b_top_down"></td><td id="b_cloth"></td></tr>
+                        <tr><td id="b_hand"></td><td id="b_shield"></td></tr>
+                        <tr><td id="b_shawl"></td><td id="b_shoes"></td></tr>
+                        <tr><td id="b_accessories_right"></td><td id="b_accessories_left"></td></tr>
+                      </tbody>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="Assets/javascript/jquery.min.js"></script>
+<script src="Assets/javascript/bootstrap.min.js"></script>
+<script src="Assets/javascript/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+<script src="Assets/javascript/chartjs-plugin-zoom.js"></script>
+
+<script>
+  $(document).ready(function () {
+    var nav_height = $('#nav').outerHeight();
+  var content_height = $('.content-body').innerHeight();
+  $('body').css( "padding-top", nav_height );
+  $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+        });
+ 
+</script>
+<script>
+  // controler active
+var btnContainer = document.getElementById("controler_job");
+var btns = btnContainer.getElementsByClassName("btn");
+// Loop through the buttons and add the active class to the current/clicked button
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = btnContainer.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+} 
+</script>
+<script>
+  var chart;
+  const imageURLs = [ 
+  'Assets/image/job/Dragon_Knight.bmp',//盧
+  'Assets/image/job/ImperialGuard.bmp',//皇
+  'Assets/image/job/Shadow_cross.bmp',//斬
+  'Assets/image/job/Abyss_Chaser.bmp',//魅
+  'Assets/image/job/Arch_Mage.bmp',//咒
+  'Assets/image/job/Elmental_Master.bmp',//元
+  'Assets/image/job/Meister.bmp',//機
+  'Assets/image/job/Biolo.bmp',//基
+  'Assets/image/job/Cardinal.bmp',//主
+  'Assets/image/job/Imquisitor.bmp',//修
+  'Assets/image/job/WindHawk.bmp',//遊
+  'Assets/image/job/Troubadour.bmp',//詩
+  'Assets/image/job/dancing.bmp',//舞
+  ];
+  const images = imageURLs.map(v => {
+  var image = new Image();
+  image.src = v;
+  return image;
+  });
+  var x_array =[];
+  var y_array = [];
+  var username = [];
+  var job = [];
+  var sites = [];
+  var temp = [];
+  var temp_sites = new Object();
+  var temp_sites2 = [];
+  var temp_job = [];
+  var temp_job2 = [];
+  var indexes = [];
+  var whole_job_length;
+  var data = {datasets: sites};
+  var job_value;
+  var guess_index = [];
+
+  Chart.register({
+       id: 'draw_img',
+       beforeDraw: (c) => {
+       let datasets = c.data.datasets;
+       var counter2 = 0;
+       datasets.forEach((e, i) => {
+       if (counter2 < whole_job_length) {
+         let data = c.getDatasetMeta(i).data;
+         var job_selector = job[counter2];
+                switch (job_selector) {
+                  case '盧':job_number = 0;break;
+                  case '皇':job_number = 1;break;
+                  case '斬':job_number = 2;break;
+                  case '魅':job_number = 3;break;
+                  case '咒':job_number = 4;break;
+                  case '元':job_number = 5;break;
+                  case '機':job_number = 6;break;
+                  case '基':job_number = 7;break;
+                  case '主':job_number = 8;break;
+                  case '修':job_number = 9;break;
+                  case '遊':job_number = 10;break;
+                  case '詩':job_number = 11;break;
+                  case '舞':job_number = 12;break;
+                  default:
+                    console.log(`涼了`);
+                }
+                counter2++;
+            data.forEach( function(e) {
+              let ctx = c.ctx;
+              let x = e.x;
+              let y = e.y;
+              let r = e.options.radius + 24;
+              //圖片蓋到axis時不顯示
+              if(x <40 ||ctx.canvas.height - y < 20){
+                return;
+              }
+              else{
+                ctx.save();
+                ctx.beginPath();
+                ctx.drawImage(images[job_number], x-r/2, y-r/2, r, r);
+                ctx.stroke();
+                ctx.restore();
+              }
+              });
+        }
+        });
+        },
+});
+  const ctx = document.getElementById('canvas').getContext('2d');
+
+  //json轉檔
+  JsonTransition();
+  function JsonTransition(){
+  $.getJSON("Assets/json/job_damage.json", function(json_file) {
+    
+   x_array= json_file.objects.map(function(item ,index) {
+      if(item.guess_currency){
+        //得知guess的index 存成一個陣列
+        guess_index.push(index);
+        return Math.floor((item.guess_currency/item.currency_ratio)*10000/39);
+      }
+      else
+    return Math.floor((item.Virtual_currency/item.currency_ratio)*10000/39);
+   });
+   //json轉成單一array
+   y_array = json_file.objects.map(function(item) {
+      return item.Every_Damage;
+   });
+   username = json_file.objects.map(function(item) {
+      return item.username;
+   });
+   job = json_file.objects.map(function(item) {
+      return item.job;
+   });
+    job_sort();
+    // 畫表格
+    init();
+  });
+};
+
+  const zoomOptions = {
+      limits:{
+        y:{min:0,max:60000,minRange:3000},//minRange控制滾輪放大程度
+        x:{min:0,max:12000,minRange:500},
+      },
+      pan: {
+        enabled: true,
+        mode: 'xy',
+      },
+      zoom:{
+        wheel: {
+          enabled: true,
+          //speed:0.05,
+        },
+        pinch: {
+          enabled: true,
+        },
+        mode: 'xy',
+        onZoomComplete({chart}) {
+        // This update is needed to display up to date zoom level in the title.
+        // Without this, previous zoom level is displayed.
+        // The reason is: title uses the same beforeUpdate hook, and is evaluated before zoom.
+        chart.update('none');
+        },
+      },
+    }
+  const options ={
+        maintainAspectRatio:false,
+        responsive: true,
+        clip: false,
+        hover: {
+          mode: "nearest",
+          axis: "x",
+          intersect: true,
+        },
+         plugins:{
+            zoom: zoomOptions,
+            title:{
+              display:false,
+              color:'#fff',
+              position:"bottom",
+              font:{size:20,},
+            },
+            legend: {
+            display: false,
+            },
+            tooltip: {
+                events: ['mousemove'],
+                enabled: true,
+                displayColors: false,
+                mode: "nearest",
+                axis: "y",
+                intersect: true,
+                //鳥爛排版
+                padding:{
+                  x:30,
+                  y:20,
+                },
+                titleAlign:"center",
+                titleFont:{
+                  size: 24,
+                  family:'Microsoft JhengHei',
+                },
+                titleColor:'#fff',
+                titleMarginBottom:12,
+                backgroundColor:"#122833ed",
+                bodyFont: {
+                  size: 20,
+                  family:'Microsoft JhengHei',
+                },
+                borderColor:'#92f2e9',
+                borderWidth:0.15,
+                callbacks: {
+                  title:function(tooltipItems){
+                    var title =  tooltipItems[0].dataset.label;
+                    return title;
+                  },
+                    label: function(tooltipItems) {
+                      //不=0 代表是我預估的
+                      let iamguess =" (玩家提供)";
+                      if(tooltipItems.dataset.iamguess !=0){
+                        iamguess =" (我預估)";
+                      }
+                      let label = "花費: " + (tooltipItems.raw.x) + "顆";
+                      let label2 = "傷害: " + (tooltipItems.raw.y) + "K";
+                      
+                      //用空格排版
+                      return [label + iamguess, label2];
+                    },
+                }
+            },
+            
+          },
+         
+          scales: {
+            y:{
+                grid: {color: 'rgba( 160, 255, 240, 0.2)',},
+                border:{color:"rgba( 160, 255, 240, 0.25)",width:1,},
+                display:true,
+                max:20000,
+                min:0,
+                ticks: {
+                    color:"#f1f1f1",
+                    beginAtZero: true,
+                    precision:0,
+                    padding: 8,
+                    crossAlign: 'start',
+                    callback: (value, index, ticks) => {
+                      if(index === ticks.length - 1){return null;}
+                      else
+                          if(value >= 10000){return Math.floor(value/1000) + 'M';}
+                          else
+                            return Math.floor(value) + 'K';
+                    }
+                }
+            },
+            x: {
+              grid: {color: 'rgba( 160, 255, 240, 0.2)',},
+                border:{display:false,},
+                display: true,
+                min:0,
+                max: 1000,
+                ticks: {
+                    color:"#f1f1f1",
+                    beginAtZero: true,
+                    precision:0,
+                    callback: (value, index, ticks) => {
+                      if(index === ticks.length - 1){return null;}
+                        else
+                            return Math.floor(value) + '顆';
+                        }
+                }
+            },      
+          },
+           onHover: function (evt, elements) {
+             evt.native.target.style.cursor = elements[0] ? 'pointer' : 'grab';
+           },
+        };
+  
+  const config = {
+      type: 'scatter',
+      data: data,
+      options:options,
+      //point click 點data時event
+      plugins: [
+        {
+            afterEvent(chart, args, options) {
+                if (
+                    args.event.type === "click" && typeof chart.tooltip.dataPoints !== "undefined"
+                ) {
+                    // note the cursor position upon clicking
+                    const { x, y } = args.event;
+                    // note the boundary positions of the nearest chart element
+                    const left = chart.tooltip.dataPoints[0].element.x - chart.tooltip.dataPoints[0].element.options.radius - 14;
+                    const right = chart.tooltip.dataPoints[0].element.x + chart.tooltip.dataPoints[0].element.options.radius + 14;
+                    const top = chart.tooltip.dataPoints[0].element.y - chart.tooltip.dataPoints[0].element.options.radius - 14;
+                    const bottom = chart.tooltip.dataPoints[0].element.y + chart.tooltip.dataPoints[0].element.options.radius + 14;
+                    const div = document.getElementById("equip_table_box");
+
+                    const title = chart.tooltip.dataPoints[0].dataset.label;
+                    // proceed if the cursor is within the element boundaries
+                    if (x >= left && x <= right && y >= top && y <= bottom) {
+                      div.style.display = "block";
+                      //先找到點到的物件的username
+                      //比對equip_data的username
+                      //再將內容一個一個map過去
+                      $.getJSON("Assets/json/equip_data.json", function(json_file) {
+                        for(var i = 0 ;i < json_file.objects.length; i++){
+                          if (title == json_file.objects[i].username){
+                            document.getElementById("e_top").innerText = json_file.objects[i].e_top;
+                            document.getElementById("e_top_middle").innerText = json_file.objects[i].e_top_middle;
+                            document.getElementById("e_top_down").innerText = json_file.objects[i].e_top_down;
+                            document.getElementById("e_cloth").innerText = json_file.objects[i].e_cloth;
+                            document.getElementById("e_weapon").innerText = json_file.objects[i].e_weapon;
+                            document.getElementById("e_shield").innerText = json_file.objects[i].e_shield;
+                            document.getElementById("e_shawl").innerText = json_file.objects[i].e_shawl;
+                            document.getElementById("e_shoes").innerText = json_file.objects[i].e_shoes;
+                            document.getElementById("e_accessories_right").innerText = json_file.objects[i].e_accessories_right;
+                            document.getElementById("e_accessories_left").innerText = json_file.objects[i].e_accessories_left;
+                            document.getElementById("b_top").innerText = json_file.objects[i].b_top;
+                            document.getElementById("b_top_middle").innerText = json_file.objects[i].b_top_middle;
+                            document.getElementById("b_top_down").innerText = json_file.objects[i].b_top_down;
+                            document.getElementById("b_cloth").innerText = json_file.objects[i].b_cloth;
+                            document.getElementById("b_hand").innerText = json_file.objects[i].b_hand;
+                            document.getElementById("b_shield").innerText = json_file.objects[i].b_shield;
+                            document.getElementById("b_shawl").innerText = json_file.objects[i].b_shawl;
+                            document.getElementById("b_shoes").innerText = json_file.objects[i].b_shoes;
+                            document.getElementById("b_accessories_right").innerText = json_file.objects[i].b_accessories_right;
+                            document.getElementById("b_accessories_left").innerText = json_file.objects[i].b_accessories_left;
+                          }
+                          
+                        }
+                      })
+                    }
+                    else{
+                      div.style.display = "none";
+                    }
+                }
+            }
+        }
+    ]
+      };
+  function init() {
+  chart = new Chart(ctx, config);
+    };
+</script>
+<script>
+  //job部分
+    function job_sort(){
+      whole_job_length = job.length;
+      var m = 0;
+      
+      for(var i = 0; i < job.length; i++){
+        //找到guess位置
+        var index = 0;
+        if(i == guess_index[m]){
+          index = guess_index[m];
+          m ++;
+        };
+            var site = {
+                label:username[i],
+                pointRadius: 6,
+                borderWidth: 0,
+                radius:0,
+                hitRadius:14,
+                hoverRadius:10,
+                borderColor: 'transparent',
+                backgroundColor: 'transparent',
+                hidden:false,
+                pointStyle:'circle',
+                iamguess:index,
+                //pointStyle:images[job_number],
+                data:[{
+                x: Number(x_array[i]),
+                y: Number(y_array[i]),
+                }],
+            };
+          sites.push(site);
+        }
+    };
+
+    function change_data(val) {
+      job_value = val;
+      indexes = [];
+      //如果目前資料(長度) 不等於 全部資料(長度)，先把暫存移除的資料回復，再做filter，如果已經相等，直接偵測點選的job
+      if(whole_job_length != sites.length){
+        restore_sites();
+        detect_job_value();
+        chart.update();
+      }
+      else{
+        detect_job_value();
+      }
+  };
+
+    function detect_job_value(){ 
+      if(job_value != 'all'){
+          for_index();
+          chart.update();
+        }
+        else{
+          chart.update();
+        }
+         
+    };
+
+    function for_index(){
+      //重製indexes
+      indexes = [];
+          for (var index = 0; index < whole_job_length; index++) {
+            //job的index也要改
+              if (job[index] != job_value) {
+                indexes.push(index);
+              }
+          }
+          for (var i = indexes.length -1; i >= 0; i--){
+            temp_sites = Object.assign({}, sites.splice(indexes[i],1));
+            temp_job = job.splice(indexes[i],1);  
+            temp_sites2.push(temp_sites[0]);
+            temp_job2.push(temp_job[0]);
+          }
+    };
+
+    function restore_sites(){
+      
+      temp_sites = undefined;
+      temp_job = undefined;
+        for (var index = 0; index < temp_sites2.length; index++) {
+                indexes.push(index);
+        }
+        
+        //先取temp_site2的長度出來，寫一個for迴圈，再用Object.assign一個個存入sites
+        for (var b = indexes.length -1; b >= 0; b--){
+          temp_sites = Object.assign({}, temp_sites2.splice(indexes[b],1));
+          temp_job = temp_job2.splice(indexes[b],1);
+          sites.push(temp_sites[0]);
+          job.push(temp_job[0]);
+        }
+        temp_job2 = [];
+        temp_sites2 = [];
+    };
+</script>
+<script>
+  //zoom區
+  function resetZoom() {
+  chart.resetZoom();
+}
+
+</script>
+</html>
