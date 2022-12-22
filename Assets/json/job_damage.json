@@ -1,4 +1,3 @@
-
 {
   "objects":[
     {"username":"230銳射幻象遊俠(1)","job":"遊", "Virtual_currency":"9.6","Every_Damage":"3700", "Total_Damage":"1157", "server":"巴基力","Time":"2022/11/27","currency_ratio":"15"},
@@ -7,7 +6,7 @@
     {"username":"236虎砲聖裁(1)","job":"修", "Virtual_currency":"5.8","Every_Damage":"5404", "Total_Damage":"14369", "server":"巴基力","Time":"2022/11/27","currency_ratio":"15"},
     {"username":"230機匠加農砲(裝備無詠1)","job":"機", "Virtual_currency":"2.1","Every_Damage":"1718", "Total_Damage":"5376", "server":"巴基力","Time":"2022/12/10","currency_ratio":"15"},
     {"username":"230基因(1)","job":"基", "Virtual_currency":"2.5","Every_Damage":"1815", "Total_Damage":"2799", "server":"巴基力","Time":"2022/12/10","currency_ratio":"15"},
-    {"username":"230致命魅影(1)","job":"魅", "Virtual_currency":"0.96","Every_Damage":"1212", "Total_Damage":"4052","server":"巴基力","Time":"2022/12/17","currency_ratio":"15"},
+    {"username":"230致命魅影(1)","job":"魅", "Virtual_currency":"1.05","Every_Damage":"1212", "Total_Damage":"4052","server":"巴基力","Time":"2022/12/17","currency_ratio":"15"},
     {"username":"231斬首(1)","job":"斬", "Virtual_currency":"7.6","Every_Damage":"11053", "Total_Damage":"24127","server":"巴基力","Time":"2022/12/17","currency_ratio":"15"},
 
     {"username":"245級基因(1)","job":"基", "Virtual_currency":"0","guess_currency":"160.8","Every_Damage":"14708", "Total_Damage":"55048","server":"波利","Time":"2022/12/11","currency_ratio":"15"},
@@ -81,9 +80,5 @@
     {"username":"231等機甲神匠(加農砲機匠)","job":"機", "Virtual_currency":"0","guess_currency":"285","Every_Damage":"8244", "Total_Damage":"61676","server":"波利","Time":"2022/10/13","currency_ratio":"15"},
     {"username":"237等 致命爆裂-盧恩龍爵","job":"盧", "Virtual_currency":"0","Every_Damage":"9900", "Total_Damage":"65000","server":"波利","Time":"2022/11/01","currency_ratio":"14"}
 
-
-   
-
   ]   
 }
-

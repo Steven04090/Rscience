@@ -9,8 +9,8 @@
 
   gtag('config', 'G-SQDMHMSS12');
 </script>
-   <title>RReality-資訊圖表(職業DPS)</title>
-   <meta name="description" content="RReality">
+   <title>科學RO-資訊圖表(職業DPS)</title>
+   <meta name="description" content="科學RO">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
 </head>
 <body>
   <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-1">
-    <a class="navbar-brand" href="#">RReality</a>
+    <a class="navbar-brand" href="#">科學RO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -47,41 +47,160 @@
     <div id="chart-box-layout">
       <div class="infographic_graphic_section p-1">
         <div id="controler" class="controler mb-2">
-          <div id="controler_job" class="controler_job d-flex flex-wrap">
-          <button class="btn btn-dark mr-1 active" value="all" onclick="change_data(this.value);">全部</button>
-          <button class="btn btn-dark d-flex mr-1" value="盧" onclick="change_data(this.value);"><img src="Assets/image/job/Dragon_Knight.bmp" class="pr-1">盧恩</button>
-          <button class="btn btn-dark d-flex mr-1" value="皇" onclick="change_data(this.value);"><img src="Assets/image/job/ImperialGuard.bmp" class="pr-1">皇家</button>
-          <button class="btn btn-dark d-flex mr-1" value="斬" onclick="change_data(this.value);"><img src="Assets/image/job/Shadow_cross.bmp" class="pr-1">斬首</button>
-          <button class="btn btn-dark d-flex mr-1" value="魅" onclick="change_data(this.value);"><img src="Assets/image/job/Abyss_Chaser.bmp" class="pr-1">魅影</button>
-          <button class="btn btn-dark d-flex mr-1" value="咒" onclick="change_data(this.value);"><img src="Assets/image/job/Arch_Mage.bmp" class="pr-1">咒術</button>
-          <button class="btn btn-dark d-flex mr-1" value="元" onclick="change_data(this.value);"><img src="Assets/image/job/Elmental_Master.bmp" class="pr-1">元素</button>
-          <button class="btn btn-dark d-flex mr-1" value="機" onclick="change_data(this.value);"><img src="Assets/image/job/Meister.bmp" class="pr-1">機匠</button>
-          <button class="btn btn-dark d-flex mr-1" value="基" onclick="change_data(this.value);"><img src="Assets/image/job/Biolo.bmp" class="pr-1">基因</button>
-          <button class="btn btn-dark d-flex mr-1" value="主" onclick="change_data(this.value);"><img src="Assets/image/job/Cardinal.bmp" class="pr-1">主教</button>
-          <button class="btn btn-dark d-flex mr-1" value="修" onclick="change_data(this.value);"><img src="Assets/image/job/Imquisitor.bmp" class="pr-1">修羅</button>
-          <button class="btn btn-dark d-flex mr-1" value="遊" onclick="change_data(this.value);"><img src="Assets/image/job/WindHawk.bmp" class="pr-1">遊俠</button>
-          <button class="btn btn-dark d-flex mr-1" value="詩" onclick="change_data(this.value);"><img src="Assets/image/job/Troubadour.bmp" class="pr-1">詩人</button>
-          <button class="btn btn-dark d-flex mr-1" value="舞" onclick="change_data(this.value);"><img src="Assets/image/job/dancing.bmp" class="pr-1">舞孃</button>
+          <div class="job_menu select_wrap mr-1">
+            <ul class="default_option">
+                <li>
+                    <div>
+                      <span>職業: 全部</span>
+                    </div>
+                </li>
+            </ul>
+            <ul class="select_ul">
+                <li class="job_option" value="all">
+                    <div>
+                      <span>全部</span>
+                    </div>
+                </li>
+                <li class="job_option" value="盧">
+                    <div>
+                      <img src="Assets/image/job/Dragon_Knight.bmp">
+                      <span>盧恩</span>
+                    </div>  
+                </li>
+                <li class="job_option" value="皇">
+                  <div>
+                    <img src="Assets/image/job/ImperialGuard.bmp">
+                    <span>皇家</span>
+                  </div>  
+                </li>
+                <li class="job_option" value="斬">
+                  <div>
+                    <img src="Assets/image/job/Shadow_cross.bmp">
+                    <span>斬首</span>
+                  </div>  
+              </li>
+              <li class="job_option" value="魅">
+                <div>
+                  <img src="Assets/image/job/Abyss_Chaser.bmp">
+                  <span>魅影</span>
+                </div>  
+              </li> 
+              <li class="job_option" value="咒">
+                <div>
+                  <img src="Assets/image/job/Arch_Mage.bmp">
+                  <span>咒術</span>
+                </div>  
+              </li>
+              <li class="job_option" value="元">
+                <div>
+                  <img src="Assets/image/job/Elmental_Master.bmp">
+                  <span>元素</span>
+                </div>  
+              </li> 
+              <li class="job_option" value="機">
+                <div>
+                  <img src="Assets/image/job/Meister.bmp">
+                  <span>機匠</span>
+                </div>  
+              </li>
+              <li class="job_option" value="基">
+                <div>
+                  <img src="Assets/image/job/Biolo.bmp">
+                  <span>基因</span>
+                </div>  
+              </li> 
+              <li class="job_option" value="主">
+                <div>
+                  <img src="Assets/image/job/Cardinal.bmp">
+                  <span>主教</span>
+                </div>  
+              </li>
+              <li class="job_option" value="修">
+                <div>
+                  <img src="Assets/image/job/Imquisitor.bmp">
+                  <span>修羅</span>
+                </div>  
+              </li> 
+              <li class="job_option" value="遊">
+                <div>
+                  <img src="Assets/image/job/WindHawk.bmp">
+                  <span>遊俠</span>
+                </div>  
+              </li>
+              <li class="job_option" value="詩">
+                <div>
+                  <img src="Assets/image/job/Troubadour.bmp">
+                  <span>詩人</span>
+                </div>  
+              </li>
+              <li class="job_option" value="舞">
+                <div>
+                  <img src="Assets/image/job/dancing.bmp">
+                  <span>舞孃</span>
+                </div>  
+              </li>
+            </ul>
         </div>
-          
+         <div class="damage_menu select_wrap mr-1">
+          <ul class="default_option">
+            <li>
+                <div class="on">
+                  <span>傷害: 平均單下</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="select_ul">
+          <li>
+              <div class="damage_option">
+                <span>平均單下</span>
+              </div>
+          </li>
+        </ul>
+         </div>
+         <div class="equip_menu select_wrap mr-1">
+          <ul class="default_option">
+            <li>
+                <div class="on">
+                  <span>裝備: 全部</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="select_ul">
+          <li>
+              <div class="equip_option">
+                <span>全部</span>
+              </div>
+          </li>
+          <li>
+            <div class="equip_option">
+              <span>無王卡</span>
+            </div>
+        </li>
+        </ul>
+         </div>
+
         </div>
         <div class="chart-container">
           <canvas id="canvas"></canvas>
-          <div class="position-absolute" style="top:0;right:0;">
-            <button class="btn btn-dark d-flex mr-1 on-chart-button" onclick="resetZoom()"><i class="fa fa-arrows" style="transform: rotate(45deg);" aria-hidden="true"></i>
+          <div class="position-absolute" style="bottom:10px;right:10px;">
+            <button class="btn btn-dark d-flex on-chart-button" onclick="resetZoom()"><i class="fa fa-arrows" style="transform: rotate(45deg);" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-dark d-flex on-chart-button" onclick="Zoomin()"><i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-dark d-flex on-chart-button" onclick="Zoomout()"><i class="fa fa-minus" aria-hidden="true"></i>
             </button>
           </div>
           
 
-          <div id ="equip_table_box" class="position-absolute p-2" style="display: none;">
+          <div id ="equip_table_box" class="position-absolute p-1" style="display: none;">
             <div>
               <div class="d-flex">
               <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="front-tab" data-toggle="tab" href="#front" role="tab" aria-controls="front" aria-selected="true">正面</a>
+                  <a class="nav-link active" id="front-tab" data-toggle="tab" href="#front" role="tab" aria-controls="front" aria-selected="true">正面裝</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-flex margin-auto" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">背面</a>
+                  <a class="nav-link d-flex margin-auto" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">背面裝</a>
                 </li>
               </ul>
               <a onclick="closed_equip_table_box();" class="nav-link" id="x-tab" style="cursor: pointer;">x</a>
@@ -92,11 +211,11 @@
                   <table class="equip-table">
                     <thead>
                       <tbody>
-                        <tr><td id="e_top"></td><td rowspan="5" id="text-center"></td><td id="e_top_middle"></td></tr>
-                        <tr><td id="e_top_down"></td><td id="e_cloth"></td></tr>
-                        <tr><td id="e_weapon"></td><td id="e_shield"></td></tr>
-                        <tr><td id="e_shawl"></td><td id="e_shoes"></td></tr>
-                        <tr><td id="e_accessories_right"></td><td id="e_accessories_left"></td></tr>
+                        <tr><td><div id="e_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="e_top_middle"><span></span></div></td></tr>
+                        <tr><td><div id="e_top_down"><span></span></div></td><td><div id="e_cloth"><span></span></div></td></tr>
+                        <tr><td><div id="e_weapon"><span></span></div></td><td><div id="e_shield"><span></span></div></td></tr>
+                        <tr><td><div id="e_shawl"><span></span></div></td><td><div id="e_shoes"><span></span></div></td></tr>
+                        <tr><td><div id="e_accessories_right"><span></span></div></td><td><div id="e_accessories_left"><span></span></div></td></tr>
                       </tbody>
                     </thead>
                   </table>
@@ -105,11 +224,11 @@
                   <table class="equip-table">
                     <thead>
                       <tbody>
-                        <tr><td id="b_top"></td><td rowspan="5" id="text-center"></td><td id="b_top_middle"></td></tr>
-                        <tr><td id="b_top_down"></td><td id="b_cloth"></td></tr>
-                        <tr><td id="b_hand"></td><td id="b_shield"></td></tr>
-                        <tr><td id="b_shawl"></td><td id="b_shoes"></td></tr>
-                        <tr><td id="b_accessories_right"></td><td id="b_accessories_left"></td></tr>
+                        <tr><td><div id="b_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="b_top_middle"><span></span></div></td></tr>
+                        <tr><td><div id="b_top_down"><span></span></div></td><td><div id="b_cloth"><span></span></div></td></tr>
+                        <tr><td><div id="b_weapon"><span></span></div></td><td><div id="b_shield"><span></span></div></td></tr>
+                        <tr><td><div id="b_shawl"><span></span></div></td><td><div id="b_shoes"><span></span></div></td></tr>
+                        <tr><td><div id="b_accessories_right"><span></span></div></td><td><div id="b_accessories_left"><span></span></div></td></tr>
                       </tbody>
                     </thead>
                   </table>
@@ -138,17 +257,31 @@
  
 </script>
 <script>
-  // controler active
-var btnContainer = document.getElementById("controler_job");
-var btns = btnContainer.getElementsByClassName("btn");
-// Loop through the buttons and add the active class to the current/clicked button
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-    var current = btnContainer.getElementsByClassName("active");
-    current[0].className = current[0].className.replace(" active", "");
-    this.className += " active";
-  });
-} 
+
+  //點外面關掉menu
+  $(document).on("click", function(event){
+    var $trigger = $(".select_wrap");
+    if($trigger !== event.target && !$trigger.has(event.target).length){
+        $(".select_wrap").removeClass("active");
+  }
+})
+  //menu開啟
+  $(".default_option").click(function(){
+    var $this = $(this).parent().find('.select_ul');
+    $(".select_wrap .select_ul").not($this).parents(".select_wrap").removeClass("active");
+  $(this).parent().toggleClass("active");
+})
+
+//選單覆蓋title
+$(".select_ul li").click(function(){
+  var currentele = $(this).html();
+//  $(this).parent().find(".select_wrap").children().find(".default_option li").html(currentele);
+  var $this = $(this).closest('.select_wrap');
+  $this.find(".default_option li").html(currentele);
+  $(this).parents(".select_wrap").removeClass("active");
+})
+
+
 </script>
 <script>
   var chart;
@@ -286,6 +419,7 @@ for (var i = 0; i < btns.length; i++) {
           enabled: true,
         },
         mode: 'xy',
+        
         onZoomComplete({chart}) {
         // This update is needed to display up to date zoom level in the title.
         // Without this, previous zoom level is displayed.
@@ -293,6 +427,7 @@ for (var i = 0; i < btns.length; i++) {
         chart.update('none');
         },
       },
+      
     }
   const options ={
         maintainAspectRatio:false,
@@ -315,7 +450,7 @@ for (var i = 0; i < btns.length; i++) {
             display: false,
             },
             tooltip: {
-                events: ['mousemove'],
+                //events: ['mousemove'],
                 enabled: true,
                 displayColors: false,
                 mode: "nearest",
@@ -323,19 +458,19 @@ for (var i = 0; i < btns.length; i++) {
                 intersect: true,
                 //鳥爛排版
                 padding:{
-                  x:30,
-                  y:20,
+                  x:24,
+                  y:18,
                 },
                 titleAlign:"center",
                 titleFont:{
-                  size: 24,
+                  size: 22,
                   family:'Microsoft JhengHei',
                 },
                 titleColor:'#fff',
-                titleMarginBottom:12,
+                titleMarginBottom:10,
                 backgroundColor:"#122833ed",
                 bodyFont: {
-                  size: 20,
+                  size: 17,
                   family:'Microsoft JhengHei',
                 },
                 borderColor:'#92f2e9',
@@ -407,7 +542,6 @@ for (var i = 0; i < btns.length; i++) {
         onClick: (event, elements, chart) => {
           //先還原
           event.chart.data.datasets[onclick_temp].borderColor ='transparent';
-          console.log(event.chart.data.datasets);
           if (elements[0]) {
             //對象的index & Label
             const i = elements[0].datasetIndex;
@@ -451,29 +585,33 @@ for (var i = 0; i < btns.length; i++) {
               $.getJSON("Assets/json/equip_data.json", function(json_file) {
                 for(var i = 0 ;i < json_file.objects.length; i++){
                   if (title == json_file.objects[i].username){
-                    document.getElementById("e_top").innerText = json_file.objects[i].e_top;
-                    document.getElementById("e_top_middle").innerText = json_file.objects[i].e_top_middle;
-                    document.getElementById("e_top_down").innerText = json_file.objects[i].e_top_down;
-                    document.getElementById("e_cloth").innerText = json_file.objects[i].e_cloth;
-                    document.getElementById("e_weapon").innerText = json_file.objects[i].e_weapon;
-                    document.getElementById("e_shield").innerText = json_file.objects[i].e_shield;
-                    document.getElementById("e_shawl").innerText = json_file.objects[i].e_shawl;
-                    document.getElementById("e_shoes").innerText = json_file.objects[i].e_shoes;
-                    document.getElementById("e_accessories_right").innerText = json_file.objects[i].e_accessories_right;
-                    document.getElementById("e_accessories_left").innerText = json_file.objects[i].e_accessories_left;
-                    document.getElementById("b_top").innerText = json_file.objects[i].b_top;
-                    document.getElementById("b_top_middle").innerText = json_file.objects[i].b_top_middle;
-                    document.getElementById("b_top_down").innerText = json_file.objects[i].b_top_down;
-                    document.getElementById("b_cloth").innerText = json_file.objects[i].b_cloth;
-                    document.getElementById("b_hand").innerText = json_file.objects[i].b_hand;
-                    document.getElementById("b_shield").innerText = json_file.objects[i].b_shield;
-                    document.getElementById("b_shawl").innerText = json_file.objects[i].b_shawl;
-                    document.getElementById("b_shoes").innerText = json_file.objects[i].b_shoes;
-                    document.getElementById("b_accessories_right").innerText = json_file.objects[i].b_accessories_right;
-                    document.getElementById("b_accessories_left").innerText = json_file.objects[i].b_accessories_left;
+                    $("#e_top").children('span').text(json_file.objects[i].e_top);
+                    $("#e_top_middle").children('span').text(json_file.objects[i].e_top_middle);
+                    $("#e_top_down").children('span').text(json_file.objects[i].e_top_down);
+                    $("#e_cloth").children('span').text(json_file.objects[i].e_cloth);
+                    $("#e_weapon").children('span').text(json_file.objects[i].e_weapon);
+                    $("#e_shield").children('span').text(json_file.objects[i].e_shield);
+                    $("#e_shawl").children('span').text(json_file.objects[i].e_shawl);
+                    $("#e_shoes").children('span').text(json_file.objects[i].e_shoes);
+                    $("#e_accessories_right").children('span').text(json_file.objects[i].e_accessories_right);
+                    $("#e_accessories_left").children('span').text(json_file.objects[i].e_accessories_left);
+                    $("#b_top").children('span').text(json_file.objects[i].b_top);
+                    $("#b_top_middle").children('span').text(json_file.objects[i].b_top_middle);
+                    $("#b_top_down").children('span').text(json_file.objects[i].b_top_down);
+                    $("#b_cloth").children('span').text(json_file.objects[i].b_cloth);
+                    $("#b_hand").children('span').text(json_file.objects[i].b_hand);
+                    $("#b_shield").children('span').text(json_file.objects[i].b_shield);
+                    $("#b_shawl").children('span').text(json_file.objects[i].b_shawl);
+                    $("#b_shoes").children('span').text(json_file.objects[i].b_shoes);
+                    $("#b_accessories_right").children('span').text(json_file.objects[i].b_accessories_right);
+                    $("#b_accessories_left").children('span').text(json_file.objects[i].b_accessories_left);
                     break;
                   }
-                }
+                  else if(i == json_file.objects.length - 1 && title != json_file.objects[i].username){
+                    $(".equip-table").find('span').text("沒有 :(");
+                  };
+                };
+               
               })
             }
             else{
@@ -513,7 +651,6 @@ for (var i = 0; i < btns.length; i++) {
                 hidden:false,
                 pointStyle:'circle',
                 iamguess:index,
-                //pointStyle:images[job_number],
                 data:[{
                 x: Number(x_array[i]),
                 y: Number(y_array[i]),
@@ -523,7 +660,9 @@ for (var i = 0; i < btns.length; i++) {
         }
     };
 
-    function change_data(val) {
+    $('.job_option').on('click',  function() {
+    var val = $(this).attr('value');
+
       job_value = val;
       indexes = [];
       //如果目前資料(長度) 不等於 全部資料(長度)，先把暫存移除的資料回復，再做filter，如果已經相等，直接偵測點選的job
@@ -535,7 +674,7 @@ for (var i = 0; i < btns.length; i++) {
       else{
         detect_job_value();
       }
-  };
+  });
 
     function detect_job_value(){ 
       if(job_value != 'all'){
@@ -566,7 +705,6 @@ for (var i = 0; i < btns.length; i++) {
     };
 
     function restore_sites(){
-      
       temp_sites = undefined;
       temp_job = undefined;
         for (var index = 0; index < temp_sites2.length; index++) {
@@ -585,12 +723,30 @@ for (var i = 0; i < btns.length; i++) {
     };
 </script>
 <script>
-  //zoom區
-  function resetZoom() {
-  chart.resetZoom();
-};
+  
   function closed_equip_table_box(){
     document.getElementById("equip_table_box").style.display = "none"; 
   };
+
+
+  //zoom區
+  function resetZoom() {
+  chart.resetZoom();
+  };
+
+  //模擬滑鼠滾輪 zoom in & out
+  function Zoomin() {
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent('wheel', true, true);
+    evt.deltaY = -200;
+    document.getElementById("canvas").dispatchEvent(evt);
+  };
+  function Zoomout() {
+    var evt = document.createEvent('MouseEvents');
+    evt.initEvent('wheel', true, true);
+    evt.deltaY = 200;
+    document.getElementById("canvas").dispatchEvent(evt);
+  };
+  
 </script>
 </html>
