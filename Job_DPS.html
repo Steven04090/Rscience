@@ -662,7 +662,7 @@ $(".select_ul li").click(function(){
 
     $('.job_option').on('click',  function() {
     var val = $(this).attr('value');
-
+    onclick_temp = 0; //切重製
       job_value = val;
       indexes = [];
       //如果目前資料(長度) 不等於 全部資料(長度)，先把暫存移除的資料回復，再做filter，如果已經相等，直接偵測點選的job
