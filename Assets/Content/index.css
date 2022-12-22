@@ -1,8 +1,21 @@
+/****  通用區    ****/
 body{
   background-color: #1e2f46;
 }
+/****var顏色****/
+:root {
+  --main-text-color: #e2e8f0;
+  --light-border-color:#9affd9;
+  --soft-border-color:#9affd966;
+}
+a{
+  color:var(--main-text-color);
+}
+
+
+/************* nav  ******************/
 .navbar-brand img{
-  height:50px;
+  height:40px;
 }
 .bg-dark {
   background-color: #204675 !important;
@@ -11,18 +24,24 @@ body{
 .navbar-dark .navbar-nav .active > .nav-link{
   border-bottom:2px solid #fff;
 }
+
+
+/****************   content   ******************/
 #chart-box-layout{
   height:100%;
 }
 .content-box{
-  height:120px;
-  background-color:rgba(91, 131, 193, 0.18);
-  font-size:18px;
-  color:#ffffff;
+  color:var(--main-text-color);
+  height:80px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size:1.1em;
+  border-radius: 4px;
 }
 .content-box:hover{
   color:#fff;
   text-decoration: none;
+  border-color: var(--light-border-color);
 }
 .infographic_graphic_section{
   height:100%;
@@ -50,16 +69,15 @@ body{
   position: relative;
   z-index: 2;
 }
-
 #equip_table_box{
-  color:#fff;
+  color:var(--main-text-color);
   width:450px;
   min-height:100px;
   top:10px;
   right:0px;
   background: radial-gradient(circle at 93.34% 83.42%, #122f55e6, transparent 100%),radial-gradient(circle at 9.25% 41.17%, #153155a3, transparent 100%),radial-gradient(circle at 50% 50%, #26141db8, #13020bb3 100%);
   border-radius: 4px;
-  box-shadow: 0px 0px 2px rgb(160, 255, 246);
+  box-shadow: 0px 0px 2px var(--light-border-color);
 }
 .equip-table{
   width:100%;
@@ -67,15 +85,14 @@ body{
   table-layout: fixed;
 }
 .equip-table tr td{
-  
-  border: 1px solid #9affd966;
+  border: 1px solid var(--soft-border-color);
 }
 .equip-table tr td div{
-  height:52px;
+  height:55px;
 }
 .equip-table tr td div span{
-  font-size:0.9em;
-  color:#f1f1f1;
+  font-size:1em;
+  color:var(--main-text-color);
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -84,12 +101,12 @@ body{
   word-break: break-all;/*break*/
   overflow: hidden;
   padding:4px;
-  min-height: 52px;
+  min-height: 55px;
 }
 .equip-table :is(tr, td):hover > div > span {
   background-color: rgb(29, 54, 87);
   display: inline-flex;
-  outline: 1px solid #9affd966;
+  outline: 1px solid var(--soft-border-color);
   position: relative;
   left: 50%;
   min-width: 100%;
@@ -106,7 +123,7 @@ body{
   font-size:15px;
 }
 #equip_table_box .nav-item a{
-  color:#fff;
+  color:var(--main-text-color);
 }
 #equip_table_box .nav-tabs .nav-link.active,#equip_table_box .nav-tabs .nav-item.show .nav-link{
 color:black;
@@ -128,7 +145,7 @@ color:black;
   padding:6px;
   margin:0 0 2px 0;
   background-color:#1f2d4fe6;
-  border:1px solid #9affd966;
+  border:1px solid var(--soft-border-color);
 }
 .on-chart-button:hover{
   background-color:#44749de0;
@@ -145,9 +162,9 @@ color:black;
   list-style: none;
 }
 .select_wrap .default_option{
-  color: #fff;
+  color:var(--main-text-color);
   background-color: #121c489c;
-  border: 1px solid #9affd966;
+  border: 1px solid var(--soft-border-color);
   border-radius: 20px;
   position: relative;
   cursor: pointer;
@@ -167,7 +184,7 @@ color:black;
   width: 6px;
   height: 6px;
   border: 2px solid;
-  border-color: transparent transparent #9affd9 #9affd9;
+  border-color: transparent transparent var(--light-border-color) var(--light-border-color);
   transform: rotate(-45deg);
 }
 .select_wrap .default_option li div{
@@ -185,12 +202,12 @@ color:black;
   left: 0;
   min-width: 100%;
   background: #1c2733eb;
-  border: 1px solid #9affd966;
+  border: 1px solid var(--soft-border-color);
   border-radius: 5px;
   display: none;
 }
 .select_wrap .select_ul li{
-  color:#fff;
+  color:var(--main-text-color);
   width: 100%;
   padding:4px;
   cursor: pointer;
@@ -222,4 +239,7 @@ color:black;
 .select_wrap.active .default_option:before{
   top: 18px;
   transform: rotate(-225deg);
+}
+.ref{
+  color:var(--main-text-color);
 }
