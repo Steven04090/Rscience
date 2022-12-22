@@ -1,6 +1,9 @@
 body{
   background-color: #1e2f46;
 }
+.navbar-brand img{
+  height:50px;
+}
 .bg-dark {
   background-color: #204675 !important;
   box-shadow: 0 4px 10px rgba(41, 63, 113, 0.77);
