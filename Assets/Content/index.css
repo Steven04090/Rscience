@@ -14,7 +14,7 @@ body::before{
   width:100%;
   top:0;
   bottom:0;
-  background-image: url(/Assets/image/bg1.jpg);
+  background-image: url(../image/bg1.jpg);
   background-position: 0% 0%;
   background-size: cover;
   z-index: -1;
