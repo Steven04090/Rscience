@@ -9,8 +9,8 @@
 
   gtag('config', 'G-NHCJY83598');
 </script>
-   <title>科學RO-資訊圖表(87z物價走勢)</title>
-   <meta name="description" content="科學RO">
+   <title>R科學-資訊圖表(87z物價走勢)</title>
+   <meta name="description" content="R科學">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -193,7 +193,6 @@
   var sites = [];
   var data = {datasets: sites};
   const ctx = document.getElementById('canvas').getContext('2d');
-
   //json轉檔
   JsonTransition();
   function JsonTransition(){
@@ -270,6 +269,10 @@
   const options ={
         maintainAspectRatio:false,
         responsive: true,
+        interaction: {
+          intersect: false,
+          mode: 'nearest',
+        },
          plugins:{
             zoom: zoomOptions,
             title:{
@@ -279,7 +282,10 @@
               font:{size:20,},
             },
             legend: {
-            display: false,
+            display: true,
+              labels:{
+                color:'#eee',
+              }
             }, 
           },
          
@@ -290,14 +296,17 @@
                 display:true,
                 min:0,
                 ticks: {
-                    color:"#f1f1f1",
+                    color:"#eee",
                     beginAtZero: true,
                     precision:0,
                     padding: 8,
                     crossAlign: 'start',
                 }
             },
-            x: {
+            x: { 
+              ticks: {
+                    color:"#eee",
+                },
               grid: {
                 color: 'rgba( 160, 255, 240, 0.2)',
                 },
@@ -308,7 +317,6 @@
                 },
                 border:{display:false,},
                 display: true,
-                
             },      
           },
         };

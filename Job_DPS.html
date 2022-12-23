@@ -9,8 +9,8 @@
 
   gtag('config', 'G-NHCJY83598');
 </script>
-   <title>科學RO-資訊圖表(職業DPS)</title>
-   <meta name="description" content="科學RO">
+   <title>R科學-資訊圖表(職業DPS)</title>
+   <meta name="description" content="R科學">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -182,50 +182,56 @@
         </div>
         <div class="chart-container">
           <canvas id="canvas"></canvas>
-          <div id ="equip_table_box" class="position-absolute p-1" style="display: none;">
-            <div>
-              <div class="d-flex">
-              <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
-                <li class="nav-item">
-                  <a class="nav-link active" id="front-tab" data-toggle="tab" href="#front" role="tab" aria-controls="front" aria-selected="true">正面裝</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-flex margin-auto" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">背面裝</a>
-                </li>
-              </ul>
-              <a onclick="closed_equip_table_box();" class="nav-link" id="x-tab" style="cursor: pointer;">x</a>
+          <div class="float_box">
+            <div id="data_user" class="p-1" style="display: none;">
+              <div id = "data_title" class="px-1"></div>
+              <div id = "data_time" class="ml-auto px-1"></div>
+              <a onclick="closed_float_box();" class="px-2" style="cursor: pointer;">x</a>
             </div>
-              
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="front" role="tabpanel" aria-labelledby="front-tab">
-                  <table class="equip-table">
-                    <thead>
-                      <tbody>
-                        <tr><td><div id="e_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="e_top_middle"><span></span></div></td></tr>
-                        <tr><td><div id="e_top_down"><span></span></div></td><td><div id="e_cloth"><span></span></div></td></tr>
-                        <tr><td><div id="e_weapon"><span></span></div></td><td><div id="e_shield"><span></span></div></td></tr>
-                        <tr><td><div id="e_shawl"><span></span></div></td><td><div id="e_shoes"><span></span></div></td></tr>
-                        <tr><td><div id="e_accessories_right"><span></span></div></td><td><div id="e_accessories_left"><span></span></div></td></tr>
-                      </tbody>
-                    </thead>
-                  </table>
-                </div>
-                <div class="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
-                  <table class="equip-table">
-                    <thead>
-                      <tbody>
-                        <tr><td><div id="b_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="b_top_middle"><span></span></div></td></tr>
-                        <tr><td><div id="b_top_down"><span></span></div></td><td><div id="b_cloth"><span></span></div></td></tr>
-                        <tr><td><div id="b_weapon"><span></span></div></td><td><div id="b_shield"><span></span></div></td></tr>
-                        <tr><td><div id="b_shawl"><span></span></div></td><td><div id="b_shoes"><span></span></div></td></tr>
-                        <tr><td><div id="b_accessories_right"><span></span></div></td><td><div id="b_accessories_left"><span></span></div></td></tr>
-                      </tbody>
-                    </thead>
-                  </table>
+            <div id ="equip_table_box" class=" p-1" style="display: none;">
+              <div>
+                <div class="d-flex">
+                <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="front-tab" data-toggle="tab" href="#front" role="tab" aria-controls="front" aria-selected="true">正面裝</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link d-flex margin-auto" id="back-tab" data-toggle="tab" href="#back" role="tab" aria-controls="back" aria-selected="false">背面裝</a>
+                  </li>
+                </ul>
+              </div>
+                
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="front" role="tabpanel" aria-labelledby="front-tab">
+                    <table class="equip-table">
+                      <thead>
+                        <tbody>
+                          <tr><td><div id="e_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="e_top_middle"><span></span></div></td></tr>
+                          <tr><td><div id="e_top_down"><span></span></div></td><td><div id="e_cloth"><span></span></div></td></tr>
+                          <tr><td><div id="e_weapon"><span></span></div></td><td><div id="e_shield"><span></span></div></td></tr>
+                          <tr><td><div id="e_shawl"><span></span></div></td><td><div id="e_shoes"><span></span></div></td></tr>
+                          <tr><td><div id="e_accessories_right"><span></span></div></td><td><div id="e_accessories_left"><span></span></div></td></tr>
+                        </tbody>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="tab-pane fade" id="back" role="tabpanel" aria-labelledby="back-tab">
+                    <table class="equip-table">
+                      <thead>
+                        <tbody>
+                          <tr><td><div id="b_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="b_top_middle"><span></span></div></td></tr>
+                          <tr><td><div id="b_top_down"><span></span></div></td><td><div id="b_cloth"><span></span></div></td></tr>
+                          <tr><td><div id="b_weapon"><span></span></div></td><td><div id="b_shield"><span></span></div></td></tr>
+                          <tr><td><div id="b_shawl"><span></span></div></td><td><div id="b_shoes"><span></span></div></td></tr>
+                          <tr><td><div id="b_accessories_right"><span></span></div></td><td><div id="b_accessories_left"><span></span></div></td></tr>
+                        </tbody>
+                      </thead>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+        </div>
         </div>
       </div>
     </div>
@@ -300,6 +306,7 @@ $(".select_ul li").click(function(){
   });
   var x_array =[];
   var y_array = [];
+  var time_array = [];
   var username = [];
   var job = [];
   var sites = [];
@@ -382,6 +389,9 @@ $(".select_ul li").click(function(){
    y_array = json_file.objects.map(function(item) {
       return item.Every_Damage;
    });
+   time_array = json_file.objects.map(function(item) {
+      return item.Time;
+   });
    username = json_file.objects.map(function(item) {
       return item.username;
    });
@@ -428,7 +438,7 @@ $(".select_ul li").click(function(){
         clip: false,
         hover: {
           mode: "nearest",
-          axis: "x",
+          axis: "xy",
           intersect: true,
         },
         plugins:{
@@ -579,17 +589,23 @@ $(".select_ul li").click(function(){
             const top = chart.tooltip.dataPoints[0].element.y - chart.tooltip.dataPoints[0].element.options.radius - 14;
             const bottom = chart.tooltip.dataPoints[0].element.y + chart.tooltip.dataPoints[0].element.options.radius + 14;
             const div = document.getElementById("equip_table_box");
-
+            const div2 = document.getElementById("data_user");
             const title = chart.tooltip.dataPoints[0].dataset.label;
+            const time = chart.tooltip.dataPoints[0].dataset.gettime;
+
             // proceed if the cursor is within the element boundaries
             if (x >= left && x <= right && y >= top && y <= bottom) {
               div.style.display = "block";
+              div2.style.display = "flex";
               //先找到點到的物件的username
               //比對equip_data的username
               //再將內容一個一個map過去
               $.getJSON("Assets/json/equip_data.json", function(json_file) {
                 for(var i = 0 ;i < json_file.objects.length; i++){
                   if (title == json_file.objects[i].username){
+                    $("#data_time").text(time);
+
+                    $("#data_title").text(json_file.objects[i].username);
                     $("#e_top").children('span').text(json_file.objects[i].e_top);
                     $("#e_top_middle").children('span').text(json_file.objects[i].e_top_middle);
                     $("#e_top_down").children('span').text(json_file.objects[i].e_top_down);
@@ -614,12 +630,15 @@ $(".select_ul li").click(function(){
                   }
                   else if(i == json_file.objects.length - 1 && title != json_file.objects[i].username){
                     $(".equip-table").find('span').text("沒有 :(");
+                    $("#data_user").find('div').text("沒有 :(");
+                    $("#data_title").text(title);
                   };
                 };
               })
             }
             else{
               div.style.display = "none";
+              div2.style.display = "none";
             }
         }
     }
@@ -646,14 +665,15 @@ $(".select_ul li").click(function(){
                 label:username[i],
                 pointRadius: 24,
                 borderWidth: 0,
-                hitRadius:14,
+                hitRadius:12,
                 hoverBorderWidth:3,
                 hoverRadius:30,
                 borderColor: 'transparent',
                 backgroundColor: 'transparent',
                 hidden:false,
-                pointStyle:'circle',
+                pointStyle:'rect',
                 iamguess:index,
+                gettime:time_array[i],
                 data:[{
                 x: Number(x_array[i]),
                 y: Number(y_array[i]),
@@ -726,8 +746,9 @@ $(".select_ul li").click(function(){
 </script>
 <script>
   
-  function closed_equip_table_box(){
+  function closed_float_box(){
     document.getElementById("equip_table_box").style.display = "none"; 
+    document.getElementById("data_user").style.display = "none"; 
   };
 
   //zoom區
