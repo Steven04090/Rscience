@@ -24,6 +24,7 @@ body::before{
   --main-text-color: #e2e8f0;
   --light-border-color:#9affd9;
   --soft-border-color:#9affd966;
+  --color:#d8c834;
 }
 a{
   color:var(--main-text-color);
@@ -38,7 +39,7 @@ a{
   height:40px;
 }
 .bg-dark {
-  background-color: #32558c70 !important;
+  background-color: #415d8a4d !important;
   /* box-shadow: 0 4px 10px rgba(41, 63, 113, 0.77); */
 }
 .navbar-dark .navbar-nav .active > .nav-link{
