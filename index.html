@@ -42,44 +42,54 @@
       </ul>
     </div>
   </nav>
-  <div class="content-body" style="max-width: 1000px;margin: 0 auto;padding-top:100px;">
-      <div class="d-flex flex-wrap">
-        <div class="col-4 px-0">
-            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="Job_DPS.html">職業DPS</a>
-        </div>
-        <div class="col-4 px-0">
-            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="suspension.html">停權人數</a>
-        </div>
-        <div class="col-4 px-0">
-            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="goodsprice.html">物價走勢</a>
-        </div>
-        <div class="col-4 px-0">
-            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="wordcloud.html">每周熱度主題</a>
-        </div>
-        <div class="col-4 px-0">
-          <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="server_temporary.html">伺服器穩定度</a>
+  <div class="content-body">
+    <div style="max-width: 1000px;margin: 0 auto;padding-top:100px;">
+        <div class="d-flex flex-wrap">
+          <div class="col-4 px-0">
+              <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="Job_DPS.html">職業DPS</a>
+          </div>
+          <div class="col-4 px-0">
+              <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="suspension.html">停權人數</a>
+          </div>
+          <div class="col-4 px-0">
+              <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="goodsprice.html">物價走勢</a>
+          </div>
+          <div class="col-4 px-0">
+              <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="wordcloud.html">每周熱度主題</a>
+          </div>
+          <div class="col-4 px-0">
+            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="server_temporary.html">伺服器穩定度</a>
+          </div>
+          <div class="col-4 px-0">
+            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="level_exp.html">等級經驗值</a>
+          </div>
+          <div class="col-4 px-0">
+            <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="game_activity.html">活動表</a>
+          </div>
+      </div>
+      <div class="ref" style="margin-top:50px;">
+        <h6>資料參考來源(Reference)</h5>
+        <ul>
+          <li><a href="#" style="font-size:0.85em;">Ragnarok官方網站</a></li>
+          <li><a href="#" style="font-size:0.85em;">Ro巴哈姆特哈拉板</a></li>
+          <li><a href="#" style="font-size:0.85em;">Ro計算機</a></li>
+        </ul>
+        <h6>版權(license)</h5>
+        <div style="font-size:0.85em;">本網站所使用部分圖片:職業縮圖、職業圖片、狀態icon之所有權、著作財產權、智慧財產權皆為 格雷維蒂互動股份有限公司（GRAVITY COMMUNICATIONS） 所有</div>
       </div>
     </div>
-    <div class="ref" style="margin-top:50px;">
-      <h6>資料參考來源(Reference)</h5>
-      <ul>
-        <li><a href="#" style="font-size:0.85em;">Ragnarok官方網站</a></li>
-        <li><a href="#" style="font-size:0.85em;">Ro巴哈姆特哈拉板</a></li>
-        <li><a href="#" style="font-size:0.85em;">Ro計算機</a></li>
-      </ul>
-      <h6>版權(license)</h5>
-      <div style="font-size:0.85em;">本網站所使用部分圖片:職業縮圖、職業圖片、狀態icon之所有權、著作財產權、智慧財產權皆為 格雷維蒂互動股份有限公司（GRAVITY COMMUNICATIONS） 所有</div>
-    </div>
   </div>
+
 </body>
 <script src="Assets/javascript/jquery.min.js"></script>
 <script src="Assets/javascript/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function () {
-      var nav_height = $('#nav').outerHeight();
-    var content_height = $('.content-body').innerHeight();
-    $('body').css( "padding-top", nav_height );
-          });
+     $(document).ready(function () {
+    var nav_height = $('#nav').outerHeight();
+  var content_height = $('.content-body').innerHeight();
+  
+  $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+        });
    
   </script>
 </html>

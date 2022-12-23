@@ -182,16 +182,6 @@
         </div>
         <div class="chart-container">
           <canvas id="canvas"></canvas>
-          <div class="position-absolute" style="bottom:10px;right:10px;">
-            <button class="btn btn-dark d-flex on-chart-button" onclick="resetZoom()"><i class="fa fa-arrows" style="transform: rotate(45deg);" aria-hidden="true"></i>
-            </button>
-            <button class="btn btn-dark d-flex on-chart-button" onclick="Zoomin()"><i class="fa fa-plus" aria-hidden="true"></i>
-            </button>
-            <button class="btn btn-dark d-flex on-chart-button" onclick="Zoomout()"><i class="fa fa-minus" aria-hidden="true"></i>
-            </button>
-          </div>
-          
-
           <div id ="equip_table_box" class="position-absolute p-1" style="display: none;">
             <div>
               <div class="d-flex">
@@ -239,6 +229,15 @@
         </div>
       </div>
     </div>
+
+    <div class="zoom_button_box position-absolute">
+      <button class="btn d-flex on-chart-button" onclick="resetZoom()"><i class="fa fa-arrows" style="transform: rotate(45deg);" aria-hidden="true"></i>
+      </button>
+      <button class="btn d-flex on-chart-button" onclick="Zoomin()"><i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+      <button class="btn d-flex on-chart-button" onclick="Zoomout()"><i class="fa fa-minus" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
 </body>
 <script src="Assets/javascript/jquery.min.js"></script>
@@ -251,13 +250,10 @@
   $(document).ready(function () {
     var nav_height = $('#nav').outerHeight();
   var content_height = $('.content-body').innerHeight();
-  $('body').css( "padding-top", nav_height );
   $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
         });
- 
 </script>
 <script>
-
   //點外面關掉menu
   $(document).on("click", function(event){
     var $trigger = $(".select_wrap");
@@ -275,13 +271,10 @@
 //選單覆蓋title
 $(".select_ul li").click(function(){
   var currentele = $(this).html();
-//  $(this).parent().find(".select_wrap").children().find(".default_option li").html(currentele);
   var $this = $(this).closest('.select_wrap');
   $this.find(".default_option li").html(currentele);
   $(this).parents(".select_wrap").removeClass("active");
 })
-
-
 </script>
 <script>
   var chart;
@@ -321,6 +314,7 @@ $(".select_ul li").click(function(){
   var job_value;
   var guess_index = [];
   var onclick_temp = 0;
+  var delayed;
   Chart.register({
        id: 'draw_img',
        beforeDraw: (c) => {
@@ -370,7 +364,6 @@ $(".select_ul li").click(function(){
         },
 });
   const ctx = document.getElementById('canvas').getContext('2d');
-
   //json轉檔
   JsonTransition();
   function JsonTransition(){
@@ -468,7 +461,7 @@ $(".select_ul li").click(function(){
                 },
                 titleColor:'#fff',
                 titleMarginBottom:10,
-                backgroundColor:"#122833ed",
+                backgroundColor:"#192c40f0",
                 bodyFont: {
                   size: 17,
                   family:'Microsoft JhengHei',
@@ -536,6 +529,19 @@ $(".select_ul li").click(function(){
                 }
             },
         },
+        animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = context.dataIndex * 10 + context.datasetIndex * 10;
+        }
+        return delay;
+      },
+    },
+
         onHover: function (evt, elements) {
             evt.native.target.style.cursor = elements[0] ? 'pointer' : 'grab';
         },
@@ -549,7 +555,6 @@ $(".select_ul li").click(function(){
             const datasetLabel = event.chart.data.datasets[i].label;
             event.chart.data.datasets[i].borderColor ="#53F4E7";
             event.chart.data.datasets[i].borderWidth =2;
-            event.chart.data.datasets[i].hoverRadius =24;
           }
           chart.update();
         }
@@ -611,7 +616,6 @@ $(".select_ul li").click(function(){
                     $(".equip-table").find('span').text("沒有 :(");
                   };
                 };
-               
               })
             }
             else{
@@ -619,8 +623,8 @@ $(".select_ul li").click(function(){
             }
         }
     }
-}
-]
+    }
+    ]
       };
   function init() {
   chart = new Chart(ctx, config);
@@ -631,7 +635,6 @@ $(".select_ul li").click(function(){
     function job_sort(){
       whole_job_length = job.length;
       var m = 0;
-      
       for(var i = 0; i < job.length; i++){
         //找到guess位置
         var index = 0;
@@ -684,7 +687,6 @@ $(".select_ul li").click(function(){
         else{
           chart.update();
         }
-         
     };
 
     function for_index(){
@@ -728,7 +730,6 @@ $(".select_ul li").click(function(){
     document.getElementById("equip_table_box").style.display = "none"; 
   };
 
-
   //zoom區
   function resetZoom() {
   chart.resetZoom();
@@ -738,13 +739,13 @@ $(".select_ul li").click(function(){
   function Zoomin() {
     var evt = document.createEvent('MouseEvents');
     evt.initEvent('wheel', true, true);
-    evt.deltaY = -200;
+    evt.deltaY = -2000;
     document.getElementById("canvas").dispatchEvent(evt);
   };
   function Zoomout() {
     var evt = document.createEvent('MouseEvents');
     evt.initEvent('wheel', true, true);
-    evt.deltaY = 200;
+    evt.deltaY = 2000;
     document.getElementById("canvas").dispatchEvent(evt);
   };
   
