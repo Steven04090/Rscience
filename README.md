@@ -5,8 +5,7 @@ https://steven04090.github.io/Rscience/
 Todo list
 -------- Infographic --------
 word cloud
-relation chart:Fetch data、job ability trend、experence、
-population
+relation chart:Fetch data、job ability trend、experence、population
 
 ------- UI optimization --------
 
