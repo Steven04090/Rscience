@@ -1,4 +1,4 @@
-# RReality
+# Rscience
 https://steven04090.github.io/Rscience/
 ---------------------------------------
 
