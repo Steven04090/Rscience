@@ -457,7 +457,7 @@ $(".select_ul li").click(function(){
                 enabled: true,
                 displayColors: false,
                 mode: "nearest",
-                axis: "y",
+                axis: "xy",
                 intersect: true,
                 //鳥爛排版
                 padding:{
@@ -504,7 +504,7 @@ $(".select_ul li").click(function(){
                 grid: {color: 'rgba( 160, 255, 240, 0.2)',},
                 border:{color:"rgba( 160, 255, 240, 0.25)",width:1,},
                 display:true,
-                max:20000,
+                max:15000,
                 min:0,
                 ticks: {
                     color:"#f1f1f1",
@@ -526,7 +526,7 @@ $(".select_ul li").click(function(){
                 border:{display:false,},
                 display: true,
                 min:0,
-                max: 1000,
+                max: 800,
                 ticks: {
                     color:"#f1f1f1",
                     beginAtZero: true,
@@ -665,9 +665,10 @@ $(".select_ul li").click(function(){
                 label:username[i],
                 pointRadius: 24,
                 borderWidth: 0,
-                hitRadius:12,
+                hitRadius:1,
+                radius:0,
                 hoverBorderWidth:3,
-                hoverRadius:30,
+                hoverRadius:28,
                 borderColor: 'transparent',
                 backgroundColor: 'transparent',
                 hidden:false,
