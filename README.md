@@ -5,8 +5,7 @@ https://steven04090.github.io/RReality/
 Todo list
 -------- Infographic --------
 word cloud
-goods trend
-relation chart:Fetch data、job ability trend
+relation chart:Fetch data、job ability trend、experence、
 population
 
 ------- UI optimization --------
