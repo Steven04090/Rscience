@@ -49,6 +49,7 @@ a{
 /****************   content   ******************/
 .content-body{
   overflow: auto;
+  height:100%;
 }
 #chart-box-layout{
   height:100%;
