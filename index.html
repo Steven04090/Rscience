@@ -45,26 +45,29 @@
   <div class="content-body">
     <div style="max-width: 1000px;margin: 0 auto;padding:80px 0;">
         <div class="d-flex flex-wrap">
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
               <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="Job_DPS.html">職業DPS</a>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
               <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="suspension.html">停權人數</a>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
               <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="goodsprice.html">物價走勢</a>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
               <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="wordcloud.html">每周熱度主題</a>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
             <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="server_temporary.html">伺服器穩定度</a>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
             <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="level_exp.html">等級經驗值</a>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-3 d-flex px-0">
             <a class="content-box main-text-color d-flex align-items-center justify-content-center m-1" href="game_activity.html">活動表</a>
+          </div>
+          <div class="col-3 d-flex px-0">
+            <a class="content-box main-text-color d-flex align-items-center justify-content-center flex-column m-1" href="#">今日致富密碼<div id="password" style="font-size:30px;font-weight: bold;"></div></a>
           </div>
       </div>
       <div class="ref" style="margin-top:50px;">
@@ -83,6 +86,7 @@
 </body>
 <script src="Assets/javascript/jquery.min.js"></script>
 <script src="Assets/javascript/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
 <script>
      $(document).ready(function () {
     var nav_height = $('#nav').outerHeight();
@@ -90,6 +94,11 @@
   
   $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
         });
-   
+  </script>
+  <script>
+    //(月+日)*5
+    var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
+    var binary = (x >>> 0).toString(2);
+    $("#password").text(binary);
   </script>
 </html>
