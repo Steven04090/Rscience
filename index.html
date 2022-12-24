@@ -98,7 +98,7 @@
   <script>
     //(月+日)*5
     var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
-    var binary = (x >>> 0).toString(2);
+    var binary = ((x >>> 0).toString(2)).padStart(8,'0');
     $("#password").text(binary);
   </script>
 </html>
