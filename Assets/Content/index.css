@@ -54,12 +54,14 @@ a{
   height:100%;
 }
 .content-box{
+  width: 100%;
   color:var(--main-text-color);
-  height:80px;
+  min-height:120px;
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   font-size:1.1em;
   border-radius: 4px;
+  word-break: break-all;
 }
 .content-box:hover{
   color:#fff;
