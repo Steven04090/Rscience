@@ -20,7 +20,10 @@
         {"date":"2022/12/11","sell_price":"3876660"},
         {"date":"2022/12/12","sell_price":"3922222"},
         {"date":"2022/12/15","sell_price":"3799990"},
-        {"date":"2022/12/17","sell_price":"3750000"}
+        {"date":"2022/12/17","sell_price":"3750000"},
+        {"date":"2022/12/21","sell_price":"3399500"},
+        {"date":"2022/12/24","sell_price":"3555555"},
+        {"date":"2022/12/25","sell_price":"3599999"}
 
     ],
     "Hyperspace_Gem_Rough_Stone":[
@@ -44,7 +47,11 @@
         {"date":"2022/12/11","sell_price":"489999"},
         {"date":"2022/12/12","sell_price":"740000"},
         {"date":"2022/12/15","sell_price":"584998"},
-        {"date":"2022/12/17","sell_price":"580000"}
+        {"date":"2022/12/17","sell_price":"580000"},
+        {"date":"2022/12/21","sell_price":"500000"},
+        {"date":"2022/12/23","sell_price":"599885"},
+        {"date":"2022/12/24","sell_price":"520000"},
+        {"date":"2022/12/25","sell_price":"524000"}
 
     ],
     "Old_Card_Album":[
@@ -58,7 +65,10 @@
         {"date":"2022/12/10","sell_price":"349999"},
         {"date":"2022/12/11","sell_price":"349999"},
         {"date":"2022/12/15","sell_price":"349870"},
-        {"date":"2022/12/17","sell_price":"350000"}
+        {"date":"2022/12/17","sell_price":"350000"},
+        {"date":"2022/12/21","sell_price":"328000"},
+        {"date":"2022/12/23","sell_price":"327000"},
+        {"date":"2022/12/24","sell_price":"328000"}
 
     ],
     "ether_stardust":[
@@ -67,7 +77,11 @@
         {"date":"2022/12/05","sell_price":"83000"},
         {"date":"2022/12/08","sell_price":"83000"},
         {"date":"2022/12/11","sell_price":"80500"},
-        {"date":"2022/12/15","sell_price":"78000"}
+        {"date":"2022/12/15","sell_price":"78000"},
+        {"date":"2022/12/21","sell_price":"90000"},
+        {"date":"2022/12/23","sell_price":"85000"},
+        {"date":"2022/12/24","sell_price":"90000"},
+        {"date":"2022/12/24","sell_price":"89000"}
 
     ],
     "honor_rose":[
@@ -84,7 +98,11 @@
         {"date":"2022/12/10","sell_price":"260000"},
         {"date":"2022/12/11","sell_price":"249999"},
         {"date":"2022/12/12","sell_price":"246450"},
-        {"date":"2022/12/15","sell_price":"264500"}
+        {"date":"2022/12/15","sell_price":"264500"},
+        {"date":"2022/12/21","sell_price":"243000"},
+        {"date":"2022/12/23","sell_price":"250000"},
+        {"date":"2022/12/24","sell_price":"280000"}
+
 
     ],
     "Enriched_Elunium_Box":[
