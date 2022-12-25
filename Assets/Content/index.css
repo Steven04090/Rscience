@@ -302,4 +302,7 @@ color:black;
   .select_wrap .select_ul{
     z-index: 2;
   }
+  #data_user, #equip_table_box{
+    width:100%;
+  }
 }
