@@ -288,3 +288,18 @@ color:black;
 .ref{
   color:var(--main-text-color);
 }
+
+
+/****** mobile ********/
+@media only screen and (max-width: 600px) {
+  #controler{
+    flex-direction: column;
+  }
+  .select_wrap{
+    width: 100%;
+    margin-bottom:2px;
+  }
+  .select_wrap .select_ul{
+    z-index: 2;
+  }
+}
