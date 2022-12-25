@@ -293,11 +293,11 @@ color:black;
 /****** mobile ********/
 @media only screen and (max-width: 600px) {
   #controler{
-    flex-direction: column;
+    flex-wrap: wrap;
   }
   .select_wrap{
-    width: 100%;
-    margin-bottom:2px;
+    width: 50%;
+    margin: 1px 0 !important;
   }
   .select_wrap .select_ul{
     z-index: 2;
