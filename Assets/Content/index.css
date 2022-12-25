@@ -305,4 +305,11 @@ color:black;
   #data_user, #equip_table_box{
     width:100%;
   }
+  .float_box{
+    top:auto;
+    bottom:0;
+  }
+  #text-center{
+    display: none;
+  }
 }
