@@ -273,20 +273,20 @@
 <script>
   $(document).ready(function () {
     var winHeight = window.innerHeight;
-
+    var nav_height = $('#nav').outerHeight();
+    var content_height = $('.content-body').innerHeight();
   window.addEventListener('resize', function(event){
       winHeight = window.innerHeight;
       if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     // true for mobile device
-      $('.content-body').css("height",`calc(${winHeight} - ${nav_height}px`);
+      $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
        }
   });
-    var nav_height = $('#nav').outerHeight();
-    var content_height = $('.content-body').innerHeight();
+   
 
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     // true for mobile device
-    $('.content-body').css("max-height",`calc(${wwinHeight} - ${nav_height}px`);
+    $('.content-body').css("max-height",`calc(${winHeight}px - ${nav_height}px`);
     }else{
       // false for not mobile device
       $('.content-body').css("max-height",`calc(100vh - ${nav_height}px`);
