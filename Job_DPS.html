@@ -411,7 +411,6 @@ $(".select_ul li").click(function(){
           ctx.font ='12px Arial';
           ctx.fillStyle = '#f1f1f1';
           ctx.fillText('(傷害 Damage)',0, top -10);
-          ctx.fillText('(轉蛋價格39元)',right - 100, bottom + 20);
           ctx.restore();
         }
       });
@@ -573,6 +572,11 @@ $(".select_ul li").click(function(){
                 display: true,
                 min:0,
                 max: 800,
+                title:{
+                  display: true,
+                  text:'轉蛋價值 39元',
+                  color:'#f1f1f1',
+                },
                 ticks: {
                     color:"#f1f1f1",
                     beginAtZero: true,
