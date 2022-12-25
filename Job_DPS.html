@@ -179,6 +179,24 @@
         </ul>
          </div>
 
+         <div class="enermy_menu select_wrap mr-1">
+          <ul class="default_option">
+            <li>
+                <div class="on">
+                  <span>對象: 中型柱子</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="select_ul">
+          <li>
+              <div class="equip_option">
+                <span>中型柱子</span>
+              </div>
+          </li>
+          <li>
+        </li>
+        </ul>
+         </div>
         </div>
         <div class="chart-container">
           <canvas id="canvas"></canvas>
@@ -385,7 +403,18 @@ $(".select_ul li").click(function(){
         }
       });
         },
-});
+        
+        id:'yscaleText',
+        afterDraw(chart, args,options){
+          const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart;
+          ctx.save();
+          ctx.font ='12px Arial';
+          ctx.fillStyle = '#f1f1f1';
+          ctx.fillText('(傷害 Damage)',0, top -10);
+          ctx.fillText('(轉蛋價格39元)',right - 100, bottom + 20);
+          ctx.restore();
+        }
+      });
   const ctx = document.getElementById('canvas').getContext('2d');
   //json轉檔
   JsonTransition();
@@ -528,6 +557,7 @@ $(".select_ul li").click(function(){
                     precision:0,
                     padding: 8,
                     crossAlign: 'start',
+                    
                     callback: (value, index, ticks) => {
                       if(index === ticks.length - 1){return null;}
                       else
