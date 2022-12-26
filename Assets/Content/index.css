@@ -4,8 +4,10 @@ html{
 }
 body{
   height:100%;
+  position: relative;
   background-color: #1e2f46;
   overflow: hidden;
+  
 }
 body::before{
   content: "";
@@ -19,12 +21,28 @@ body::before{
   background-size: cover;
   z-index: -1;
 }
+body::after{
+  content: "";
+  position:absolute;
+  height:100%;
+  width:100%;
+  top:0;
+  bottom:0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.32) 0.5px, transparent 0);
+  background-size: 25px 25px;
+  background-position: -25px -25px;
+  z-index: -1;
+}
 /****var顏色****/
 :root {
   --main-text-color: #e2e8f0;
   --light-border-color:#9affd9;
   --soft-border-color:#9affd966;
   --color:#d8c834;
+}
+h4,h6{
+  font-weight: bold;
+  color:var(--main-text-color);
 }
 a{
   color:var(--main-text-color);
@@ -39,7 +57,7 @@ a{
   height:40px;
 }
 .bg-dark {
-  background-color: #415d8a4d !important;
+  background-color: #1a222f4d !important;
   /* box-shadow: 0 4px 10px rgba(41, 63, 113, 0.77); */
 }
 .navbar-dark .navbar-nav .active > .nav-link{
@@ -54,20 +72,32 @@ a{
 #chart-box-layout{
   height:100%;
 }
+.Art-center{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .content-box{
+  
+}
+.content-box a{
+  position: relative;
   width: 100%;
   color:var(--main-text-color);
-  min-height:120px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  font-size:1.1em;
-  border-radius: 4px;
+  min-height:90px;
+  background-color: rgba(3, 7, 9, 0.11);
+  border: 1px solid var(--light-border-color);
+  border-radius: 2px;
   word-break: break-all;
+  padding:8px 45px;
+  font-weight: bold;
 }
-.content-box:hover{
+.content-box a:hover{
   color:#fff;
   text-decoration: none;
-  border-color: var(--light-border-color);
+  background-color: #17273ed4;
+  box-shadow: 0 0 12px rgba(100, 204, 204, 0.35);
 }
 .infographic_graphic_section{
   height:100%;
@@ -171,6 +201,27 @@ color:black;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/************ button  *************/
+.svg-btn_svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.svg-btn_rect {
+  fill: transparent;
+  stroke: var(--light-border-color);
+  stroke-width: 3px;
+  stroke-dasharray: 10px 10px 100px 20px 0px 4px;
+  width: 100%;
+  height: 100%;
+  transition: .5s all;
+}
+.svg-btn:hover #svg-btn_rect {
+  stroke-dasharray: 150px 0 45px 0 150px 0 45px 0;
 }
 .zoom_button_box{
   bottom:10px;
