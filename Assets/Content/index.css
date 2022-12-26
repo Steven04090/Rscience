@@ -40,7 +40,7 @@ body::after{
   --soft-border-color:#9affd966;
   --color:#d8c834;
 }
-h4,h6{
+h4,h5,h6{
   font-weight: bold;
   color:var(--main-text-color);
 }
