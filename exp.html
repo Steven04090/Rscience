@@ -142,7 +142,7 @@ window.addEventListener('resize', function(event){
                     padding: 8,
                     crossAlign: 'start',
                     callback: (value, index, ticks) => {
-                      if(index === ticks.length - 1){return null;}
+                      if(index === ticks.length - 1 || index === 0){return null;}
                       else
                           if(value >= 100000000){return Math.floor(value/100000000) + '億';}
                           else
