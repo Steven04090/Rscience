@@ -64,7 +64,7 @@
     language: 'zh-TW',
     dataSource: function({year}) {
     // Load data from GitHub API
-    return fetch('/Assets/json/maintain.json')
+    return fetch('Assets/json/maintain.json')
       .then(result => result.json())
       .then(result => {
         if (result.items) {
