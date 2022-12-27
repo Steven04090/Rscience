@@ -59,6 +59,28 @@
 <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
 <script src="https://unpkg.com/tippy.js@4"></script>
 <script>
+    $(document).ready(function () {
+     var winHeight = window.innerHeight;
+   window.addEventListener('resize', function(event){
+       winHeight = window.innerHeight;
+       if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+   // true for mobile device
+     $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+      }
+   });
+     var nav_height = $('#nav').outerHeight();
+   var content_height = $('.content-body').innerHeight();
+
+   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+   // true for mobile device
+   $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+   }else{
+     // false for not mobile device
+     $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
+   }
+       });
+ </script>
+<script>
     let tooltip = null;
     const calendar = new Calendar('#calendar', {
     language: 'zh-TW',
