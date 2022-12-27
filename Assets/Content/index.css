@@ -79,24 +79,23 @@ a{
   justify-content: center;
 }
 .content-box{
-  
+  min-width:150px;
 }
 .content-box a{
   position: relative;
   width: 100%;
-  color:var(--main-text-color);
-  min-height:90px;
-  background-color: rgba(3, 7, 9, 0.11);
-  border: 1px solid var(--light-border-color);
-  border-radius: 2px;
+  color: var(--main-text-color);
+  min-height: 120px;
+  background-color: rgba(63, 89, 102, 0.21);
   word-break: break-all;
-  padding:8px 45px;
+  padding: 8px 25px;
   font-weight: bold;
+  font-size: 0.9em;
 }
 .content-box a:hover{
   color:#fff;
   text-decoration: none;
-  background-color: #17273ed4;
+  background-color: #17273ea1;
   box-shadow: 0 0 12px rgba(100, 204, 204, 0.35);
 }
 .infographic_graphic_section{
@@ -129,7 +128,6 @@ a{
   position: absolute;
   top:10px;
   right:0;
-  
 }
 #data_user,#equip_table_box{
   margin-bottom: 10px;
@@ -206,23 +204,24 @@ color:black;
 /************ button  *************/
 .svg-btn_svg {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
 .svg-btn_rect {
   fill: transparent;
   stroke: var(--light-border-color);
-  stroke-width: 3px;
+  stroke-width: 5px;
   stroke-dasharray: 10px 10px 100px 20px 0px 4px;
+  stroke-dashoffset: 40;
   width: 100%;
   height: 100%;
-  transition: .5s all;
+  transition: .45s all ease-in-out;
 }
 .content-box a:hover .svg-btn_rect {
   stroke-dasharray:20px 10px 10px 100px 20px 0px 4px;
+  stroke-dashoffset: 100;
 }
+
 .zoom_button_box{
   bottom:10px;
   right:0px;
