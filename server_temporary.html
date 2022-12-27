@@ -1,0 +1,115 @@
+<!DOCTYPE html><html>
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NHCJY83598"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NHCJY83598');
+</script>
+   <title>R科學-資訊圖表(伺服器穩定度)</title>
+   <meta name="description" content="R科學，本網站旨在將Ragnarok Online的各種數據以圖像化呈現。">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="shortcut icon" href="Assets/image/favicon.png" type="image/x-icon">
+   <link rel="stylesheet" href="Assets/Content/bootstrap.css">
+   <link rel="stylesheet" href="Assets/Content/index.css">
+   <link rel="stylesheet" type="text/css" href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
+   <style>
+       #calendar{color:var(--main-text-color);}
+       .tippy-tooltip{background-color:#f1f1f1;}
+       .month-container{padding: 10px 4px;}
+   </style>
+</head>
+<body>
+  <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="index.html"><img src="Assets/image/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">資訊圖表中心</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">未來UI設計</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">低成本三王</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">3D Modal</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="content-body p-1">
+    <div id="calendar"></div>
+  </div>
+</body>
+<script src="Assets/javascript/jquery.min.js"></script>
+<script src="Assets/javascript/bootstrap.min.js"></script>
+<script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
+<script src="https://unpkg.com/js-year-calendar@latest/locales/js-year-calendar.zh-TW.js"></script>
+<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@4"></script>
+<script>
+    let tooltip = null;
+
+const calendar = new Calendar('#calendar', {
+    language: 'zh-TW',
+    dataSource: function({year}) {
+    // Load data from GitHub API
+    return fetch('/Assets/json/maintain.json')
+      .then(result => result.json())
+      .then(result => {
+        if (result.items) {
+          return result.items.map(r => ({
+            startDate: new Date(r.date),
+            endDate: new Date(r.date),
+            name: r.status,
+            color:r.color,
+          }));
+        }
+        return [];
+      });
+  },
+  mouseOnDay: function(e) {
+    if (e.events.length > 0) {
+      var content = '';
+                
+      for (var i in e.events) {
+        content += '<div class="event-tooltip-content">'
+          + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>' + '</div>';
+      }
+      
+      if (tooltip !== null) {
+        tooltip.destroy();
+        tooltip = null;
+      }
+      
+      tooltip = tippy(e.element, {
+          placement: 'right',
+          content: content,
+          animateFill: false,
+          animation: 'shift-away',
+          arrow: true
+      });
+      tooltip.show();
+    }
+  },
+  mouseOutDay: function() {
+    if (tooltip !== null) {
+      tooltip.destroy();
+      tooltip = null;
+    }
+  }
+});
+
+</script>
+</html>
