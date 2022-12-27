@@ -250,6 +250,12 @@ window.addEventListener('resize', function(event){
         'y':item.sell_price
       };
    });
+   d_array = json_file.ether_stardust.map(function(item) {
+      return {
+        'x':item.date,
+        'y':item.sell_price
+      };
+   });
    //load data
    load_data();
     // draw chart
@@ -383,12 +389,19 @@ window.addEventListener('resize', function(event){
                 tension: 1,
                 pointRadius:5,
             };
+            var site7 = {
+                label:'乙太星塵',
+                data:d_array,
+                tension: 1,
+                pointRadius:5,
+            };
           sites.push(site);
           sites.push(site2);
           sites.push(site3);
           sites.push(site4);
           sites.push(site5);
           sites.push(site6);
+          sites.push(site7);
     };
 </script>
 <script>
