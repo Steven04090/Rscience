@@ -1,4 +1,5 @@
 {"items":[
+{"date": "2022-12-27","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2022-12-20","normal_maintain": 0,"temporary_maintain": 1,"status": "臨時維護","color":"#E6321B"},
 {"date": "2022-12-20","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2022-12-13","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
@@ -184,7 +185,6 @@
 {"date": "2020-07-09","normal_maintain": 0,"temporary_maintain": 1,"status": "臨時維護","color":"#E6321B"},
 {"date": "2020-07-07","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-06-30","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
-{"date": "2020-06-25","normal_maintain": 0,"temporary_maintain": 0,"delay": 1,"status": "延後開機","color":"#da810d"},
 {"date": "2020-06-23","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-06-16","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-06-09","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
@@ -199,7 +199,6 @@
 {"date": "2020-04-07","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-03-31","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-03-24","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
-{"date": "2020-03-21","normal_maintain": 0,"temporary_maintain": 0,"delay": 1,"status": "延後開機","color":"#da810d"},
 {"date": "2020-03-17","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-03-10","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2020-03-03","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
