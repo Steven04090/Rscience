@@ -90,8 +90,16 @@ window.addEventListener('resize', function(event){
   const ctx = document.getElementById('canvas').getContext('2d');
 
   Chart.register({
-        id:'vertical_line',
+        id:'vertical_line_and_x_axis_text',
         afterDraw: chart => {
+            //x axis
+            const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart;
+            ctx.save();
+            ctx.font ='12px Arial';
+            ctx.fillStyle = '#f1f1f1';
+            ctx.fillText('(Exp)',0, top -10);
+            ctx.restore();
+
             if (chart.tooltip?._active?.length) {               
                let x = chart.tooltip._active[0].element.x;             
                let yAxis = chart.scales.y;
