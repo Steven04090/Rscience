@@ -208,6 +208,26 @@ window.addEventListener('resize', function(event){
   var sites = [];
   var data = {datasets: sites};
   const ctx = document.getElementById('canvas').getContext('2d');
+
+  Chart.register({
+        id:'vertical_line',
+        afterDraw: chart => {
+            if (chart.tooltip?._active?.length) {               
+               let x = chart.tooltip._active[0].element.x;             
+               let yAxis = chart.scales.y;
+               let ctx = chart.ctx;
+               ctx.save();
+               ctx.beginPath();
+               ctx.moveTo(x, yAxis.top);
+               ctx.lineTo(x, yAxis.bottom);
+               ctx.lineWidth = 1;
+               ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+               ctx.stroke();
+               ctx.restore();
+            }
+          }
+      });
+
   //json轉檔
   JsonTransition();
   function JsonTransition(){
@@ -292,9 +312,10 @@ window.addEventListener('resize', function(event){
         responsive: true,
         interaction: {
           intersect: false,
+          axis:'x',
           mode: 'nearest',
         },
-         plugins:{
+         plugins:{  
             zoom: zoomOptions,
             title:{
               display:false,
