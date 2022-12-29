@@ -19,6 +19,7 @@
    <link rel="stylesheet" href="Assets/Content/index.css">
   <style>
     #google_chart svg g rect[x="0"]{fill-opacity: 0;}
+    #google_chart svg text{font-size: 16px;}
   </style>
 </head>
 <body>
@@ -52,7 +53,10 @@
           
         </div>
         <div class="chart-container">
-          <div id="google_chart" style="height: 100%;"></div>
+          <div id="dashboard_div" style="height:100%;">
+            <div id="timeline-filter"></div>
+            <div id="google_chart" style="height:100%;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -202,76 +206,113 @@ window.addEventListener('resize', function(event){
 </script>
 
 <script type="text/javascript">
-  google.charts.load("current", {packages:["timeline"],'language': 'zh-TW'});
+  google.charts.load("current", {packages:['controls',"timeline"],'language': 'zh-TW'});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     
     var container = document.getElementById('google_chart');
-    var chart = new google.visualization.Timeline(container);
-    var dataTable = new google.visualization.DataTable();
-    dataTable.addColumn({ type: 'string', id: 'Position' });
-    dataTable.addColumn({ type: 'string', id: 'Name' });
-    dataTable.addColumn({ type: 'date', id: 'Start' });
-    dataTable.addColumn({ type: 'date', id: 'End' });
-    dataTable.addRows([
-      [ '節慶活動', '湯麵節', new Date(2020, 1, 20), new Date(2020, 2, 20) ],
-      [ '節慶活動', '中秋節', new Date(2020, 2, 10), new Date(2020, 3, 15) ],
-      [ '節慶活動', '過年', new Date(2020, 3, 10), new Date(2020, 3, 24) ],
-      [ '週年活動', '20週年', new Date(2020, 3, 21), new Date(2020, 4, 14)],
-      [ '消費性活動', '消費', new Date(2020, 2, 4), new Date(2020, 2, 12)],
-      [ '出大事', '懺', new Date(2020, 3, 20), new Date(2020, 4, 12)],
-      [ '出大事', '夜', new Date(2020, 4, 13), new Date(2020, 5, 5)],
-      [ '消費性活動', '小瑪莉', new Date(2020, 2, 2), new Date(2020, 2, 9)]
-    ]);
-    var options = {
-      height:'100%',
-      width:'100%',
-      timeline: { 
-        colorByRowLabel: true ,
-        groupByRowLabel: true,
-        rowLabelStyle: {color: '#ffffff',},
-        barLabelStyle: {
-        fontSize: 14
-      },
-      },
-      backgroundColor: '#ffffff',
-      
-    };
+    var timeline = new google.visualization.Timeline(container);
     
-    google.visualization.events.addListener(chart, 'ready', function () {
-      //爛X axis改色
-      var labels = container.getElementsByTagName('text');
-      Array.prototype.forEach.call(labels, function(label) {
-        if (label.getAttribute('text-anchor') === 'middle') {
-          label.setAttribute('fill', '#ffffff');
-        }
-      });
+    $.ajax({
+        url: "Assets/json/official_activity.json",
+        dataType: "json",
+        success: function (jsonData) {
+            var dataTable = new google.visualization.DataTable();
+            //dataTable.addColumn('number','Value');
+            dataTable.addColumn({type: 'string', label:'type'});
+            dataTable.addColumn({type: 'string', label:'Name'});
+            dataTable.addColumn({type: 'number', role: 'No' });
+            dataTable.addColumn({type:'date',  label:'Start'});
+            dataTable.addColumn({type:'date',  label:'End'});
+            
+            for (var i = 0; i < jsonData.rows.length; i++) {
+              dataTable.addRow([
+                  jsonData.rows[i].c[0],
+                  jsonData.rows[i].c[1],
+                  i,
+                  new Date(jsonData.rows[i].c[2].v),
+                  new Date(jsonData.rows[i].c[3].v),
+                  
+                ]);
+            }
+    
+            // Configure timeline
+            //  var timeline = new google.visualization.ChartWrapper({
+            //     chartType: 'Timeline',
+            //     containerId: 'google_chart',
+            //     dataTable: dataTable,
+            //     options:{
+            //     height:'100%',
+            //     width:'100%',
+            //     timeline: { 
+            //       colorByRowLabel: true ,
+            //       groupByRowLabel: true,
+            //       rowLabelStyle: {color: '#ffffff',},
+            //       barLabelStyle: {
+            //         fontSize: 34
+            //       },
+            //     },
+            //     backgroundColor: '#ffffff',
+            //     },
 
-     // find <rect> elements
-      var rects = container.getElementsByTagName('rect');
-      Array.prototype.forEach.call(rects, function(rect) {
-        if (rect.getAttribute('stroke') === '#9a9a9a') {
-          // remove border
-          rect.setAttribute('stroke-width', '0');
-        }
-      });
+            //     });
 
-      // find <path> elements
-      var paths = container.getElementsByTagName('path');
-      Array.prototype.forEach.call(paths, function(path) {
-        if ((path.getAttribute('stroke') === '#ffffff') || (path.getAttribute('stroke') === '#e6e6e6')) {
-          // remove border
-          path.setAttribute('stroke-width', '0');
-        }
-      });
+            // var timelineRangeSlider = new google.visualization.ControlWrapper({
+            //   controlType: 'ChartRangeFilter',
+            //   containerId: 'timeline-filter',
+            //   state: {
+            //     range: {
+            //       start: new Date('05/03/2020 12:00:00'),
+            //       end:   new Date('05/03/2023 12:15:00')
+            //     }
+            //   },
+            //   options: {
+            //     filterColumnLabel: 'No'
+            //   }
+            // });
 
-    });
-    chart.draw(dataTable,options);
+       
+        // var dash = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+        // dash.bind([timelineRangeSlider], [timeline]);
+        // dash.draw(dataTable);
+
+        google.visualization.events.addListener(timeline, 'ready', function () {
+            //爛x axis改色
+            var labels = container.getElementsByTagName('text');
+            Array.prototype.forEach.call(labels, function(label) {
+              if (label.getAttribute('text-anchor') === 'middle' || label.getAttribute('text-anchor') === 'end') {
+                label.setAttribute('fill', '#ffffff');
+              }
+            });
+  
+          // find <rect> elements
+            var rects = container.getElementsByTagName('rect');
+            Array.prototype.forEach.call(rects, function(rect) {
+              if (rect.getAttribute('stroke') === '#9a9a9a') {
+                // remove border
+                rect.setAttribute('stroke-width', '0');
+              }
+            });
+  
+            // find <path> elements
+            var paths = container.getElementsByTagName('path');
+            Array.prototype.forEach.call(paths, function(path) {
+              if ((path.getAttribute('stroke') === '#ffffff') || (path.getAttribute('stroke') === '#e6e6e6')) {
+                // remove border
+                path.setAttribute('stroke-width', '0');
+              }
+            });
+  
+          });
+        
+        timeline.draw(dataTable);     
+
+      }});
   }
-  $(window).resize(function(){
-  drawChart();
-});
 </script>
 <script>
+   $(window).resize(function(){
+    drawChart();
+  });
 </script>
 </html>
