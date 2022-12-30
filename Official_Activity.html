@@ -19,7 +19,9 @@
    <link rel="stylesheet" href="Assets/Content/index.css">
   <style>
     #google_chart svg g rect[x="0"]{fill-opacity: 0;}
-    #google_chart svg text{font-size: 16px;}
+    #google_chart svg text{font-size: 14px;}
+    .google-visualization-controls-rangefilter{display: flex;}
+    #google_chart svg g text{fill: #ffffff !important;}
   </style>
 </head>
 <body>
@@ -49,13 +51,10 @@
   <div class="content-body p-1">
     <div id="chart-box-layout">
       <div class="infographic_graphic_section p-1">
-        <div id="controler" class="controler mb-2">
-          
-        </div>
         <div class="chart-container">
           <div id="dashboard_div" style="height:100%;">
             <div id="timeline-filter"></div>
-            <div id="google_chart" style="height:100%;"></div>
+            <div id="google_chart" style="height:90%;"></div>
           </div>
         </div>
       </div>
@@ -206,81 +205,87 @@ window.addEventListener('resize', function(event){
 </script>
 
 <script type="text/javascript">
+  var container = document.getElementById('google_chart');
   google.charts.load("current", {packages:['controls',"timeline"],'language': 'zh-TW'});
   google.charts.setOnLoadCallback(drawChart);
+  
   function drawChart() {
-    
-    var container = document.getElementById('google_chart');
-    var timeline = new google.visualization.Timeline(container);
+     
     
     $.ajax({
         url: "Assets/json/official_activity.json",
         dataType: "json",
         success: function (jsonData) {
             var dataTable = new google.visualization.DataTable();
-            //dataTable.addColumn('number','Value');
             dataTable.addColumn({type: 'string', label:'type'});
             dataTable.addColumn({type: 'string', label:'Name'});
-            dataTable.addColumn({type: 'number', role: 'No' });
             dataTable.addColumn({type:'date',  label:'Start'});
             dataTable.addColumn({type:'date',  label:'End'});
-            
+            dataTable.addColumn({type: 'number', label: 'No' }); 
             for (var i = 0; i < jsonData.rows.length; i++) {
               dataTable.addRow([
                   jsonData.rows[i].c[0],
                   jsonData.rows[i].c[1],
-                  i,
                   new Date(jsonData.rows[i].c[2].v),
                   new Date(jsonData.rows[i].c[3].v),
-                  
+                  i,
                 ]);
             }
-    
-            // Configure timeline
-            //  var timeline = new google.visualization.ChartWrapper({
-            //     chartType: 'Timeline',
-            //     containerId: 'google_chart',
-            //     dataTable: dataTable,
-            //     options:{
-            //     height:'100%',
-            //     width:'100%',
-            //     timeline: { 
-            //       colorByRowLabel: true ,
-            //       groupByRowLabel: true,
-            //       rowLabelStyle: {color: '#ffffff',},
-            //       barLabelStyle: {
-            //         fontSize: 34
-            //       },
-            //     },
-            //     backgroundColor: '#ffffff',
-            //     },
 
-            //     });
+            var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
-            // var timelineRangeSlider = new google.visualization.ControlWrapper({
-            //   controlType: 'ChartRangeFilter',
-            //   containerId: 'timeline-filter',
-            //   state: {
-            //     range: {
-            //       start: new Date('05/03/2020 12:00:00'),
-            //       end:   new Date('05/03/2023 12:15:00')
-            //     }
-            //   },
-            //   options: {
-            //     filterColumnLabel: 'No'
-            //   }
-            // });
+            var timeline = new google.visualization.ChartWrapper({
+            chartType: 'Timeline',
+            containerId: 'google_chart',
+            'view': {'columns': [0,1,2,3]},
+            options:{
+              timeline:{
+                //showBarLabels:false,
+                groupByRowLabel:true,
+                colorByRowLabel: true,
+                barLabelStyle:{
+                  fontSize: 16,
+                }
+              }
+            },
+            });
 
-       
-        // var dash = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
-        // dash.bind([timelineRangeSlider], [timeline]);
-        // dash.draw(dataTable);
+            var timelineRangeSlider = new google.visualization.ControlWrapper({
+              controlType: 'DateRangeFilter',
+              containerId: 'timeline-filter',
+
+              options: {
+                
+                filterColumnLabel: 'Start',
+                ui: {
+                  label:'日期控制',
+                  format: { pattern: 'yyyy' },
+                  labelStacking: 'vertical',
+                  allowTyping: true,
+                  allowMultiple: true,
+                }
+              }
+            });
+
+        
+        dashboard.bind(timelineRangeSlider, timeline);
+        dashboard.draw(dataTable);
+        
+        changeRange = function() {
+          timelineRangeSlider.setState({'lowValue': 2, 'highValue': 5});
+          timelineRangeSlider.draw();
+        };
+        changeOptions = function() {
+          timeline.setOption('is3D', true);
+          timeline.draw();
+        };
+
 
         google.visualization.events.addListener(timeline, 'ready', function () {
             //爛x axis改色
             var labels = container.getElementsByTagName('text');
             Array.prototype.forEach.call(labels, function(label) {
-              if (label.getAttribute('text-anchor') === 'middle' || label.getAttribute('text-anchor') === 'end') {
+              if (label.getAttribute('text-anchor') === 'middle' || label.getAttribute('text-anchor') === 'end'|| label.getAttribute('text-anchor') === 'start') {
                 label.setAttribute('fill', '#ffffff');
               }
             });
@@ -304,9 +309,12 @@ window.addEventListener('resize', function(event){
             });
   
           });
-        
-        timeline.draw(dataTable);     
-
+          google.visualization.events.addListener(timeline, 'onmouseover', function () {
+            var labels = container.getElementsByTagName('text');
+            if (label.getAttribute('text-anchor') === 'middle' || label.getAttribute('text-anchor') === 'end'|| label.getAttribute('text-anchor') === 'start') {
+                label.setAttribute('fill', '#ffffff');
+              }
+          })
       }});
   }
 </script>
