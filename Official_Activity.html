@@ -19,9 +19,11 @@
    <link rel="stylesheet" href="Assets/Content/index.css">
   <style>
     #google_chart svg g rect[x="0"]{fill-opacity: 0;}
-    #google_chart svg text{font-size: 14px;}
-    .google-visualization-controls-rangefilter{display: flex;}
+    /*#google_chart svg text{font-size: 14px;}*/
+    .google-visualization-controls-rangefilter-thumblabel{color:#ffffff !important; }
+    .google-visualization-controls-label{display: none !important;}
     #google_chart svg g text{fill: #ffffff !important;}
+    .ggl-tooltip{min-width: 200px;padding:8px;font-size: 15px;}
   </style>
 </head>
 <body>
@@ -64,121 +66,8 @@
 
 <script src="Assets/javascript/jquery.min.js"></script>
 <script src="Assets/javascript/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-//moment.js轉中文
-moment.locale('zh-tw', {
-      months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
-      monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
-      weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
-      weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
-      weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
-      longDateFormat: {
-        LT: 'Ah點mm分',
-        LTS: 'Ah點m分s秒',
-        L: 'YYYY-MM-DD',
-        LL: 'YYYY年MMMD日',
-        LLL: 'YYYY年MMMD日Ah點mm分',
-        LLLL: 'YYYY年MMMD日ddddAh點mm分',
-        l: 'YYYY-MM-DD',
-        ll: 'YYYY年MMMD日',
-        lll: 'YYYY年MMMD日Ah點mm分',
-        llll: 'YYYY年MMMD日ddddAh點mm分'
-      },
-      meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-      meridiemHour: function (h, meridiem) {
-        let hour = h;
-        if (hour === 12) {
-          hour = 0;
-        }
-        if (meridiem === '凌晨' || meridiem === '早上' ||
-          meridiem === '上午') {
-          return hour;
-        } else if (meridiem === '下午' || meridiem === '晚上') {
-          return hour + 12;
-        } else {
-          // '中午'
-          return hour >= 11 ? hour : hour + 12;
-        }
-      },
-      meridiem: function (hour, minute, isLower) {
-        const hm = hour * 100 + minute;
-        if (hm < 600) {
-          return '凌晨';
-        } else if (hm < 900) {
-          return '早上';
-        } else if (hm < 1130) {
-          return '上午';
-        } else if (hm < 1230) {
-          return '中午';
-        } else if (hm < 1800) {
-          return '下午';
-        } else {
-          return '晚上';
-        }
-      },
-      calendar: {
-        sameDay: function () {
-          return this.minutes() === 0 ? '[今天]Ah[點整]' : '[今天]LT';
-        },
-        nextDay: function () {
-          return this.minutes() === 0 ? '[明天]Ah[點整]' : '[明天]LT';
-        },
-        lastDay: function () {
-          return this.minutes() === 0 ? '[昨天]Ah[點整]' : '[昨天]LT';
-        },
-        nextWeek: function () {
-          let startOfWeek, prefix;
-          startOfWeek = moment().startOf('week');
-          prefix = this.diff(startOfWeek, 'days') >= 7 ? '[下]' : '[本]';
-          return this.minutes() === 0 ? prefix + 'dddA點整' : prefix + 'dddAh點mm';
-        },
-        lastWeek: function () {
-          let startOfWeek, prefix;
-          startOfWeek = moment().startOf('week');
-          prefix = this.unix() < startOfWeek.unix() ? '[上]' : '[本]';
-          return this.minutes() === 0 ? prefix + 'dddAh點整' : prefix + 'dddAh點mm';
-        },
-        sameElse: 'LL'
-      },
-      ordinalParse: /\d{1,2}(日|月|周)/,
-      ordinal: function (number, period) {
-        switch (period) {
-          case 'd':
-          case 'D':
-          case 'DDD':
-            return number + '日';
-          case 'M':
-            return number + '月';
-          case 'w':
-          case 'W':
-            return number + '周';
-          default:
-            return number;
-        }
-      },
-      relativeTime: {
-        future: '%s内',
-        past: '%s前',
-        s: '幾秒',
-        m: '1 分鐘',
-        mm: '%d 分鐘',
-        h: '1 小時',
-        hh: '%d 小時',
-        d: '1 天',
-        dd: '%d 天',
-        M: '1 個月',
-        MM: '%d 个月',
-        y: '1 年',
-        yy: '%d 年'
-      },
-      week: {
-        // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
-        dow: 1, // Monday is the first day of the week.
-        doy: 4  // The week that contains Jan 4th is the first week of the year.
-      }
-    });
 
   $(document).ready(function () {
     var winHeight = window.innerHeight;
@@ -205,57 +94,80 @@ window.addEventListener('resize', function(event){
 </script>
 
 <script type="text/javascript">
-  var container = document.getElementById('google_chart');
-  google.charts.load("current", {packages:['controls',"timeline"],'language': 'zh-TW'});
-  google.charts.setOnLoadCallback(drawChart);
-  
-  function drawChart() {
-     
-    
+  google.charts.load('current', {
+  callback: function () {
+    drawTimeline();
+    window.addEventListener('resize', drawTimeline, false);
+  },
+  packages:['controls','timeline'],'language': 'zh-TW'
+});
+function drawTimeline() {
     $.ajax({
         url: "Assets/json/official_activity.json",
         dataType: "json",
         success: function (jsonData) {
-            var dataTable = new google.visualization.DataTable();
+         var container = document.getElementById('google_chart');
+        // var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
             dataTable.addColumn({type: 'string', label:'type'});
             dataTable.addColumn({type: 'string', label:'Name'});
             dataTable.addColumn({type:'date',  label:'Start'});
             dataTable.addColumn({type:'date',  label:'End'});
-            dataTable.addColumn({type: 'number', label: 'No' }); 
             for (var i = 0; i < jsonData.rows.length; i++) {
               dataTable.addRow([
                   jsonData.rows[i].c[0],
                   jsonData.rows[i].c[1],
                   new Date(jsonData.rows[i].c[2].v),
                   new Date(jsonData.rows[i].c[3].v),
-                  i,
                 ]);
             }
 
-            var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+            var formatDate = new google.visualization.DateFormat({
+                pattern: 'MM/dd/yyyy'
+            });
+            dataTable.insertColumn(2, { type: 'string', role: 'tooltip', p: {html: true} });
+            for (var i = 0; i < dataTable.getNumberOfRows(); i++) {
+                var duration = Math.abs(dataTable.getValue(i, 4).getTime() - dataTable.getValue(i, 3).getTime()) / 1000;
+                //沒精準到小時，so直接+1天
+                var days = Math.floor(duration / 86400) + 1;
+                duration -= days * 86400;
+
+                var tooltip = '';
+                tooltip += '<div class="ggl-tooltip"><div>';
+                tooltip += '<span>' + dataTable.getValue(i, 1) + '</span>';
+                tooltip += '</div><div>';
+                tooltip += formatDate.formatValue(dataTable.getValue(i, 3)) + ' - ' + formatDate.formatValue(dataTable.getValue(i, 4));
+                tooltip += '</div><div>';
+                tooltip += '<span>總時程:&nbsp;</span>'+ days + ' 天 ';
+                tooltip += '</div></div>';
+                dataTable.setValue(i, 2, tooltip);
+            }
+
+             var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
 
             var timeline = new google.visualization.ChartWrapper({
             chartType: 'Timeline',
             containerId: 'google_chart',
-            'view': {'columns': [0,1,2,3]},
+            view: {columns: [0,1,2,3,4]},
+            dataTable:dataTable,
             options:{
+              tooltip: {isHtml: true},
               timeline:{
-                //showBarLabels:false,
                 groupByRowLabel:true,
                 colorByRowLabel: true,
+                rowLabelStyle: {
+                  fontSize: 20,
+                },  
                 barLabelStyle:{
-                  fontSize: 16,
+                  fontSize: 15,
                 }
               }
             },
             });
-
             var timelineRangeSlider = new google.visualization.ControlWrapper({
               controlType: 'DateRangeFilter',
               containerId: 'timeline-filter',
-
-              options: {
-                
+              options: {   
                 filterColumnLabel: 'Start',
                 ui: {
                   label:'日期控制',
@@ -266,61 +178,39 @@ window.addEventListener('resize', function(event){
                 }
               }
             });
+            dashboard.bind(timelineRangeSlider, timeline);
+            dashboard.draw(dataTable);
 
-        
-        dashboard.bind(timelineRangeSlider, timeline);
-        dashboard.draw(dataTable);
-        
-        changeRange = function() {
-          timelineRangeSlider.setState({'lowValue': 2, 'highValue': 5});
-          timelineRangeSlider.draw();
-        };
-        changeOptions = function() {
-          timeline.setOption('is3D', true);
-          timeline.draw();
-        };
+            google.visualization.events.addListener(timeline, 'ready', function () {
 
+                // find <rect> elements
+                var rects = container.getElementsByTagName('rect');
+                Array.prototype.forEach.call(rects, function(rect) {
+                    if (rect.getAttribute('stroke') === '#9a9a9a') {
+                    // remove border
+                    rect.setAttribute('stroke-width', '0');
+                    }
+                });
 
-        google.visualization.events.addListener(timeline, 'ready', function () {
-            //爛x axis改色
-            var labels = container.getElementsByTagName('text');
-            Array.prototype.forEach.call(labels, function(label) {
-              if (label.getAttribute('text-anchor') === 'middle' || label.getAttribute('text-anchor') === 'end'|| label.getAttribute('text-anchor') === 'start') {
-                label.setAttribute('fill', '#ffffff');
-              }
-            });
-  
-          // find <rect> elements
-            var rects = container.getElementsByTagName('rect');
-            Array.prototype.forEach.call(rects, function(rect) {
-              if (rect.getAttribute('stroke') === '#9a9a9a') {
-                // remove border
-                rect.setAttribute('stroke-width', '0');
-              }
-            });
-  
-            // find <path> elements
-            var paths = container.getElementsByTagName('path');
-            Array.prototype.forEach.call(paths, function(path) {
-              if ((path.getAttribute('stroke') === '#ffffff') || (path.getAttribute('stroke') === '#e6e6e6')) {
-                // remove border
-                path.setAttribute('stroke-width', '0');
-              }
-            });
-  
-          });
-          google.visualization.events.addListener(timeline, 'onmouseover', function () {
-            var labels = container.getElementsByTagName('text');
-            if (label.getAttribute('text-anchor') === 'middle' || label.getAttribute('text-anchor') === 'end'|| label.getAttribute('text-anchor') === 'start') {
-                label.setAttribute('fill', '#ffffff');
-              }
-          })
-      }});
-  }
+                // find <path> elements 橫線#b7b7b7 直線#e6e6e6
+                var paths = container.getElementsByTagName('path');
+                Array.prototype.forEach.call(paths, function(path) {
+                    if ((path.getAttribute('stroke') === '#ffffff') || (path.getAttribute('stroke') === '#e6e6e6')) {
+                    // remove border
+                    path.setAttribute('stroke-width', '1');
+                    path.setAttribute('stroke', '#ffffff22');
+                    }
+                    if ((path.getAttribute('stroke') === '#b7b7b7')){
+                      path.setAttribute('stroke', '#ffffff22');
+                    }
+                });
+
+                });
+
+            }
+        })
+    
+}
 </script>
-<script>
-   $(window).resize(function(){
-    drawChart();
-  });
-</script>
+
 </html>
