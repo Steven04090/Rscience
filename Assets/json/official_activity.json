@@ -1,7 +1,7 @@
 {
     "cols":
         [
-        {"label":"type","type":"string"},{"label":"Name","type":"string"},{"label":"Start","type":"date"},{"label":"End","type":"date"}
+        {"label":"type","type":"string"},{"label":"Name","type":"string"},{"label":"Start","type":"date"},{"label":"End","type":"date"},{"role":"tooltip","type":"string"}
         ],
     "rows":
         [
