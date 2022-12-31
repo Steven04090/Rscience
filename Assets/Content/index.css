@@ -5,9 +5,9 @@ html{
 body{
   height:100%;
   position: relative;
-  background-color: #1e2f46;
+  background-color: #000;
   overflow: hidden;
-  
+  font-family: 'Microsoft JhengHei','PingFang';
 }
 body::before{
   content: "";
@@ -35,7 +35,7 @@ body::after{
 }
 /****var顏色****/
 :root {
-  --main-text-color: #e2e8f0;
+  --main-text-color: #cacfd4;
   --light-border-color:#9affd9;
   --soft-border-color:#9affd966;
   --color:#d8c834;
@@ -79,18 +79,18 @@ a{
   justify-content: center;
 }
 .content-box{
-  min-width:180px;
+  min-width:200px;
 }
 .content-box a{
   position: relative;
   width: 100%;
   color: var(--main-text-color);
   min-height: 120px;
-  background-color: rgba(63, 89, 102, 0.21);
+  background-color: rgba(28, 38, 43, 0.21);
   word-break: break-all;
-  padding: 8px 25px;
+  padding: 8px 35px;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 .content-box a:hover{
   color:#fff;
@@ -210,7 +210,7 @@ color:black;
 .svg-btn_rect {
   fill: transparent;
   stroke: var(--light-border-color);
-  stroke-width: 5px;
+  stroke-width: 1px;
   stroke-dasharray: 10px 10px 100px 20px 0px 4px;
   stroke-dashoffset: 40;
   width: 100%;
