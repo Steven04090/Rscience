@@ -151,7 +151,11 @@
 
   <script>
     $(document).ready(function(){
-
+ //(月+日)*5
+ var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
+    var binary = ((x >>> 0).toString(2)).padStart(8,'0');
+    $("#password").text(binary);
+    
 $('.call_url').on('click',function(e){
   var page_path = $(this).attr('data-url');
   console.log($(this).attr('data-url'));
