@@ -61,8 +61,7 @@ a{
   border-bottom:2px solid #fff;
 }
 .navbar-expand-lg .navbar-nav .nav-link{
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding:0.7rem 1.5rem 0.7rem;
 }
 .navbar-nav::before {
   content: "";
@@ -71,7 +70,7 @@ a{
   height: 400px;
   background-color: #1e567787;
   z-index: -1;
-  top: -340px;
+  top: -345px;
   border-radius: 200px;
   left: -21%;
   border: 1px solid #6df9d854;
