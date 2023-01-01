@@ -18,22 +18,204 @@
    <link rel="stylesheet" href="Assets/Content/bootstrap.css">
    <link rel="stylesheet" href="Assets/Content/index.css">
    <link rel="stylesheet" href="Assets/Content/font-awesome.css">
+   <script src="Assets/javascript/jquery.min.js"></script>
+
+   <script src="Assets/javascript/bootstrap.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+   <script src="Assets/javascript/chart.umd.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+   <script src="Assets/javascript/chartjs-plugin-zoom.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+   <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+   <script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
+   <script src="https://unpkg.com/js-year-calendar@latest/locales/js-year-calendar.zh-TW.js"></script>
+
+   <script	src="Assets/javascript/jquery-1.8.0.min.js"></script>
+  <script	src="https://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
+  <script src="Assets/javascript/jQDateRangeSlider-min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="Assets/javascript/jquery.ba-bbq.min.js"></script>
+  
+<script> //moment.js轉中文
+  moment.locale('zh-tw', {
+      months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
+      monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
+      weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
+      weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
+      weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
+      longDateFormat: {
+        LT: 'Ah點mm分',
+        LTS: 'Ah點m分s秒',
+        L: 'YYYY-MM-DD',
+        LL: 'YYYY年MMMD日',
+        LLL: 'YYYY年MMMD日Ah點mm分',
+        LLLL: 'YYYY年MMMD日ddddAh點mm分',
+        l: 'YYYY-MM-DD',
+        ll: 'YYYY年MMMD日',
+        lll: 'YYYY年MMMD日Ah點mm分',
+        llll: 'YYYY年MMMD日ddddAh點mm分'
+      },
+      meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+      meridiemHour: function (h, meridiem) {
+        let hour = h;
+        if (hour === 12) {
+          hour = 0;
+        }
+        if (meridiem === '凌晨' || meridiem === '早上' ||
+          meridiem === '上午') {
+          return hour;
+        } else if (meridiem === '下午' || meridiem === '晚上') {
+          return hour + 12;
+        } else {
+          // '中午'
+          return hour >= 11 ? hour : hour + 12;
+        }
+      },
+      meridiem: function (hour, minute, isLower) {
+        const hm = hour * 100 + minute;
+        if (hm < 600) {
+          return '凌晨';
+        } else if (hm < 900) {
+          return '早上';
+        } else if (hm < 1130) {
+          return '上午';
+        } else if (hm < 1230) {
+          return '中午';
+        } else if (hm < 1800) {
+          return '下午';
+        } else {
+          return '晚上';
+        }
+      },
+      calendar: {
+        sameDay: function () {
+          return this.minutes() === 0 ? '[今天]Ah[點整]' : '[今天]LT';
+        },
+        nextDay: function () {
+          return this.minutes() === 0 ? '[明天]Ah[點整]' : '[明天]LT';
+        },
+        lastDay: function () {
+          return this.minutes() === 0 ? '[昨天]Ah[點整]' : '[昨天]LT';
+        },
+        nextWeek: function () {
+          let startOfWeek, prefix;
+          startOfWeek = moment().startOf('week');
+          prefix = this.diff(startOfWeek, 'days') >= 7 ? '[下]' : '[本]';
+          return this.minutes() === 0 ? prefix + 'dddA點整' : prefix + 'dddAh點mm';
+        },
+        lastWeek: function () {
+          let startOfWeek, prefix;
+          startOfWeek = moment().startOf('week');
+          prefix = this.unix() < startOfWeek.unix() ? '[上]' : '[本]';
+          return this.minutes() === 0 ? prefix + 'dddAh點整' : prefix + 'dddAh點mm';
+        },
+        sameElse: 'LL'
+      },
+      ordinalParse: /\d{1,2}(日|月|周)/,
+      ordinal: function (number, period) {
+        switch (period) {
+          case 'd':
+          case 'D':
+          case 'DDD':
+            return number + '日';
+          case 'M':
+            return number + '月';
+          case 'w':
+          case 'W':
+            return number + '周';
+          default:
+            return number;
+        }
+      },
+      relativeTime: {
+        future: '%s内',
+        past: '%s前',
+        s: '幾秒',
+        m: '1 分鐘',
+        mm: '%d 分鐘',
+        h: '1 小時',
+        hh: '%d 小時',
+        d: '1 天',
+        dd: '%d 天',
+        M: '1 個月',
+        MM: '%d 个月',
+        y: '1 年',
+        yy: '%d 年'
+      },
+      week: {
+        // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
+        dow: 1, // Monday is the first day of the week.
+        doy: 4  // The week that contains Jan 4th is the first week of the year.
+      }
+    });</script>
+
+  <script>
+    $(document).ready(function(){
+
+$('.call_url').on('click',function(e){
+  var page_path = $(this).attr('data-url');
+  console.log($(this).attr('data-url'));
+  e.preventDefault();
+  if(page_path != 'index.html'){
+        $.ajax({
+        type: "GET",
+        url: `${page_path}`,
+        success: function(data) {
+            //將目前的步驟加註在location.hash
+            $.bbq.pushState({ step: page_path });
+
+          $('.index').css('display','none');
+          $('.content-body').html(data);
+        }
+      });
+      }
+      else{
+        //將目前的步驟加註在location.hash
+        $.bbq.pushState( {}, 2 );
+        $('.index').css('display','block');
+        $('.content-body').html();
+      }
+  });
+
+   //hash變化時觸發hashchange事件
+   $(window).bind('hashchange', function (e) {
+        //由hash取出step參數
+        var page_path_hash = e.getState("step") || "index.html";
+        if(page_path_hash != 'index.html'){
+        $.ajax({
+        type: "GET",
+        url: `${page_path_hash}`,
+        success: function(data) {
+
+          $('.index').css('display','none');
+          $('.content-body').html(data);
+        }
+      });
+      }
+      else{
+        $('.index').css('display','block');
+        $('.content-body').html();
+      }
+        });
+  });
+</script>
 </head>
 <body>
   <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="index.html"><img src="Assets/image/logo.png"></a>
+    <a class="navbar-brand d-lg-none" data-url="index.html" href="#"><img src="Assets/image/logo.png"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">資訊圖表中心</a>
-          </li>
+      <ul class="navbar-nav mx-auto position-relative">
         <li class="nav-item">
           <a class="nav-link" href="#">未來UI設計</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link call_url" data-url="index.html" href="#">資訊圖表中心</a>
+          </li>
+        <a class="middle-logo d-none d-lg-block call_url" data-url="index.html" href="#"><img src="Assets/image/logo.png"></a>
         <li class="nav-item">
           <a class="nav-link" href="#">低成本三王</a>
         </li>
@@ -43,83 +225,64 @@
       </ul>
     </div>
   </nav>
-  <div class="content-body">
+  <div class="index p-1">
     <div style="max-width: 1200px;margin: 0 auto;height: 100%;padding:0 10px;">
-      <div class="Art-center">
-        <h4 style="letter-spacing: 4px;"><div style="float: left;border-bottom: 4px solid;padding-bottom: 6px;">資訊圖表中心</div></h4>
-        <div class="d-flex flex-wrap">
-          <div class="content-box d-flex">
-              <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="Job_DPS.html">
-                <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>職業DPS<div>(Job Damage)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-              <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="suspension.html"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>停權人數<div>(Suspension)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-              <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="goodsprice.html"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>物價走勢<div>(Goods price)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-              <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="wordcloud.html"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>每周熱度主題<div>(Hot topics)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="server_temporary.html"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>伺服器穩定度<div>(stability of server)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="exp.html"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>等級經驗值<div>(level Exp)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1" href="Official_Activity.html"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>活動表<div>(Official Activity)</div></div></a>
-          </div>
-          <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center flex-column m-1" href="#"><svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>今日致富密碼<div id="password" style="font-size:30px;font-weight: bold;">00000000</div></div></a>
-          </div>
+    <div class="Art-center">
+      <h4 style="letter-spacing: 4px;"><div style="float: left;border-bottom: 4px solid;padding-bottom: 6px;">資訊圖表中心</div></h4>
+      <div class="d-flex flex-wrap">
+        <div class="content-box d-flex">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Job_DPS.html" href="#">
+              <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>職業DPS<div>(Job Damage)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="suspension.html" href="#">
+              <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>停權人數<div>(Suspension)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="goodsprice.html" href="#">
+              <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>物價走勢<div>(Goods price)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="wordcloud.html" href="#">
+              <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>每周熱度主題<div>(Hot topics)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="server_temporary.html" href="#">
+            <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>伺服器穩定度<div>(stability of server)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="exp.html" href="#">
+            <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>等級經驗值<div>(level Exp)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Official_Activity.html" href="#">
+            <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>活動表<div>(Official Activity)</div></div></a>
+        </div>
+        <div class="content-box d-flex">
+          <a class="main-text-color d-flex align-items-center justify-content-center flex-column m-1" href="#">
+            <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>今日致富密碼<div id="password">00000000</div></div></a>
         </div>
       </div>
-      <div class="ref" style="padding:20px 0;">
-        <h6>網頁目的(object)</h6>
-          <div style="font-size:0.85em;margin-bottom:40px;">本網站旨在將Ragnarok Online的各種數據以圖像化呈現。</div>
-        <h6>資料參考來源(Reference)</h6>
-        <ul style="margin-bottom: 40px;">
-          <li><a href="#" style="font-size:0.85em;">Ragnarok官方網站</a></li>
-          <li><a href="#" style="font-size:0.85em;">Ro巴哈姆特哈拉板</a></li>
-          <li><a href="#" style="font-size:0.85em;">Ro計算機</a></li>
-        </ul>
-        <h6>版權(license)</h6>
-        <div style="font-size:0.85em;">本網站所使用部分圖片:職業縮圖、職業圖片、狀態icon之所有權、著作財產權、智慧財產權皆為 格雷維蒂互動股份有限公司（GRAVITY COMMUNICATIONS） 所有</div>
-      </div>
+    </div>
+    <div class="ref" style="padding:20px 0;">
+      <h6>網頁目的(object)</h6>
+        <div style="font-size:0.85em;margin-bottom:40px;">本網站旨在將Ragnarok Online的各種數據以圖像化呈現。</div>
+      <h6>資料參考來源(Reference)</h6>
+      <ul style="margin-bottom: 40px;">
+        <li><a href="#" style="font-size:0.85em;">Ragnarok官方網站</a></li>
+        <li><a href="#" style="font-size:0.85em;">Ro巴哈姆特哈拉板</a></li>
+        <li><a href="#" style="font-size:0.85em;">Ro計算機</a></li>
+      </ul>
+      <h6>版權(license)</h6>
+      <div style="font-size:0.85em;">本網站所使用部分圖片:職業縮圖、職業圖片、狀態icon之所有權、著作財產權、智慧財產權皆為 格雷維蒂互動股份有限公司（GRAVITY COMMUNICATIONS） 所有</div>
     </div>
   </div>
-
+</div>
+  <div class="content-body p-1">
+ 
+  </div>
 </body>
-<script src="Assets/javascript/jquery.min.js"></script>
-<script src="Assets/javascript/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
-<script>
-     $(document).ready(function () {
-      var winHeight = window.innerHeight;
-    window.addEventListener('resize', function(event){
-        winHeight = window.innerHeight;
-        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    // true for mobile device
-      $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
-       }
-    });
-      var nav_height = $('#nav').outerHeight();
-    var content_height = $('.content-body').innerHeight();
 
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    // true for mobile device
-    $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
-    }else{
-      // false for not mobile device
-      $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
-    }
-        });
-  </script>
-  <script>
-    //(月+日)*5
-    var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
-    var binary = ((x >>> 0).toString(2)).padStart(8,'0');
-    $("#password").text(binary);
-  </script>
+
+  
 </html>

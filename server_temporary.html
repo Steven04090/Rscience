@@ -1,54 +1,6 @@
-<!DOCTYPE html><html>
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NHCJY83598"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-NHCJY83598');
-</script>
-   <title>R科學-資訊圖表(伺服器穩定度)</title>
-   <meta name="description" content="R科學，本網站旨在將Ragnarok Online的各種數據以圖像化呈現。">
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="shortcut icon" href="Assets/image/favicon.png" type="image/x-icon">
-   <link rel="stylesheet" href="Assets/Content/bootstrap.css">
-   <link rel="stylesheet" href="Assets/Content/index.css">
-   <link rel="stylesheet" type="text/css" href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
-   <style>
-       #calendar{width:100%;color:var(--main-text-color);overflow:unset;}
-       .tippy-tooltip{background-color:#f1f1f1;}
-       .month-container{padding: 10px 4px !important;}
-       .calendar .calendar-spinner > div{background-color:#f1f1f1;}
-   </style>
-</head>
-<body>
-  <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="index.html"><img src="Assets/image/logo.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="index.html">資訊圖表中心</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">未來UI設計</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">低成本三王</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">3D Modal</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <div class="content-body p-1 d-flex">
+  
+  <div class="d-flex">
       <div class="d-flex flex-column text-center" style="min-width:150px;color:#f1f1f1;">
                   <div class="w-100 d-flex flex-column justify-content-center p-1">
                     <div class="d-flex flex-column align-items-center justify-content-center" style="height: 150px;background-color:rgba(63, 89, 102, 0.21);">
@@ -71,35 +23,15 @@
       </div>
     <div id="calendar"></div>
   </div>
-</body>
-<script src="Assets/javascript/jquery.min.js"></script>
-<script src="Assets/javascript/bootstrap.min.js"></script>
-<script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
-<script src="https://unpkg.com/js-year-calendar@latest/locales/js-year-calendar.zh-TW.js"></script>
-<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
-<script src="https://unpkg.com/tippy.js@4"></script>
-<script>
-    $(document).ready(function () {
-     var winHeight = window.innerHeight;
-   window.addEventListener('resize', function(event){
-       winHeight = window.innerHeight;
-       if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-   // true for mobile device
-     $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
-      }
-   });
-     var nav_height = $('#nav').outerHeight();
-   var content_height = $('.content-body').innerHeight();
-
-   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-   // true for mobile device
-   $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
-   }else{
-     // false for not mobile device
-     $('.content-body').css("height",`calc(100vh - ${nav_height}px`);
-   }
-       });
- </script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
+  <style>
+      #calendar{width:100%;color:var(--main-text-color);overflow:unset;background-color: #141c1e69;}
+      .tippy-tooltip{background-color:#f1f1f1;}
+      .month-container{padding: 10px 4px !important;}
+      .calendar .calendar-spinner > div{background-color:#f1f1f1;}
+  </style>
+  
+     <script src="https://unpkg.com/tippy.js@4"></script>
 <script>
     var number_array = [];
     let tooltip = null;
