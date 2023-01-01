@@ -155,7 +155,7 @@
  var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
     var binary = ((x >>> 0).toString(2)).padStart(8,'0');
     $("#password").text(binary);
-    
+
 $('.call_url').on('click',function(e){
   var page_path = $(this).attr('data-url');
   console.log($(this).attr('data-url'));
@@ -177,7 +177,7 @@ $('.call_url').on('click',function(e){
         //將目前的步驟加註在location.hash
         $.bbq.pushState( {}, 2 );
         $('.index').css('display','block');
-        $('.content-body').html();
+        $('.content-body').empty();
       }
   });
 
@@ -198,7 +198,7 @@ $('.call_url').on('click',function(e){
       }
       else{
         $('.index').css('display','block');
-        $('.content-body').html();
+        $('.content-body').empty();
       }
         });
   });
@@ -217,9 +217,9 @@ $('.call_url').on('click',function(e){
           <a class="nav-link" href="#">未來UI設計</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link call_url" data-url="index.html" href="#">資訊圖表中心</a>
+            <a class="nav-link call_url" data-url="index.html" href="">資訊圖表中心</a>
           </li>
-        <a class="middle-logo d-none d-lg-block call_url" data-url="index.html" href="#"><img src="Assets/image/logo.png"></a>
+        <a class="middle-logo d-none d-lg-block call_url" data-url="index.html" href=""><img src="Assets/image/logo.png"></a>
         <li class="nav-item">
           <a class="nav-link" href="#">低成本三王</a>
         </li>
@@ -235,31 +235,31 @@ $('.call_url').on('click',function(e){
       <h4 style="letter-spacing: 4px;"><div style="float: left;border-bottom: 4px solid;padding-bottom: 6px;">資訊圖表中心</div></h4>
       <div class="d-flex flex-wrap">
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Job_DPS.html" href="#">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Job_DPS.html" href="">
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>職業DPS<div>(Job Damage)</div></div></a>
         </div>
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="suspension.html" href="#">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="suspension.html" href="">
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>停權人數<div>(Suspension)</div></div></a>
         </div>
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="goodsprice.html" href="#">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="goodsprice.html" href="">
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>物價走勢<div>(Goods price)</div></div></a>
         </div>
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="wordcloud.html" href="#">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="wordcloud.html" href="">
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>每周熱度主題<div>(Hot topics)</div></div></a>
         </div>
         <div class="content-box d-flex">
-          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="server_temporary.html" href="#">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="server_temporary.html" href="">
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>伺服器穩定度<div>(stability of server)</div></div></a>
         </div>
         <div class="content-box d-flex">
-          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="exp.html" href="#">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="exp.html" href="">
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>等級經驗值<div>(level Exp)</div></div></a>
         </div>
         <div class="content-box d-flex">
-          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Official_Activity.html" href="#">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Official_Activity.html" href="">
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>活動表<div>(Official Activity)</div></div></a>
         </div>
         <div class="content-box d-flex">
