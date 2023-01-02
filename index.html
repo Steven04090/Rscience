@@ -276,7 +276,7 @@
           return;
         }  
   });
-  $(document).on('ready pjax:success', function(event) {
+  $(document).on('ready pjax:complete', function(event) {
     console.log("later");
       $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
   })
