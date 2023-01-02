@@ -47,7 +47,9 @@ h4,h5,h6{
 a{
   color:var(--main-text-color);
 }
-
+#container{
+  height:100%;
+}
 
 /************* nav  ******************/
 
@@ -362,7 +364,7 @@ color:black;
     flex-wrap: wrap;
   }
   .content-box{
-    width:50%;
+    width:45%;
   }
   #password{
     font-size:20px;
