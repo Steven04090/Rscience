@@ -19,7 +19,6 @@
    <link rel="stylesheet" href="Assets/Content/index.css">
    <link rel="stylesheet" href="Assets/Content/font-awesome.css">
    <script src="Assets/javascript/jquery.min.js"></script>
-
    <script src="Assets/javascript/bootstrap.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
    <script src="Assets/javascript/chart.umd.js"></script>
@@ -27,15 +26,7 @@
    <script src="Assets/javascript/chartjs-plugin-zoom.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
    <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
-   <script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
-   <script src="https://unpkg.com/js-year-calendar@latest/locales/js-year-calendar.zh-TW.js"></script>
-
-   <script	src="Assets/javascript/jquery-1.8.0.min.js"></script>
-  <script	src="https://code.jquery.com/ui/1.8.0/jquery-ui.min.js"></script>
-  <script src="Assets/javascript/jQDateRangeSlider-min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="Assets/javascript/jquery.ba-bbq.min.js"></script>
-  
+   <script src="Assets/javascript/jquery.pjax.js"></script>
 <script> //moment.js轉中文
   moment.locale('zh-tw', {
       months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
@@ -151,56 +142,24 @@
 
   <script>
     $(document).ready(function(){
- //(月+日)*5
- var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
-    var binary = ((x >>> 0).toString(2)).padStart(8,'0');
-    $("#password").text(binary);
+      var winHeight = window.innerHeight;
+    window.addEventListener('resize', function(event){
+        winHeight = window.innerHeight;
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    // true for mobile device
+      $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+       }
+    });
+      var nav_height = $('#nav').outerHeight();
+    var content_height = $('.content-body').innerHeight();
 
-$('.call_url').on('click',function(e){
-  var page_path = $(this).attr('data-url');
-  console.log($(this).attr('data-url'));
-  e.preventDefault();
-  if(page_path != 'index.html'){
-        $.ajax({
-        type: "GET",
-        url: `${page_path}`,
-        success: function(data) {
-            //將目前的步驟加註在location.hash
-            $.bbq.pushState({ step: page_path });
-
-          $('.index').css('display','none');
-          $('.content-body').html(data);
-        }
-      });
-      }
-      else{
-        //將目前的步驟加註在location.hash
-        $.bbq.pushState( {}, 2 );
-        $('.index').css('display','block');
-        $('.content-body').empty();
-      }
-  });
-
-   //hash變化時觸發hashchange事件
-   $(window).bind('hashchange', function (e) {
-        //由hash取出step參數
-        var page_path_hash = e.getState("step") || "index.html";
-        if(page_path_hash != 'index.html'){
-        $.ajax({
-        type: "GET",
-        url: `${page_path_hash}`,
-        success: function(data) {
-
-          $('.index').css('display','none');
-          $('.content-body').html(data);
-        }
-      });
-      }
-      else{
-        $('.index').css('display','block');
-        $('.content-body').empty();
-      }
-        });
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    // true for mobile device
+    $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+    }else{
+      // false for not mobile device
+      $('.content-body').css("height",`calc(100vh`);
+    }
   });
 </script>
 </head>
@@ -217,9 +176,9 @@ $('.call_url').on('click',function(e){
           <a class="nav-link" href="#">未來UI設計</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link call_url" data-url="index.html" href="">資訊圖表中心</a>
+            <a class="nav-link" href="index.html" data-pjax>資訊圖表中心</a>
           </li>
-        <a class="middle-logo d-none d-lg-block call_url" data-url="index.html" href=""><img src="Assets/image/logo.png"></a>
+        <a class="middle-logo d-none d-lg-block"  href="index.html" data-pjax><img src="Assets/image/logo.png"></a>
         <li class="nav-item">
           <a class="nav-link" href="#">低成本三王</a>
         </li>
@@ -229,42 +188,49 @@ $('.call_url').on('click',function(e){
       </ul>
     </div>
   </nav>
+  <div id="container">
   <div class="index p-1">
     <div style="max-width: 1200px;margin: 0 auto;height: 100%;padding:0 10px;">
     <div class="Art-center">
       <h4 style="letter-spacing: 4px;"><div style="float: left;border-bottom: 4px solid;padding-bottom: 6px;">資訊圖表中心</div></h4>
       <div class="d-flex flex-wrap">
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Job_DPS.html" href="">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 " href="Job_DPS.html" data-pjax>
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>職業DPS<div>(Job Damage)</div></div></a>
         </div>
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="suspension.html" href="">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 "href="suspension.html" data-pjax>
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>停權人數<div>(Suspension)</div></div></a>
         </div>
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="goodsprice.html" href="">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 " href="goodsprice.html" data-pjax>
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>物價走勢<div>(Goods price)</div></div></a>
         </div>
         <div class="content-box d-flex">
-            <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="wordcloud.html" href="">
+            <a class="main-text-color d-flex align-items-center justify-content-center m-1 "href="wordcloud.html" data-pjax>
               <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>每周熱度主題<div>(Hot topics)</div></div></a>
         </div>
         <div class="content-box d-flex">
-          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="server_temporary.html" href="">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 "href="server_temporary.html" data-pjax>
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>伺服器穩定度<div>(stability of server)</div></div></a>
         </div>
         <div class="content-box d-flex">
-          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="exp.html" href="">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 " href="exp.html" data-pjax>
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>等級經驗值<div>(level Exp)</div></div></a>
         </div>
         <div class="content-box d-flex">
-          <a class="main-text-color d-flex align-items-center justify-content-center m-1 call_url" data-url="Official_Activity.html" href="">
+          <a class="main-text-color d-flex align-items-center justify-content-center m-1 " href="Official_Activity.html" data-pjax>
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>活動表<div>(Official Activity)</div></div></a>
         </div>
         <div class="content-box d-flex">
           <a class="main-text-color d-flex align-items-center justify-content-center flex-column m-1" href="#">
             <svg class="svg-btn_svg"><rect class="svg-btn_rect"></rect></svg><div>今日致富密碼<div id="password">00000000</div></div></a>
+            <script>
+                //(月+日)*5
+               var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
+                var binary = ((x >>> 0).toString(2)).padStart(8,'0');
+                  $("#password").text(binary);
+              </script>
         </div>
       </div>
     </div>
@@ -285,8 +251,33 @@ $('.call_url').on('click',function(e){
   <div class="content-body p-1">
  
   </div>
+</div>
 </body>
-
-
-  
+<script>
+  if ($.support.pjax) {
+  $(document).on('click', 'a[data-pjax]', function(event) {
+    console.log(123);
+    var page_path = $(this).attr('href');
+        if(page_path == 'index.html'){
+          var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
+          var binary = ((x >>> 0).toString(2)).padStart(8,'0');
+          $("#password").text(binary);
+        }
+        else if (page_path == 'server_temporary.html'){
+          $.getScript("Assets/javascript/js-year-calendar.min.js");
+          $.getScript("Assets/javascript/js-year-calendar.zh-TW.js");
+          $.getScript("Assets/javascript/tippy.js");
+        }
+        else if(page_path == 'Official_Activity.html'){
+          $.getScript("Assets/javascript/google_chart.js");
+        }
+        else{
+          return;
+        }  
+  });
+}
+  $(document).on('ready pjax:success', function(event) {
+      $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
+  })
+</script>
 </html>

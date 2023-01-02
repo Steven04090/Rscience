@@ -1,47 +1,218 @@
 
-    <div id="chart-box-layout">
+   <!DOCTYPE html><html>
+    <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NHCJY83598"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-NHCJY83598');
+    </script>
+       <title>R科學-資訊圖表中心(Exp)</title>
+       <meta name="description" content="R科學，本網站旨在將Ragnarok Online的各種數據以圖像化呈現。">
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="shortcut icon" href="Assets/image/favicon.png" type="image/x-icon">
+       <link rel="stylesheet" href="Assets/Content/bootstrap.css">
+       <link rel="stylesheet" href="Assets/Content/index.css">
+       <link rel="stylesheet" href="Assets/Content/font-awesome.css">
+       <script src="Assets/javascript/jquery.min.js"></script>  
+       <script src="Assets/javascript/bootstrap.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+       <script src="Assets/javascript/chart.umd.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+       <script src="Assets/javascript/chartjs-plugin-zoom.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+       <script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
+       <script src="Assets/javascript/jquery.pjax.js"></script>  
+    <script> //moment.js轉中文
+      moment.locale('zh-tw', {
+          months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
+          monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
+          weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
+          weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
+          weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
+          longDateFormat: {
+            LT: 'Ah點mm分',
+            LTS: 'Ah點m分s秒',
+            L: 'YYYY-MM-DD',
+            LL: 'YYYY年MMMD日',
+            LLL: 'YYYY年MMMD日Ah點mm分',
+            LLLL: 'YYYY年MMMD日ddddAh點mm分',
+            l: 'YYYY-MM-DD',
+            ll: 'YYYY年MMMD日',
+            lll: 'YYYY年MMMD日Ah點mm分',
+            llll: 'YYYY年MMMD日ddddAh點mm分'
+          },
+          meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
+          meridiemHour: function (h, meridiem) {
+            let hour = h;
+            if (hour === 12) {
+              hour = 0;
+            }
+            if (meridiem === '凌晨' || meridiem === '早上' ||
+              meridiem === '上午') {
+              return hour;
+            } else if (meridiem === '下午' || meridiem === '晚上') {
+              return hour + 12;
+            } else {
+              // '中午'
+              return hour >= 11 ? hour : hour + 12;
+            }
+          },
+          meridiem: function (hour, minute, isLower) {
+            const hm = hour * 100 + minute;
+            if (hm < 600) {
+              return '凌晨';
+            } else if (hm < 900) {
+              return '早上';
+            } else if (hm < 1130) {
+              return '上午';
+            } else if (hm < 1230) {
+              return '中午';
+            } else if (hm < 1800) {
+              return '下午';
+            } else {
+              return '晚上';
+            }
+          },
+          calendar: {
+            sameDay: function () {
+              return this.minutes() === 0 ? '[今天]Ah[點整]' : '[今天]LT';
+            },
+            nextDay: function () {
+              return this.minutes() === 0 ? '[明天]Ah[點整]' : '[明天]LT';
+            },
+            lastDay: function () {
+              return this.minutes() === 0 ? '[昨天]Ah[點整]' : '[昨天]LT';
+            },
+            nextWeek: function () {
+              let startOfWeek, prefix;
+              startOfWeek = moment().startOf('week');
+              prefix = this.diff(startOfWeek, 'days') >= 7 ? '[下]' : '[本]';
+              return this.minutes() === 0 ? prefix + 'dddA點整' : prefix + 'dddAh點mm';
+            },
+            lastWeek: function () {
+              let startOfWeek, prefix;
+              startOfWeek = moment().startOf('week');
+              prefix = this.unix() < startOfWeek.unix() ? '[上]' : '[本]';
+              return this.minutes() === 0 ? prefix + 'dddAh點整' : prefix + 'dddAh點mm';
+            },
+            sameElse: 'LL'
+          },
+          ordinalParse: /\d{1,2}(日|月|周)/,
+          ordinal: function (number, period) {
+            switch (period) {
+              case 'd':
+              case 'D':
+              case 'DDD':
+                return number + '日';
+              case 'M':
+                return number + '月';
+              case 'w':
+              case 'W':
+                return number + '周';
+              default:
+                return number;
+            }
+          },
+          relativeTime: {
+            future: '%s内',
+            past: '%s前',
+            s: '幾秒',
+            m: '1 分鐘',
+            mm: '%d 分鐘',
+            h: '1 小時',
+            hh: '%d 小時',
+            d: '1 天',
+            dd: '%d 天',
+            M: '1 個月',
+            MM: '%d 个月',
+            y: '1 年',
+            yy: '%d 年'
+          },
+          week: {
+            // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
+            dow: 1, // Monday is the first day of the week.
+            doy: 4  // The week that contains Jan 4th is the first week of the year.
+          }
+        });</script>
+    
+      <script>
+        $(document).ready(function(){
+          var winHeight = window.innerHeight;
+        window.addEventListener('resize', function(event){
+            winHeight = window.innerHeight;
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        // true for mobile device
+          $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+           }
+        });
+          var nav_height = $('#nav').outerHeight();
+        var content_height = $('.content-body').innerHeight();
+    
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        // true for mobile device
+        $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+        }else{
+          // false for not mobile device
+          $('.content-body').css("height",`calc(100vh`);
+        }
+                 
+      });
+    </script>
+     </head>
+     <body>
+       <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+         <a class="navbar-brand d-lg-none" data-url="index.html" href="#"><img src="Assets/image/logo.png"></a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+     
+         <div class="collapse navbar-collapse" id="navbarColor01">
+           <ul class="navbar-nav mx-auto position-relative">
+             <li class="nav-item">
+               <a class="nav-link" href="#">未來UI設計</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link" href="index.html" data-pjax>資訊圖表中心</a>
+               </li>
+             <a class="middle-logo d-none d-lg-block"  href="index.html" data-pjax><img src="Assets/image/logo.png"></a>
+             <li class="nav-item">
+               <a class="nav-link" href="#">低成本三王</a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" href="#">3D Modal</a>
+             </li>
+           </ul>
+         </div>
+       </nav>
+       <div id="container">
+         <div class="index p-1" style="display: none;">
+
+         </div>
+         <div class="content-body p-1">
+   <div id="chart-box-layout">
       <div class="infographic_graphic_section p-1">
         <div id="controler" class="controler mb-2">
           
         </div>
         <div class="chart-container">
-          <canvas id="canvas"></canvas>
+          <canvas id="canvas_exp"></canvas>
         </div>
       </div>
     </div>
-
+</div>
 <script>
-  var chart;
-  var sites = [];
-  var data = {datasets: sites};
-  const ctx = document.getElementById('canvas').getContext('2d');
+  var chart_exp = null;
+  var sites_exp = [];
+  var data_exp = {datasets: sites_exp};
+  ctx_exp = document.getElementById('canvas_exp').getContext('2d');
 
-  Chart.register({
-        id:'vertical_line_and_x_axis_text',
-        afterDraw: chart => {
-            //x axis
-            const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart;
-            ctx.save();
-            ctx.font ='12px Arial';
-            ctx.fillStyle = '#f1f1f1';
-            ctx.fillText('(Exp)',0, top -10);
-            ctx.restore();
 
-            if (chart.tooltip?._active?.length) {               
-               let x = chart.tooltip._active[0].element.x;             
-               let yAxis = chart.scales.y;
-               let ctx = chart.ctx;
-               ctx.save();
-               ctx.beginPath();
-               ctx.moveTo(x, yAxis.top);
-               ctx.lineTo(x, yAxis.bottom);
-               ctx.lineWidth = 1;
-               ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-               ctx.stroke();
-               ctx.restore();
-            }
-          }
-      });
   //json轉檔
   JsonTransition();
   function JsonTransition(){
@@ -55,7 +226,7 @@
    });
 
    //load data
-   load_data();
+   load_data_exp();
     // draw chart
     init();
   });
@@ -119,22 +290,77 @@
   
   const config = {
       type: 'line',
-      data: data,
+      data: data_exp,
       options:options,
+      plugins: [{
+        id:'vertical_line_and_x_axis_text',
+        afterDraw: chart_exp => {
+            //x axis
+            const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart_exp;
+            ctx.save();
+            ctx.font ='12px Arial';
+            ctx.fillStyle = '#f1f1f1';
+            ctx.fillText('(Exp)',0, top -10);
+            ctx.restore();
+
+            if (chart_exp.tooltip?._active?.length) {               
+               let x = chart_exp.tooltip._active[0].element.x;             
+               let yAxis = chart_exp.scales.y;
+               let ctx = chart_exp.ctx;
+               ctx.save();
+               ctx.beginPath();
+               ctx.moveTo(x, yAxis.top);
+               ctx.lineTo(x, yAxis.bottom);
+               ctx.lineWidth = 1;
+               ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+               ctx.stroke();
+               ctx.restore();
+            }
+          },
+        }]
       };
   function init() {
-  chart = new Chart(ctx, config);
+    chart_exp = new Chart(ctx_exp, config);
     };
 </script>
 <script>
-  function load_data(){
+  function load_data_exp(){
             var site = {
                 label:'等級經驗值',
                 data:x_array,
                 tension: 1,
                 pointRadius:5,
             };
-          sites.push(site);
+            sites_exp.push(site);
     };
+</script>
+</div>
+</body>
+<script>
+  if ($.support.pjax) {
+  $(document).on('click', 'a[data-pjax]', function(event) {
+    console.log(123);
+    var page_path = $(this).attr('href');
+        if(page_path == 'index.html'){
+          var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
+          var binary = ((x >>> 0).toString(2)).padStart(8,'0');
+          $("#password").text(binary);
+        }
+        else if (page_path == 'server_temporary.html'){
+          $.getScript("Assets/javascript/js-year-calendar.min.js");
+          $.getScript("Assets/javascript/js-year-calendar.zh-TW.js");
+          $.getScript("Assets/javascript/tippy.js");
+        }
+        else if(page_path == 'Official_Activity.html'){
+          $.getScript("Assets/javascript/google_chart.js");
+        }
+        else{
+          return;
+        }  
+  });
+}
+  $(document).on('ready pjax:success', function(event) {
+      $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
+  })
 </script>
 </html>
