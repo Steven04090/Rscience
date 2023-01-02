@@ -348,7 +348,7 @@
   <script>
     if ($.support.pjax) {
     $(document).on('click', 'a[data-pjax]', function(event) {
-      console.log(123);
+      console.log("first");
       var page_path = $(this).attr('href');
           if(page_path == 'index.html'){
             var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
@@ -367,10 +367,11 @@
             return;
           }  
     });
-  }
     $(document).on('ready pjax:success', function(event) {
+      console.log("later");
         $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
     })
+  }
   </script>
   </html>
   
