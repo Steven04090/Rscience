@@ -255,6 +255,7 @@
 </body>
 <script>
   if ($.support.pjax) {
+    $.pjax.defaults.timeout = 2000;
   $(document).on('click', 'a[data-pjax]', function(event) {
     console.log("first");
     var page_path = $(this).attr('href');
