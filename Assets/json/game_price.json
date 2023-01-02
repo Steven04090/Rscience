@@ -23,8 +23,14 @@
         {"date":"2022/12/17","sell_price":"3750000"},
         {"date":"2022/12/21","sell_price":"3399500"},
         {"date":"2022/12/24","sell_price":"3555555"},
-        {"date":"2022/12/25","sell_price":"3599999"}
-
+        {"date":"2022/12/25","sell_price":"3599999"},
+        {"date":"2022/12/26","sell_price":"3698800"},
+        {"date":"2022/12/27","sell_price":"3590000"},
+        {"date":"2022/12/28","sell_price":"3586887"},
+        {"date":"2022/12/29","sell_price":"3499899"},
+        {"date":"2022/12/30","sell_price":"3664990"},
+        {"date":"2022/12/31","sell_price":"3599990"},
+        {"date":"2023/01/02","sell_price":"3769999"}
     ],
     "Hyperspace_Gem_Rough_Stone":[
         {"date":"2022/11/23","sell_price":"689997"},
@@ -51,8 +57,14 @@
         {"date":"2022/12/21","sell_price":"500000"},
         {"date":"2022/12/23","sell_price":"599885"},
         {"date":"2022/12/24","sell_price":"520000"},
-        {"date":"2022/12/25","sell_price":"524000"}
-
+        {"date":"2022/12/25","sell_price":"524000"},
+        {"date":"2022/12/26","sell_price":"521500"},
+        {"date":"2022/12/27","sell_price":"550000"},
+        {"date":"2022/12/28","sell_price":"485550"},
+        {"date":"2022/12/29","sell_price":"450000"},
+        {"date":"2022/12/30","sell_price":"435000"},
+        {"date":"2022/12/31","sell_price":"550000"},
+        {"date":"2023/01/02","sell_price":"650000"}
     ],
     "Old_Card_Album":[
         {"date":"2022/11/23","sell_price":"340000"},
@@ -68,8 +80,10 @@
         {"date":"2022/12/17","sell_price":"350000"},
         {"date":"2022/12/21","sell_price":"328000"},
         {"date":"2022/12/23","sell_price":"327000"},
-        {"date":"2022/12/24","sell_price":"328000"}
-
+        {"date":"2022/12/24","sell_price":"328000"},
+        {"date":"2022/12/29","sell_price":"315000"},
+        {"date":"2022/12/31","sell_price":"315000"},
+        {"date":"2023/01/02","sell_price":"300000"}
     ],
     "ether_stardust":[
         {"date":"2022/11/23","sell_price":"95000"},
@@ -81,15 +95,19 @@
         {"date":"2022/12/21","sell_price":"90000"},
         {"date":"2022/12/23","sell_price":"85000"},
         {"date":"2022/12/24","sell_price":"90000"},
-        {"date":"2022/12/24","sell_price":"89000"}
-
+        {"date":"2022/12/24","sell_price":"89000"},
+        {"date":"2022/12/26","sell_price":"89000"},
+        {"date":"2022/12/27","sell_price":"90000"},
+        {"date":"2022/12/29","sell_price":"83900"},
+        {"date":"2022/12/30","sell_price":"80000"},
+        {"date":"2022/12/31","sell_price":"80000"},
+        {"date":"2023/01/02","sell_price":"75000"}
     ],
     "honor_rose":[
         {"date":"2022/11/23","sell_price":"7388","buy_price":"6550"},
         {"date":"2022/12/03","sell_price":"5000","buy_price":"4550"},
         {"date":"2022/12/04","sell_price":"5600","buy_price":"4750"},
         {"date":"2022/12/15","sell_price":"5900","buy_price":"5100"}
-
     ],
     "mystery_spell_book":[
         {"date":"2022/11/27","sell_price":"309999"},
@@ -101,9 +119,11 @@
         {"date":"2022/12/15","sell_price":"264500"},
         {"date":"2022/12/21","sell_price":"243000"},
         {"date":"2022/12/23","sell_price":"250000"},
-        {"date":"2022/12/24","sell_price":"280000"}
-
-
+        {"date":"2022/12/24","sell_price":"280000"},
+        {"date":"2022/12/27","sell_price":"250000"},
+        {"date":"2022/12/29","sell_price":"230000"},
+        {"date":"2022/12/30","sell_price":"248000"},
+        {"date":"2023/01/02","sell_price":"249990"}
     ],
     "Enriched_Elunium_Box":[
         {"date":"2022/11/28","sell_price":"8400000"},
@@ -117,7 +137,12 @@
         {"date":"2022/12/11","sell_price":"7979999"},
         {"date":"2022/12/12","sell_price":"8000000"},
         {"date":"2022/12/15","sell_price":"8350000"},
-        {"date":"2022/12/17","sell_price":"8349999"}
-
+        {"date":"2022/12/17","sell_price":"8349999"},
+        {"date":"2022/12/26","sell_price":"7699999"},
+        {"date":"2022/12/27","sell_price":"7799990"},
+        {"date":"2022/12/28","sell_price":"7799930"},
+        {"date":"2022/12/29","sell_price":"7799950"},
+        {"date":"2022/12/30","sell_price":"7800000"},
+        {"date":"2023/01/02","sell_price":"8650000"}
     ]
 }  
