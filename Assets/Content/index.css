@@ -95,6 +95,7 @@ a{
 }
 .content-box{
   min-width:200px;
+  flex-grow: 1;
 }
 .content-box a{
   position: relative;
