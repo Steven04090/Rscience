@@ -10,7 +10,7 @@
     
       gtag('config', 'G-NHCJY83598');
     </script>
-       <title>R科學-資訊圖表中心(Exp)</title>
+       <title>R科學-資訊圖表中心(職業能力Radar)</title>
        <meta name="description" content="R科學，本網站旨在將Ragnarok Online的各種數據以圖像化呈現。">
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
        <meta charset="utf-8">
@@ -166,9 +166,9 @@
     </script>
      </head>
      <body>
-       <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+       <nav id="nav" class="navbar navbar-job_radarand-lg navbar-dark bg-dark fixed-top">
          <a class="navbar-brand d-lg-none" data-url="index.html" href="#"><img src="Assets/image/logo.png"></a>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-job_radaranded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
      
@@ -201,32 +201,35 @@
           
         </div>
         <div class="chart-container">
-          <canvas id="canvas_exp"></canvas>
+          <canvas id="canvas_job_radar"></canvas>
         </div>
       </div>
     </div>
 </div>
 <script>
-  var chart_exp = null;
-  var sites_exp = [];
-  var data_exp = {datasets: sites_exp};
-  ctx_exp = document.getElementById('canvas_exp').getContext('2d');
-
-
+  var chart_job_radar = null;
+  var sites_job_radar = [];
+    const label = [
+    'Eating',
+    'Drinking',
+    'Sleeping',
+    'Designing',
+    'Coding',
+    'Cycling',
+    'Running'
+  ];
+  var data_job_radar = {labels:label, datasets: sites_job_radar};
+  ctx_job_radar = document.getElementById('canvas_job_radar').getContext('2d');
   //json轉檔
   JsonTransition();
   function JsonTransition(){
-  $.getJSON("Assets/json/exp.json", function(json_file) {
+  $.getJSON("Assets/json/job_radar.json", function(json_file) {
    //json to array
-   x_array = json_file.Level_exp.map(function(item) {
-      return {
-        'x':item.level,
-        'y':item.l_exp
-      };
+   x_array = json_file.job1.map(function(item) {
+      return item.score;
    });
-
    //load data
-   load_data_exp();
+   load_data_job_radar();
     // draw chart
     init();
   });
@@ -254,145 +257,92 @@
             }, 
           },
          
-          scales: { 
-            y:{
-                grid: {color: 'rgba( 160, 255, 240, 0.2)',},
-                border:{color:"rgba( 160, 255, 240, 0.25)",width:1,},
-                display:true,
-                min:0,
-                ticks: {
-                    color:"#eee",
-                    beginAtZero: true,
-                    precision:0,
-                    padding: 8,
-                    crossAlign: 'start',
-                    callback: (value, index, ticks) => {
-                      if(index === ticks.length - 1 || index === 0){return null;}
-                      else
-                          if(value >= 100000000){return Math.floor(value/100000000) + '億';}
-                          else
-                            return Math.floor(value/10000000) + '千萬';
-                    }
-                }
-            },
-            x: { 
-              ticks: {
-                    color:"#eee",
-                },
-              grid: {
-                color: 'rgba( 160, 255, 240, 0.2)',
-                },
-                border:{display:false,},
-                display: true,
-            },      
-          },
+          elements: {
+            line: {
+                borderWidth: 3
+            }
+            }
         };
   
   const config = {
-      type: 'line',
-      data: data_exp,
+      type: 'radar',
+      data: data_job_radar,
       options:options,
-      plugins: [{
-        id:'vertical_line_and_x_axis_text',
-        afterDraw: chart_exp => {
-            //x axis
-            const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart_exp;
-            ctx.save();
-            ctx.font ='12px Arial';
-            ctx.fillStyle = '#f1f1f1';
-            ctx.fillText('(Exp)',0, top -10);
-            ctx.restore();
-
-            if (chart_exp.tooltip?._active?.length) {               
-               let x = chart_exp.tooltip._active[0].element.x;             
-               let yAxis = chart_exp.scales.y;
-               let ctx = chart_exp.ctx;
-               ctx.save();
-               ctx.beginPath();
-               ctx.moveTo(x, yAxis.top);
-               ctx.lineTo(x, yAxis.bottom);
-               ctx.lineWidth = 1;
-               ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-               ctx.stroke();
-               ctx.restore();
-            }
-          },
-        }]
       };
   function init() {
-    chart_exp = new Chart(ctx_exp, config);
+    chart_job_radar = new Chart(ctx_job_radar, config);
     };
 </script>
 <script>
-  function load_data_exp(){
+  function load_data_job_radar(){
             var site = {
-                label:'等級經驗值',
-                data:x_array,
+                label:'Job 1',
+                data:x_array[0],
                 tension: 1,
                 pointRadius:5,
             };
-            sites_exp.push(site);
+            sites_job_radar.push(site);
     };
 </script>
 </div>
 </body>
 <script>
-  if ($.support.pjax) {
-    let page_path=null;
-    $(document).on('click', 'a[data-pjax]', function(event) {
-      page_path = $(this).attr('href');
+    if ($.support.pjax) {
+      let page_path=null;
+      $(document).on('click', 'a[data-pjax]', function(event) {
+        page_path = $(this).attr('href');
+      })
+    $(document).on('ready pjax:end', function(event) {
+     // var server_temp_len = $('script[src="Assets/javascript/server_temp.js"]').length;
+          if(page_path == 'index.html'){
+            var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
+            var binary = ((x >>> 0).toString(2)).padStart(8,'0');
+            $("#password").text(binary);
+          }
+          else if (page_path == 'server_temporary.html'){
+            var scriptsToLoad = [
+              "Assets/javascript/js-year-calendar.min.js", 
+              "Assets/javascript/js-year-calendar.zh-TW.js",
+              "Assets/javascript/tippy.js",
+              "Assets/javascript/server_temp.js"
+            ],
+            index   = 0;  
+            load_script();
+            function load_script() {
+                if (index < scriptsToLoad.length) {
+                    $.getScript(scriptsToLoad[index], function () {
+                        console.log('Loaded: ' + scriptsToLoad[index]);
+                        index++;
+                        load_script();
+                    });
+                }
+            }   
+          }
+          else if(page_path == 'Official_Activity.html'){
+            var scriptsToLoad = [
+              "Assets/javascript/google_chart.js", 
+              "Assets/javascript/google_charts_custom_timeline.js",
+            ],
+            index   = 0;  
+            load_script();
+            function load_script() {
+                if (index < scriptsToLoad.length) {
+                    $.getScript(scriptsToLoad[index], function () {
+                        console.log('Loaded: ' + scriptsToLoad[index]);
+                        index++;
+                        load_script();
+                    });
+                }
+            }   
+          }
+            
+          else{
+            return;
+          }  
+    });
+    $(document).on('ready pjax:start', function(event) {
+        $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
     })
-  $(document).on('ready pjax:end', function(event) {
-   // var server_temp_len = $('script[src="Assets/javascript/server_temp.js"]').length;
-        if(page_path == 'index.html'){
-          var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
-          var binary = ((x >>> 0).toString(2)).padStart(8,'0');
-          $("#password").text(binary);
-        }
-        else if (page_path == 'server_temporary.html'){
-          var scriptsToLoad = [
-            "Assets/javascript/js-year-calendar.min.js", 
-            "Assets/javascript/js-year-calendar.zh-TW.js",
-            "Assets/javascript/tippy.js",
-            "Assets/javascript/server_temp.js"
-          ],
-          index   = 0;  
-          load_script();
-          function load_script() {
-              if (index < scriptsToLoad.length) {
-                  $.getScript(scriptsToLoad[index], function () {
-                      console.log('Loaded: ' + scriptsToLoad[index]);
-                      index++;
-                      load_script();
-                  });
-              }
-          }   
-        }
-        else if(page_path == 'Official_Activity.html'){
-          var scriptsToLoad = [
-            "Assets/javascript/google_chart.js", 
-            "Assets/javascript/google_charts_custom_timeline.js",
-          ],
-          index   = 0;  
-          load_script();
-          function load_script() {
-              if (index < scriptsToLoad.length) {
-                  $.getScript(scriptsToLoad[index], function () {
-                      console.log('Loaded: ' + scriptsToLoad[index]);
-                      index++;
-                      load_script();
-                  });
-              }
-          }   
-        }
-          
-        else{
-          return;
-        }  
-  });
-  $(document).on('ready pjax:start', function(event) {
-      $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
-  })
-}
-</script>
+  }
+  </script>
 </html>

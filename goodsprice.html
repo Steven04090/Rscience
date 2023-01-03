@@ -458,7 +458,7 @@
         $(document).on('click', 'a[data-pjax]', function(event) {
           page_path = $(this).attr('href');
         })
-      $(document).on('pjax:end', function(event) {
+      $(document).on('ready pjax:end', function(event) {
        // var server_temp_len = $('script[src="Assets/javascript/server_temp.js"]').length;
             if(page_path == 'index.html'){
               var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
