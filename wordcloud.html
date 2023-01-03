@@ -211,28 +211,59 @@
     </body>
     <script>
       if ($.support.pjax) {
-      $(document).on('click', 'a[data-pjax]', function(event) {
-        console.log("first");
-        var page_path = $(this).attr('href');
+        let page_path=null;
+        $(document).on('click', 'a[data-pjax]', function(event) {
+          page_path = $(this).attr('href');
+        })
+      $(document).on('pjax:end', function(event) {
+       // var server_temp_len = $('script[src="Assets/javascript/server_temp.js"]').length;
             if(page_path == 'index.html'){
               var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
               var binary = ((x >>> 0).toString(2)).padStart(8,'0');
               $("#password").text(binary);
             }
             else if (page_path == 'server_temporary.html'){
-              $.getScript("Assets/javascript/js-year-calendar.min.js");
-              $.getScript("Assets/javascript/js-year-calendar.zh-TW.js");
-              $.getScript("Assets/javascript/tippy.js");
+              var scriptsToLoad = [
+                "Assets/javascript/js-year-calendar.min.js", 
+                "Assets/javascript/js-year-calendar.zh-TW.js",
+                "Assets/javascript/tippy.js",
+                "Assets/javascript/server_temp.js"
+              ],
+              index   = 0;  
+              load_script();
+              function load_script() {
+                  if (index < scriptsToLoad.length) {
+                      $.getScript(scriptsToLoad[index], function () {
+                          console.log('Loaded: ' + scriptsToLoad[index]);
+                          index++;
+                          load_script();
+                      });
+                  }
+              }   
             }
             else if(page_path == 'Official_Activity.html'){
-              $.getScript("Assets/javascript/google_chart.js");
+              var scriptsToLoad = [
+                "Assets/javascript/google_chart.js", 
+                "Assets/javascript/google_charts_custom_timeline.js",
+              ],
+              index   = 0;  
+              load_script();
+              function load_script() {
+                  if (index < scriptsToLoad.length) {
+                      $.getScript(scriptsToLoad[index], function () {
+                          console.log('Loaded: ' + scriptsToLoad[index]);
+                          index++;
+                          load_script();
+                      });
+                  }
+              }   
             }
+              
             else{
               return;
             }  
       });
-      $(document).on('ready pjax:success', function(event) {
-        console.log("later");
+      $(document).on('ready pjax:start', function(event) {
           $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
       })
     }
