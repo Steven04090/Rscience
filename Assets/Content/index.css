@@ -383,6 +383,12 @@ color:black;
 .radar_score_box:nth-child(2n){
   background-color:#1823338c;
 }
+#sum{
+  font-size:78px;
+  color:#fff;
+  line-height: 1;
+  font-weight: bold;
+}
 /****** mobile ********/
 @media only screen and (max-width: 991px) {
   #controler{
