@@ -44,6 +44,9 @@ h4,h5,h6{
   font-weight: bold;
   color:var(--main-text-color);
 }
+.main_text_color{
+  color:var(--main-text-color);
+}
 a{
   color:var(--main-text-color);
 }
@@ -73,7 +76,7 @@ a{
   background-color: #1e567787;
   z-index: -1;
   top: -345px;
-  border-radius: 200px;
+  border-radius: 100px;
   left: -21%;
   border: 1px solid #6df9d854;
 }
@@ -119,6 +122,11 @@ a{
   width:100%;
   display: flex;
   flex-direction: column;
+}
+.infographic_graphic_section_h{
+  height:100%;
+  width:100%;
+  display: flex;
 }
 .infographic_graphic_section.ratio73{
   width:70%;
@@ -331,11 +339,14 @@ color:black;
 .select_wrap .select_ul li div{
   padding: 4px 0px;
 }
-.job_menu.select_wrap .select_ul li:not(:first-child){
+.job_menu.select_wrap .select_ul li.job_all{
+  width:100%;
+}
+.job_menu.select_wrap .select_ul li{
   width:50%;
   text-align: center;
 }
-.job_menu.select_wrap .select_ul li:not(:first-child) img{
+.job_menu.select_wrap .select_ul li img{
   margin:0 auto;
   display: block;
 }
@@ -358,9 +369,22 @@ color:black;
 .ref{
   color:var(--main-text-color);
 }
-
+.radar_score_table{
+  width:100%;
+}
+.radar_score_table_panel{
+  font-weight: bold;
+  background-color: #323b4dc9;
+  border-radius: 4px;
+}
+.radar_score_box{
+  padding:10px 30px;
+}
+.radar_score_box:nth-child(2n){
+  background-color:#1823338c;
+}
 /****** mobile ********/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 991px) {
   #controler{
     flex-wrap: wrap;
   }
@@ -387,11 +411,8 @@ color:black;
   #text-center{
     display: none;
   }
-  .fixed-top{
-    position:relative;
-  }
-  .content-body,.index{
-    padding-top:0px !important;
+  .bg-dark {
+    background-color: #192148 !important;
   }
   .navbar-nav::before{
     display: none;
