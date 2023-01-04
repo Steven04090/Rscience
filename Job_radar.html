@@ -406,10 +406,6 @@ $(document).on("click", function(event){
   const options ={
         maintainAspectRatio:false,
         responsive: true,
-        interaction: {
-          intersect: false,
-          mode: 'nearest',
-        },
         scales: {
             r: {
                 max: 10,
@@ -437,7 +433,51 @@ $(document).on("click", function(event){
             },
             legend: {
             display: false,
-            }, 
+            },
+            tooltip: {
+                    enabled: true,
+                    displayColors: false,
+                    interaction: {
+                      intersect: false,
+                      mode: 'nearest',
+                    },
+                    //鳥爛排版
+                    padding:{
+                      x:24,
+                      y:18,
+                    },
+                    titleAlign:"center",
+                    titleFont:{
+                      size: 22,
+                      family:'Microsoft JhengHei',
+                    },
+                    titleColor:'#cacfd4',
+                    titleMarginBottom:10,
+                    backgroundColor:"#192c40f0",
+                    bodyFont: {
+                      size: 16,
+                      family:'Microsoft JhengHei',
+                    },
+                    borderColor:'#92f2e9',
+                    borderWidth:0.15,
+                    callbacks: {
+                      title:function(tooltipItems){
+                        return [tooltipItems[0].label + tooltipItems[0].formattedValue];
+                      },
+                        label: function(tooltipItems) {
+                          var explain;
+                          switch(tooltipItems.label){
+                            case '起手推薦度':explain = "(初次遊玩的推薦程度)";break;
+                            case '低技術需求':explain = "(躺著玩趴著玩無腦玩，越高分技術需求越低)";break;
+                            case '裝備便宜':explain = "(成形的裝備便宜度，越高分越便宜)";break;
+                            case '裝備通用性':explain = "(裝備能夠與其他角色的共用程度)";break;
+                            case '消耗品便宜':explain = "(打王練功都要吃補品的程度，越高分越不依賴)";break;
+                            case '練等速度':explain = "(打怪的效率)";break;
+                          }
+                          return [explain];
+                        },
+                    }
+                },
           },
           elements: {
             line: {
