@@ -10,7 +10,7 @@
     
       gtag('config', 'G-NHCJY83598');
     </script>
-       <title>R科學-資訊圖表中心(職業能力Radar)</title>
+       <title>R科學-資訊圖表中心(能力雷達圖)</title>
        <meta name="description" content="R科學，本網站旨在將Ragnarok Online的各種數據以圖像化呈現。">
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
        <meta charset="utf-8">
@@ -197,7 +197,112 @@
          <div class="content-body p-1">
    <div id="chart-box-layout">
       <div class="infographic_graphic_section_h p-1">
-      
+        <div class="d-flex flex-column main_text_color" style="min-width:300px;padding:4px 20px;">
+          <div id="controler" class="controler mb-2">
+            <div class="job_menu select_wrap mr-1">
+              <ul class="default_option">
+                <li class="job_option" value="盧">
+                    <div>
+                      <img src="Assets/image/job/Dragon_Knight.bmp">
+                      <span>盧恩</span>
+                    </div>  
+                </li>
+              </ul>
+              <ul class="select_ul">
+                  <li class="job_option" value="盧">
+                      <div>
+                        <img src="Assets/image/job/Dragon_Knight.bmp">
+                        <span>盧恩</span>
+                      </div>  
+                  </li>
+                  <li class="job_option" value="皇">
+                    <div>
+                      <img src="Assets/image/job/ImperialGuard.bmp">
+                      <span>皇家</span>
+                    </div>  
+                  </li>
+                  <li class="job_option" value="斬">
+                    <div>
+                      <img src="Assets/image/job/Shadow_cross.bmp">
+                      <span>斬首</span>
+                    </div>  
+                </li>
+                <li class="job_option" value="魅">
+                  <div>
+                    <img src="Assets/image/job/Abyss_Chaser.bmp">
+                    <span>魅影</span>
+                  </div>  
+                </li> 
+                <li class="job_option" value="咒">
+                  <div>
+                    <img src="Assets/image/job/Arch_Mage.bmp">
+                    <span>咒術</span>
+                  </div>  
+                </li>
+                <li class="job_option" value="元">
+                  <div>
+                    <img src="Assets/image/job/Elmental_Master.bmp">
+                    <span>元素</span>
+                  </div>  
+                </li> 
+                <li class="job_option" value="機">
+                  <div>
+                    <img src="Assets/image/job/Meister.bmp">
+                    <span>機匠</span>
+                  </div>  
+                </li>
+                <li class="job_option" value="基">
+                  <div>
+                    <img src="Assets/image/job/Biolo.bmp">
+                    <span>基因</span>
+                  </div>  
+                </li> 
+                <li class="job_option" value="主">
+                  <div>
+                    <img src="Assets/image/job/Cardinal.bmp">
+                    <span>主教</span>
+                  </div>  
+                </li>
+                <li class="job_option" value="修">
+                  <div>
+                    <img src="Assets/image/job/Imquisitor.bmp">
+                    <span>修羅</span>
+                  </div>  
+                </li> 
+                <li class="job_option" value="遊">
+                  <div>
+                    <img src="Assets/image/job/WindHawk.bmp">
+                    <span>遊俠</span>
+                  </div>  
+                </li>
+                <li class="job_option" value="詩">
+                  <div>
+                    <img src="Assets/image/job/Troubadour.bmp">
+                    <span>詩人</span>
+                  </div>  
+                </li>
+                <li class="job_option" value="舞">
+                  <div>
+                    <img src="Assets/image/job/dancing.bmp">
+                    <span>舞孃</span>
+                  </div>  
+                </li>
+              </ul>
+          </div>
+          </div>
+          <div class="mt-3">
+            <h4 style="color:#8a8d99;font-size:14px;">角色點評:</h4>
+            <div id="Evaluation">無</div>
+          </div>
+          <div class="mt-3">
+            <h4 style="color:#8a8d99;font-size:14px;">玩家評分表:</h4>
+            <div>無</div>
+          </div>
+          <div class="mt-3">
+            <h4 style="color:#8a8d99;font-size:14px;">我的雷達圖:</h4>
+            <div>無</div>
+          </div>
+        </div>
         <div class="chart-container">
           <canvas id="canvas_job_radar"></canvas>
         </div>
@@ -206,128 +311,37 @@
                 <div style="height: 200px;">
                     <img style="height:100%;" src="Assets/image/job1.png">
                 </div>
-                <div class="d-flex flex-column justify-content-between h-100">
-                    <div id="controler" class="controler mb-2">
-                        <div class="job_menu select_wrap mr-1">
-                          <ul class="default_option">
-                            <li class="job_option" value="盧">
-                                <div>
-                                  <img src="Assets/image/job/Dragon_Knight.bmp">
-                                  <span>盧恩</span>
-                                </div>  
-                            </li>
-                          </ul>
-                          <ul class="select_ul">
-                              <li class="job_option" value="盧">
-                                  <div>
-                                    <img src="Assets/image/job/Dragon_Knight.bmp">
-                                    <span>盧恩</span>
-                                  </div>  
-                              </li>
-                              <li class="job_option" value="皇">
-                                <div>
-                                  <img src="Assets/image/job/ImperialGuard.bmp">
-                                  <span>皇家</span>
-                                </div>  
-                              </li>
-                              <li class="job_option" value="斬">
-                                <div>
-                                  <img src="Assets/image/job/Shadow_cross.bmp">
-                                  <span>斬首</span>
-                                </div>  
-                            </li>
-                            <li class="job_option" value="魅">
-                              <div>
-                                <img src="Assets/image/job/Abyss_Chaser.bmp">
-                                <span>魅影</span>
-                              </div>  
-                            </li> 
-                            <li class="job_option" value="咒">
-                              <div>
-                                <img src="Assets/image/job/Arch_Mage.bmp">
-                                <span>咒術</span>
-                              </div>  
-                            </li>
-                            <li class="job_option" value="元">
-                              <div>
-                                <img src="Assets/image/job/Elmental_Master.bmp">
-                                <span>元素</span>
-                              </div>  
-                            </li> 
-                            <li class="job_option" value="機">
-                              <div>
-                                <img src="Assets/image/job/Meister.bmp">
-                                <span>機匠</span>
-                              </div>  
-                            </li>
-                            <li class="job_option" value="基">
-                              <div>
-                                <img src="Assets/image/job/Biolo.bmp">
-                                <span>基因</span>
-                              </div>  
-                            </li> 
-                            <li class="job_option" value="主">
-                              <div>
-                                <img src="Assets/image/job/Cardinal.bmp">
-                                <span>主教</span>
-                              </div>  
-                            </li>
-                            <li class="job_option" value="修">
-                              <div>
-                                <img src="Assets/image/job/Imquisitor.bmp">
-                                <span>修羅</span>
-                              </div>  
-                            </li> 
-                            <li class="job_option" value="遊">
-                              <div>
-                                <img src="Assets/image/job/WindHawk.bmp">
-                                <span>遊俠</span>
-                              </div>  
-                            </li>
-                            <li class="job_option" value="詩">
-                              <div>
-                                <img src="Assets/image/job/Troubadour.bmp">
-                                <span>詩人</span>
-                              </div>  
-                            </li>
-                            <li class="job_option" value="舞">
-                              <div>
-                                <img src="Assets/image/job/dancing.bmp">
-                                <span>舞孃</span>
-                              </div>  
-                            </li>
-                          </ul>
-                      </div>
-                      </div>
+                <div class="d-flex flex-column justify-content-end h-100">
                     <div class="d-flex flex-column">
-                        <span style="color:#8a8d99;font-size:14px;">平均分數</span><span style="font-size:78px;color:#fff;line-height: 1;font-weight: bold;">9.64</span></div>
+                      <span style="color:#8a8d99;font-size:14px;">平均分數</span><span id="sum">0</span>
                     </div>
+                </div>
             </div>
             <div class="radar_score_table">
                 <div class="radar_score_table_panel">
                     <div class="d-flex radar_score_box">
                         <span>起手推薦度</span>
-                        <span id="start" class="ml-auto">10</span>
+                        <span id="start" class="ml-auto">0</span>
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>低技術需求</span>
-                        <span id="tech" class="ml-auto">6</span>
+                        <span id="tech" class="ml-auto">0</span>
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>裝備便宜</span>
-                        <span id="cheap" class="ml-auto">8</span>
+                        <span id="cheap" class="ml-auto">0</span>
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>裝備通用性</span>
-                        <span id="equip" class="ml-auto">5</span>
+                        <span id="equip" class="ml-auto">0</span>
                     </div>
                     <div class="d-flex radar_score_box">
-                        <span>消耗品便宜</span>
-                        <span id="consumer" class="ml-auto">7</span>
+                        <span>低消耗</span>
+                        <span id="consumer" class="ml-auto">0</span>
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>練等速度</span>
-                        <span id="skill" class="ml-auto">4</span>
+                        <span id="skill" class="ml-auto">0</span>
                     </div>
                 </div>
             </div>
@@ -352,9 +366,9 @@ $(document).on("click", function(event){
     
     //選單覆蓋title
     $(".select_ul li").click(function(){
-      var currentele = $(this).html();
+      var currentele = $(this)[0].outerHTML;
       var $this = $(this).closest('.select_wrap');
-      $this.find(".default_option li").html(currentele);
+      $this.find(".default_option").html(currentele);
       $(this).parents(".select_wrap").removeClass("active");
     })
 
@@ -365,14 +379,28 @@ $(document).on("click", function(event){
     '低技術需求',
     '裝備便宜',
     '裝備通用性',
-    '消耗品便宜',
+    '低消耗',
     '練等速度',
   ];
+  const imageURLs2 = [ 
+      'Assets/image/radar/start.png',//start
+      'Assets/image/radar/tech.png',//tech
+      'Assets/image/radar/cheap.png',//cheap
+      'Assets/image/radar/equip.png',//equip
+      'Assets/image/radar/consumer.png',//consumer
+      'Assets/image/radar/skill.png',//skill
+  ];
+  const images = imageURLs2.map(v => {
+  var image = new Image();
+  image.src = v;
+  return image;
+  });
   var data_job_radar = {labels:label, datasets: sites_job_radar};
   ctx_job_radar = document.getElementById('canvas_job_radar').getContext('2d');
   
   //json轉檔
   JsonTransition();
+  
   function JsonTransition(){
     $.getJSON("Assets/json/job_radar.json", function(json_file) {
         var default_value = $('.default_option .job_option').attr('value');
@@ -394,20 +422,52 @@ $(document).on("click", function(event){
                       default:
                         console.log(`還有其他的?`);
         };
-    //json to array
+    //json to array 得到一個6個項目的分數
     job_array = json_file.items[job_number][0].average_score;
-    //load data
-    load_data_job_radar();
-    // draw chart
-    init();
+    //評價
+    evaluation = json_file.items[job_number][0].evaluation;
+    var sum = 0;
+    for (var i = 0; i < job_array.length; i++) {
+      sum += job_array[i];
+    };
+    sum = (sum/6).toFixed(2);
+    $("#start").text(job_array[0]);
+    $("#tech").text(job_array[1]);
+    $("#cheap").text(job_array[2]);
+    $("#equip").text(job_array[3]);
+    $("#consumer").text(job_array[4]);
+    $("#skill").text(job_array[5]);
+    $("#sum").text(sum);
+    $("#Evaluation").text(evaluation);
+    // draw chart ==null 不會重複劃
+    if(chart_job_radar ==null){
+      //load data
+      load_data_job_radar();
+      init();
+    }
+    else{
+      //update data first
+      update(chart_job_radar);
+    }
+    
     });
   };
 
   const options ={
         maintainAspectRatio:false,
         responsive: true,
+        layout: {
+          padding: {
+                top: 50,
+                bottom:50,
+            }
+        },
         scales: {
+         
             r: {
+              pointLabels:{
+                display:false,
+              },
                 max: 10,
                 min: 0,
                 ticks: {
@@ -431,6 +491,7 @@ $(document).on("click", function(event){
               position:"bottom",
               font:{size:20,},
             },
+            
             legend: {
             display: false,
             },
@@ -471,7 +532,7 @@ $(document).on("click", function(event){
                             case '低技術需求':explain = "(躺著玩趴著玩無腦玩，越高分技術需求越低)";break;
                             case '裝備便宜':explain = "(成形的裝備便宜度，越高分越便宜)";break;
                             case '裝備通用性':explain = "(裝備能夠與其他角色的共用程度)";break;
-                            case '消耗品便宜':explain = "(打王練功都要吃補品的程度，越高分越不依賴)";break;
+                            case '低消耗':explain = "(打王練功都要吃補品的程度，越高分越不依賴)";break;
                             case '練等速度':explain = "(打怪的效率)";break;
                           }
                           return [explain];
@@ -489,12 +550,52 @@ $(document).on("click", function(event){
       type: 'radar',
       data: data_job_radar,
       options:options,
-      };
+      plugins: [{
+      id: 'custom_labels',
+      beforeDraw: (chart, args) => {
+        if (images) {
+          const scale = chart.scales.r;
+          drawTextAtIndex(scale, 0, 'start', '起手難易度');
+          drawTextAtIndex(scale, 1, 'tech', '低技術需求');
+          drawTextAtIndex(scale, 2, 'cheap', '裝備便宜');
+          drawTextAtIndex(scale, 3, 'equip', '裝備通用性');
+          drawTextAtIndex(scale, 4, 'consumer', '低消耗');
+          drawTextAtIndex(scale, 5, 'skill', '練等速度');
+        } else {
+          images.onload = () => chart.draw();
+        }
+      }
+    }]
+  };
+  function drawTextAtIndex(scale, index, icon, text) {
+  const offset = 32;
+  const r = scale.drawingArea + offset;
+  const angle = scale.getIndexAngle(index) - Math.PI / 2;
+  const x = scale.xCenter + Math.cos(angle) * r;
+  const y = scale.yCenter + Math.sin(angle) * r;
+  const ctx = scale.ctx;
+  ctx.save();
+  ctx.translate(x, y);
+  //ctx.rotate(angle + Math.PI / 2);
+  ctx.textAlign = 'center';
+
+  ctx.drawImage(images[index], -15, -8, 30, 30);
+
+  ctx.fillStyle = 'white';
+  ctx.fillText(text, -1, -15);
+  ctx.restore();
+}
+
   function init() {
     chart_job_radar = new Chart(ctx_job_radar, config);
     };
 </script>
 <script>
+  function update(chart) {
+    console.log(chart.data.datasets[0].data);
+    chart.data.datasets[0].data = job_array;
+    chart.update();
+}
   function load_data_job_radar(){
             var site = {
                 label:'口愛喵喵',
@@ -502,10 +603,10 @@ $(document).on("click", function(event){
                 fill: true,    
             };
             sites_job_radar.push(site);
-            console.log(sites_job_radar);
+            //console.log(sites_job_radar);
     };
 
-    $('.job_option').on('click',  function() {
+    $('.select_ul .job_option').on('click',  function() {
         //分開js後 寫法變了???
         const val = $(this)[0].attributes.value.value;
         onclick_temp = 0; //切重製
