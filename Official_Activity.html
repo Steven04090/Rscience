@@ -200,24 +200,75 @@
       <div class="infographic_graphic_section p-1">
         <div class="chart-container">
           <div id="dashboard_div" style="height:100%;">
-            <div id="timeline-filter"></div>
-            <div id="google_chart" style="height:90%;"></div>
-            <div id="filter_mobile"></div>
+            <div class="d-flex">
+              <div id="controler" class="controler mb-2">
+                <div class="job_menu select_wrap mr-1">
+                  <ul class="default_option">
+                    <li class="job_option" value="2022">
+                        <div>
+                          <span>年度:</span>
+                          <span>2022</span>
+                        </div>  
+                    </li>
+                  </ul>
+                  <ul class="select_ul">
+                      <li class="job_option" value="2023">
+                          <div>
+                            <span>2023</span>
+                          </div>  
+                      </li>
+                      <li class="job_option" value="2022">
+                        <div>
+                          <span>2022</span>
+                        </div>  
+                      </li>
+                      <li class="job_option" value="2021">
+                        <div>
+                          <span>2021</span>
+                        </div>  
+                    </li>
+                  </ul>
+              </div>
+              </div>
+              <div id="timeline-filter"></div>
+            </div>
+            
+            <div id="google_chart" style="min-height:80vh;"></div>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      //點外面關掉menu
+$(document).on("click", function(event){
+        var $trigger = $(".select_wrap");
+        if($trigger !== event.target && !$trigger.has(event.target).length){
+            $(".select_wrap").removeClass("active");
+      }
+    })
+      //menu開啟
+      $(".default_option").click(function(){
+        var $this = $(this).parent().find('.select_ul');
+        $(".select_wrap .select_ul").not($this).parents(".select_wrap").removeClass("active");
+      $(this).parent().toggleClass("active");
+    })
+    
+    //選單覆蓋title
+    $(".select_ul li").click(function(){
+      var currentele = $(this)[0].outerHTML;
+      var $this = $(this).closest('.select_wrap');
+      $this.find(".default_option").html(currentele);
+      $(this).parents(".select_wrap").removeClass("active");
+    })
+    </script>
     </div>
    <style>
-    #filter_mobile{width:90%;margin:30px auto 0;}
-    .ui-rangeSlider-label{cursor: grab;}
-    #timeline-filter{height:50px;}
-    #timeline-filter svg rect{fill: transparent;}
+    .goog-inline-block{display: flex;}
+    .goog-combobox{display: flex;align-items: center;border: 1px solid var(--soft-border-color);background:none !important;border-radius: 20px;}
+    .goog-combobox input{min-height:40px;background-color:transparent !important;border: none !important;color: #ffffff !important;outline: 0;}
+    .goog-combobox-button{color:#9affd9;right: 10px;position: relative;}
     svg text{font-family: 'Microsoft JhengHei','PingFang';}
-    #timeline-filter svg g g g g text:nth-child(1){display: none;}
-    #timeline-filter svg g g g g text:nth-child(2){fill: #ffffff;}
     #google_chart svg g rect[x="0"]{fill-opacity: 0;}
-    /*#google_chart svg text{font-size: 14px;}*/
     .google-visualization-controls-rangefilter-thumblabel{color:#ffffff !important; }
     .google-visualization-controls-label{display: none !important;}
     #google_chart svg g text{fill: #ffffff !important;}
