@@ -157,7 +157,7 @@
       
           if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
           // true for mobile device
-          $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+          $('.content-body').css("max-height",`calc(${winHeight}px - ${nav_height}px`);
           }else{
             // false for not mobile device
             $('.content-body').css("height",`calc(100vh`);
@@ -208,7 +208,7 @@
                 </li>
             </ul>
             <ul class="select_ul">
-                <li class="job_option" value="all">
+                <li class="job_option job_all" value="all">
                     <div>
                       <span>全部</span>
                     </div>
@@ -856,8 +856,8 @@
         };
     
         $('.job_option').on('click',  function() {
-          //分開js後 寫法變了???
-          const val = $(this)[0].attributes.value.value;
+        //分開js後 寫法變了???
+        const val = $(this)[0].attributes.value.value;
         //const val = $(this).attr('value');
         onclick_temp = 0; //切重製
           job_value = val;
@@ -906,11 +906,9 @@
         function restore_sites(){
           temp_sites = undefined;
           temp_job = undefined;
-  
             for (var index = 0; index < temp_sites2.length; index++) {
                     indexes.push(index);
-            }
-            
+            } 
             //先取temp_site2的長度出來，寫一個for迴圈，再用Object.assign一個個存入sites
             for (var b = indexes.length -1; b >= 0; b--){
               temp_sites = Object.assign({}, temp_sites2.splice(indexes[b],1));
@@ -921,18 +919,14 @@
             temp_job2 = [];
             temp_sites2 = [];
         };
-   
-  
       function closed_float_box(){
         document.getElementById("equip_table_box").style.display = "none"; 
         document.getElementById("data_user").style.display = "none"; 
       };
-    
       //zoom區
       function resetZoom() {
         chart_job.resetZoom();
       };
-    
       //模擬滑鼠滾輪 zoom in & out
       function Zoomin() {
         var evt = document.createEvent('MouseEvents');
