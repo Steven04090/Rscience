@@ -6,7 +6,18 @@
     packages:['controls','timeline'],'language': 'zh-TW'
    });
    var timelineRangeSlider;
+   var input_year;
+   $('.select_ul .job_option').on('click',  function() {
+    //分開js後 寫法變了???
+    const val = $(this)[0].attributes.value.value;
+    
+    //目前切換會重複
+    drawTimeline();
+  });
+
    function drawTimeline() {
+    var default_value = $('.default_option .job_option').attr('value');
+    console.log(default_value);
       $.ajax({
           url: "Assets/json/official_activity.json",
           dataType: "json",
@@ -18,12 +29,12 @@
               dataTable.addColumn({type: 'string', label:'Name'});
               dataTable.addColumn({type:'date',  label:'Start'});
               dataTable.addColumn({type:'date',  label:'End'});
-              for (var i = 0; i < jsonData.rows.length; i++) {
+              for (var i = 0; i < jsonData.rows[default_value].length; i++) {
                 dataTable.addRow([
-                    jsonData.rows[i].c[0],
-                    jsonData.rows[i].c[1],
-                    new Date(jsonData.rows[i].c[2].v),
-                    new Date(jsonData.rows[i].c[3].v),
+                    jsonData.rows[default_value][i].c[0],
+                    jsonData.rows[default_value][i].c[1],
+                    new Date(jsonData.rows[default_value][i].c[2].v),
+                    new Date(jsonData.rows[default_value][i].c[3].v),
                   ]);
               }
    
@@ -56,30 +67,31 @@
               view: {columns: [0,1,2,3,4]},
               dataTable:dataTable,
               options:{
-                colors:['rgb(50, 80, 161)','rgb(116, 49, 110)','rgb(62, 94, 73)','rgb(126, 103, 62)','rgb(57, 121, 141)','rgb(141, 57, 57)'],
+                colors:['rgb(50, 80, 161)','rgb(186, 49, 110)','rgb(62, 144, 73)','rgb(126, 103, 162)','rgb(57, 121, 141)','rgb(181, 67, 67)'],
                 tooltip: {isHtml: true},
                 timeline:{
                   groupByRowLabel:true,
-                  
+                  //showBarLabels: false,
                   colorByRowLabel: true,
                   rowLabelStyle: {
                     fontSize: 20,
                   },  
                   barLabelStyle:{
-                    fontSize: 15,
+                    fontSize: 14,
                   }
-                }
+                },
+
               },
               });
               
               timelineRangeSlider = new google.visualization.ControlWrapper({
-                controlType: 'ChartRangeFilter',
+                controlType: 'CategoryFilter',
                 containerId: 'timeline-filter',
                 options: {   
-                  filterColumnIndex: 3,
+                  filterColumnIndex: 0,
                 //  filterColumnLabel: 'Start',
                 ui: {
-                chartType: 'ScatterChart',
+                chartType: 'Timeline',
                 chartOptions: {
                   chartArea: {width: '95%'},
                   hAxis: {baselineColor: 'none'},
@@ -117,10 +129,10 @@
                       if ((path.getAttribute('stroke') === '#ffffff') || (path.getAttribute('stroke') === '#e6e6e6')) {
                       // remove border
                       path.setAttribute('stroke-width', '0.5');
-                      path.setAttribute('stroke', '#ffffff99');
+                      path.setAttribute('stroke', '#ffffff44');
                       }
                       if ((path.getAttribute('stroke') === '#b7b7b7')){
-                        path.setAttribute('stroke', '#ffffff66');
+                        path.setAttribute('stroke', '#ffffff65');
                       }
                   });
    
