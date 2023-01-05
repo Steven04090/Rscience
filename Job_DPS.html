@@ -351,6 +351,7 @@
         <div class="chart-container">
           <canvas id="canvas_job"></canvas>
           <div class="float_box">
+           <div>
             <div id="data_user" class="p-1" style="display: none;">
               <div id = "data_title" class="px-1"></div>
               <div id = "data_time" class="ml-auto px-1"></div>
@@ -374,7 +375,7 @@
                     <table class="equip-table">
                       <thead>
                         <tbody>
-                          <tr><td><div id="e_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="e_top_middle"><span></span></div></td></tr>
+                          <tr><td><div id="e_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"><img class="w-100" src="Assets/image/job1.png"></td><td><div id="e_top_middle"><span></span></div></td></tr>
                           <tr><td><div id="e_top_down"><span></span></div></td><td><div id="e_cloth"><span></span></div></td></tr>
                           <tr><td><div id="e_weapon"><span></span></div></td><td><div id="e_shield"><span></span></div></td></tr>
                           <tr><td><div id="e_shawl"><span></span></div></td><td><div id="e_shoes"><span></span></div></td></tr>
@@ -387,7 +388,7 @@
                     <table class="equip-table">
                       <thead>
                         <tbody>
-                          <tr><td><div id="b_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"></td><td><div id="b_top_middle"><span></span></div></td></tr>
+                          <tr><td><div id="b_top"><span></span></div></td><td rowspan="5" id="text-center" style="width:80px;"><img class="w-100" src="Assets/image/job1.png"></td><td><div id="b_top_middle"><span></span></div></td></tr>
                           <tr><td><div id="b_top_down"><span></span></div></td><td><div id="b_cloth"><span></span></div></td></tr>
                           <tr><td><div id="b_hand"><span></span></div></td><td><div id="b_shield"><span></span></div></td></tr>
                           <tr><td><div id="b_shawl"><span></span></div></td><td><div id="b_shoes"><span></span></div></td></tr>
@@ -398,6 +399,12 @@
                   </div>
                 </div>
               </div>
+            </div>
+            </div>
+            <div id="data_status" class="p-1" style="display: none;">
+              <img src="Assets/image/job_state/efst_shadow_scar.png" data-toggle="tooltip" data-placement="bottom" title="隱匿">
+              <img src="Assets/image/job_state/사이즈믹웨폰.png" data-toggle="tooltip" data-placement="bottom" title="劍">
+              <img src="Assets/image/job_state/점혈구.png" data-toggle="tooltip" data-placement="bottom" title="球">
             </div>
         </div>
         </div>
@@ -760,6 +767,7 @@
                 const bottom = chart.tooltip.dataPoints[0].element.y + chart.tooltip.dataPoints[0].element.options.radius + 14;
                 const div = document.getElementById("equip_table_box");
                 const div2 = document.getElementById("data_user");
+                const div3 = document.getElementById("data_status");
                 const title = chart.tooltip.dataPoints[0].dataset.label;
                 const time = chart.tooltip.dataPoints[0].dataset.gettime;
     
@@ -767,6 +775,7 @@
                 if (x >= left && x <= right && y >= top && y <= bottom) {
                   div.style.display = "block";
                   div2.style.display = "flex";
+                  div3.style.display = "block";
                   //先找到點到的物件的username
                   //比對equip_data的username
                   //再將內容一個一個map過去
@@ -809,6 +818,7 @@
                 else{
                   div.style.display = "none";
                   div2.style.display = "none";
+                  div3.style.display = "none";
                 }
             }
         }
@@ -918,6 +928,7 @@
             temp_sites2 = [];
         };
       function closed_float_box(){
+        document.getElementById("data_status").style.display = "none"; 
         document.getElementById("equip_table_box").style.display = "none"; 
         document.getElementById("data_user").style.display = "none"; 
       };
