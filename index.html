@@ -158,7 +158,7 @@
     $('.content-body').css("max-height",`calc(${winHeight}px - ${nav_height}px`);
     }else{
       // false for not mobile device
-      $('.content-body').css("height",`calc(100vh`);
+      $('.content-body').css("height",`calc(100vh)`);
     }
   });
 </script>
@@ -264,12 +264,14 @@
       page_path = $(this).attr('href');
     })
   $(document).on('ready pjax:end', function(event) {
+    
    // var server_temp_len = $('script[src="Assets/javascript/server_temp.js"]').length;
         if(page_path == 'index.html'){
           var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
           var binary = ((x >>> 0).toString(2)).padStart(8,'0');
           $("#password").text(binary);
         }
+
         else if (page_path == 'server_temporary.html'){
           var scriptsToLoad = [
             "Assets/javascript/js-year-calendar.min.js", 
@@ -289,6 +291,7 @@
               }
           }   
         }
+
         else if(page_path == 'Official_Activity.html'){
           var scriptsToLoad = [
             "Assets/javascript/google_chart.js", 

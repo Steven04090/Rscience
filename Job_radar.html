@@ -197,7 +197,7 @@
          <div class="content-body p-1">
    <div id="chart-box-layout">
       <div class="infographic_graphic_section_h p-1">
-        <div class="d-flex flex-column main_text_color" style="min-width:300px;padding:4px 20px;">
+        <div class="d-flex flex-column main_text_color" style="min-width:320px;padding:4px 20px;">
           <div id="controler" class="controler mb-2">
             <div class="job_menu select_wrap mr-1">
               <ul class="default_option">
@@ -381,6 +381,7 @@ $(document).on("click", function(event){
     '裝備通用性',
     '低消耗',
     '練等速度',
+    '團隊需求度',
   ];
   const imageURLs2 = [ 
       'Assets/image/radar/start.png',//start
@@ -389,6 +390,7 @@ $(document).on("click", function(event){
       'Assets/image/radar/equip.png',//equip
       'Assets/image/radar/consumer.png',//consumer
       'Assets/image/radar/skill.png',//skill
+      'Assets/image/radar/need.png',//need
   ];
   const images = imageURLs2.map(v => {
   var image = new Image();
@@ -430,7 +432,7 @@ $(document).on("click", function(event){
     for (var i = 0; i < job_array.length; i++) {
       sum += job_array[i];
     };
-    sum = (sum/6).toFixed(2);
+    sum = (sum/(job_array.length+1)).toFixed(2);
     $("#start").text(job_array[0]);
     $("#tech").text(job_array[1]);
     $("#cheap").text(job_array[2]);
@@ -534,6 +536,7 @@ $(document).on("click", function(event){
                             case '裝備通用性':explain = "(裝備能夠與其他角色的共用程度)";break;
                             case '低消耗':explain = "(打王練功都要吃補品的程度，越高分越不依賴)";break;
                             case '練等速度':explain = "(打怪的效率)";break;
+                            case '團隊需求度':explain = "(副本團需求度)";break;
                           }
                           return [explain];
                         },
@@ -561,6 +564,7 @@ $(document).on("click", function(event){
           drawTextAtIndex(scale, 3, 'equip', '裝備通用性');
           drawTextAtIndex(scale, 4, 'consumer', '低消耗');
           drawTextAtIndex(scale, 5, 'skill', '練等速度');
+          drawTextAtIndex(scale, 6, 'need', '團隊需求度');
         } else {
           images.onload = () => chart.draw();
         }
@@ -592,24 +596,20 @@ $(document).on("click", function(event){
 </script>
 <script>
   function update(chart) {
-    console.log(chart.data.datasets[0].data);
     chart.data.datasets[0].data = job_array;
     chart.update();
 }
   function load_data_job_radar(){
             var site = {
-                label:'口愛喵喵',
                 data: job_array,
                 fill: true,    
             };
             sites_job_radar.push(site);
-            //console.log(sites_job_radar);
     };
 
     $('.select_ul .job_option').on('click',  function() {
         //分開js後 寫法變了???
         const val = $(this)[0].attributes.value.value;
-        onclick_temp = 0; //切重製
         console.log(val);
         //目前切換會重複
         JsonTransition();
