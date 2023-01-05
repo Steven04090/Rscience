@@ -1,7 +1,10 @@
-    google.charts.load('current', {
+ 
+
+  google.charts.load('current', {
     callback: function () {
       drawTimeline();
-      window.addEventListener('resize', drawTimeline, false);
+      //google會一直存在 resize也會呼叫 目前無解
+      //window.addEventListener('resize', drawTimeline, false);
     },
     packages:['controls','timeline'],'language': 'zh-TW'
    });
@@ -12,12 +15,18 @@
     const val = $(this)[0].attributes.value.value;
     
     //目前切換會重複
-    drawTimeline();
+    if($("#google_chart")){
+      drawTimeline();
+    };
+    
   });
 
    function drawTimeline() {
     var default_value = $('.default_option .job_option').attr('value');
-    console.log(default_value);
+    if(default_value==undefined){
+      default_value = 2022;
+      console.log("bug???");
+    }
       $.ajax({
           url: "Assets/json/official_activity.json",
           dataType: "json",
@@ -74,10 +83,10 @@
                   //showBarLabels: false,
                   colorByRowLabel: true,
                   rowLabelStyle: {
-                    fontSize: 20,
+                    fontSize: 16,
                   },  
                   barLabelStyle:{
-                    fontSize: 14,
+                    fontSize: 20,
                   }
                 },
 
@@ -137,7 +146,7 @@
                   });
    
                   });
-   
+                  
               }
           })
       
