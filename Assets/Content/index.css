@@ -442,11 +442,12 @@ color:black;
     flex-direction: column;
   }
   .content-box{
-    width:45%;
+    width:50%;
   }
   .Art-center{
     height:auto;
     max-width: 100vw;
+    padding: 0 10px;
   }
   .ref{
     max-width: 100vw;
