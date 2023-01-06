@@ -1,6 +1,4 @@
- 
-
-  google.charts.load('current', {
+google.charts.load('current', {
     callback: function () {
       drawTimeline();
       //google會一直存在 resize也會呼叫 目前無解
@@ -8,6 +6,7 @@
     },
     packages:['controls','timeline'],'language': 'zh-TW'
    });
+
    var timelineRangeSlider;
    var input_year;
    $('.select_ul .job_option').on('click',  function() {
@@ -120,7 +119,7 @@
               });
               dashboard.bind(timelineRangeSlider, timeline);
               dashboard.draw(dataTable);
-   
+              
               google.visualization.events.addListener(timeline, 'ready', function () {
    
                   // find <rect> elements
@@ -146,8 +145,9 @@
                   });
    
                   });
-                  
-              }
+                }
+
+            
           })
-      
+          
    }
