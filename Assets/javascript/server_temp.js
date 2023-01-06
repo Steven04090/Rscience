@@ -18,6 +18,7 @@
       });
     }
     const calendar = new Calendar('#calendar', {
+      
     language: 'zh-TW',
     dataSource: dataSource,
     mouseOnDay: function(e) {
@@ -91,9 +92,11 @@
     });
     document.querySelector('#calendar').addEventListener('yearChanged', function(e) {
         //選到目前年份
-        var x = thisyear - e.currentYear;
+        var x =   e.currentYear - thisyear;
+        var y =  2019 - e.currentYear;
         //只到2019
-        if(x <=3 && x >=0){
+        if( x <=0 && y <1){
+           x  = Math.abs(x);
           $("#normal").text(number_array[x][0]);
           $("#temp").text(number_array[x][1]);
           $("#delay").text(number_array[x][2]);
