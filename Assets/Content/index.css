@@ -410,6 +410,23 @@ color:black;
 #Evaluation{
   text-align: justify;
 }
+
+#slideLeft,#slideRight{
+  opacity: 0;
+  position:absolute;
+  top:50%;
+  border-radius: 50%;
+  transition: .5s all;
+}
+#slideLeft{
+  left:10px;
+}
+#slideRight{
+  right:10px;
+}
+#dashboard_div:hover #slideLeft,#dashboard_div:hover #slideRight{
+  opacity: 1;
+}
 /****** mobile ********/
 @media only screen and (max-width: 991px) {
   #controler{
