@@ -1,7 +1,13 @@
 # Rscience
-https://steven04090.github.io/Rscience/
-
-## Infographic
+https://steven04090.github.io/Rscience/  
+網頁風格為Hud、Sci-fi、Dashboard方向的風格，logo為(玻璃瓶+一張可愛的表情)來象徵科學。  
+預計主題有  
+* 資料圖表中心  
+* 未來UI設計  
+* 低成本三王  
+* 3D Model  
+此外盡量不額外製作圖片與動畫，RWD僅滿足最基本需求。  
+## 資料圖表中心(Infographic)
 ### 職業DPS(Job DPS)
 主要使用套件:Chart.js  
 資料蒐集:人工蒐集  
@@ -47,15 +53,14 @@ https://steven04090.github.io/Rscience/
 其他應用  
 ### 線上玩家人數(population)  
 目前無法取得  
-## UI optimization
+## 未來UI設計(UI optimization)
 
 ## 3d modal
 Blender
 
-## gacha
-gacha simulator
+## 低成本三王  
 
-## 無解Bug
+##### 無解Bug
 1. google charts載入後離開頁面，如果有  
 `window.addEventListener('resize', drawTimeline, false)`  
 2. google charts-timeline 沒內建pan、zoom等功能(explore不能用)，filter也只能day調整。  
