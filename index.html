@@ -147,6 +147,7 @@
         winHeight = window.innerHeight;
         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     // true for mobile device
+      $('body').css("height",`${winHeight}px`);
       $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
        }
     });
