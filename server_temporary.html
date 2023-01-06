@@ -144,29 +144,29 @@
           }
         });</script>
     
-      <script>
-        $(document).ready(function(){
-          var winHeight = window.innerHeight;
-        window.addEventListener('resize', function(event){
-            winHeight = window.innerHeight;
-            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        // true for mobile device
-          $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
-           }
-        });
-          var nav_height = $('#nav').outerHeight();
-        var content_height = $('.content-body').innerHeight();
-    
-        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        // true for mobile device
-        $('.content-body').css("max-height",`calc(${winHeight}px - ${nav_height}px`);
-        }else{
-          // false for not mobile device
-          $('.content-body').css("height",`calc(100vh`);
-        }
-                 
+    <script>
+      $(document).ready(function(){
+        var winHeight = window.innerHeight;
+      window.addEventListener('resize', function(event){
+          winHeight = window.innerHeight;
+          if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      // true for mobile device
+        $('body').css("height",`${winHeight}px`);
+        $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+         }
       });
-    </script>
+      var nav_height = $('#nav').outerHeight();
+      var content_height = $('.content-body').innerHeight();
+  
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      // true for mobile device
+        $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+      }else{
+        // false for not mobile device
+        $('.content-body').css("height",`calc(${winHeight}px`);
+      }
+    });
+  </script>
     </head>
     <body>
       <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -198,7 +198,7 @@
 
         </div>
         <div class="content-body p-1">
-  <div class="d-flex">
+  <div class="d-flex h-100">
       <div class="d-flex flex-column text-center" style="min-width:150px;color:#f1f1f1;">
                   <div class="w-100 d-flex flex-column justify-content-center p-1">
                     <div class="d-flex flex-column align-items-center justify-content-center" style="height: 150px;background-color:rgba(63, 89, 102, 0.21);">
@@ -226,14 +226,13 @@
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css" />
 
   <style>
-      #calendar{width:100%;color:var(--main-text-color);overflow:unset;background-color: #141c1e69;}
+      #calendar{width:100%;color:var(--main-text-color);overflow:unset;display: flex;flex-direction: column;}
       .tippy-tooltip{background-color:#f1f1f1;}
+      .months-container{height:100%;}
       .month-container{padding: 10px 4px !important;}
       .calendar .calendar-spinner > div{background-color:#f1f1f1;}
   </style>
   
-
-
   </div>
   </body>
   <script src="Assets/javascript/server_temp.js"></script>
