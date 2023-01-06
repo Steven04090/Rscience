@@ -87,6 +87,9 @@ a{
 .index{
   overflow-y: scroll;
 }
+.content-body{
+  overflow: auto;
+}
 .index_box{
   margin: 0 auto;
   height: 100%;
