@@ -194,12 +194,12 @@
            <div class="index p-1" style="display: none;">
  
            </div>
-           <div class="content-body p-1">
+           <div class="content-body py-1">
     
     <div id="chart-box-layout">
-      <div class="infographic_graphic_section p-1">
+      <div class="infographic_graphic_section">
         <div class="chart-container">
-          <div id="dashboard_div" style="height:100%;">
+          <div id="dashboard_div" style="height:100%;position: relative;display: flex;flex-direction: column;">
             <div class="d-flex">
               <div id="controler" class="controler mb-2">
                 <div class="job_menu select_wrap mr-1">
@@ -232,8 +232,13 @@
               </div>
               <div id="timeline-filter"></div>
             </div>
-            
-            <div id="google_chart" style="min-height:80vh;"></div>
+            <div id="chart_outer" style="overflow-x: scroll;overflow-y: hidden;position: relative;height: 100%;">
+              <div id="google_chart" style="min-height:80vh;width:200vw;"></div>
+            </div>
+            <button id="slideLeft" type="button" class="btn"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+              <button id="slideRight" type="button" class="btn"><i class="fa fa-chevron-right" aria-hidden="true"></i>
+              </button>
           </div>
         </div>
       </div>
@@ -259,7 +264,23 @@ $(document).on("click", function(event){
       var $this = $(this).closest('.select_wrap');
       $this.find(".default_option").html(currentele);
       $(this).parents(".select_wrap").removeClass("active");
-    })
+    });
+
+    const buttonRight = document.getElementById('slideRight');
+    const buttonLeft = document.getElementById('slideLeft');
+
+    buttonRight.onclick = function () {
+      document.getElementById('chart_outer').scrollBy({
+        left: 1000,
+        behavior: 'smooth'
+      });
+    };
+    buttonLeft.onclick = function () {
+      document.getElementById('chart_outer').scrollBy({
+        left: -1000,
+        behavior: 'smooth'
+      });
+    };
     </script>
     </div>
    <style>
@@ -274,8 +295,6 @@ $(document).on("click", function(event){
     #google_chart svg g text{fill: #ffffff !important;}
     .ggl-tooltip{min-width: 200px;padding:8px;font-size: 15px;background-color: #c4b8b833;}
   </style>
-
-
     </div>
     </body>
     <script src="Assets/javascript/google_charts_custom_timeline.js"></script>
