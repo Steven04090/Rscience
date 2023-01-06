@@ -92,14 +92,11 @@ a{
 }
 .index_box{
   margin: 0 auto;
-  height: 100%;
   position: relative;
 }
 
-
 #chart-box-layout{
   height:100%;
-  /*background-color: #0003;*/
 }
 .Art-center{
   display: flex;
@@ -161,6 +158,7 @@ a{
 }
 #password{
   font-weight: bold;
+  font-size: 1.2em;
 }
 .float_box{
   display: flex;
