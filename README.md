@@ -6,7 +6,9 @@ https://steven04090.github.io/Rscience/
 * 未來UI設計  
 * 低成本三王  
 * 3D Model  
-此外盡量不額外製作圖片與動畫，RWD僅滿足最基本需求。  
+  
+此外本站不會額外製作圖片與動畫(除了之後的自製3d modal)，RWD也僅滿足基本需求。  
+  
 ## 資料圖表中心(Infographic)
 ### 職業DPS(Job DPS)
 主要使用套件:Chart.js  
