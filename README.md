@@ -7,7 +7,7 @@
 * 低成本三王  
 * 3D Model  
   
-此外本站不會額外製作圖片與動畫(除了之後的自製3d modal)，RWD也僅滿足基本需求。  
+此外本站不會額外製作圖片與動畫(除了之後的自製3d modal)，RWD也僅滿足基本需求，各圖表分頁沒有標題，個人私心覺得不需要，有也是很小。總體而言，網站拿來做prior用，可能會與現今UI/UX些微不同。  
   
 ## 資料圖表中心(Infographic)
 ### 職業DPS(Job DPS)
@@ -72,3 +72,7 @@ Blender
     `const val = $(this).attributes.value`  
     `const val = $(this)[0].attributes.value.value`  
 4. chart.js的tooltip在mobile操作詭異(Job radar)  
+5. google chart tooltip在scroll down，位移嚴重，(測mouse位置做調整?)  
+##### 有時間調整
+1. select選擇後，裡面的字會全部改變  
+2. 停權人數 物價走勢 等級經驗值 tooltip內容過小
