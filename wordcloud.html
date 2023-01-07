@@ -151,6 +151,9 @@
         $('body').css("height",`${winHeight}px`);
         $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
          }
+         else{
+          $('.content-body').css("height",`calc(${winHeight}px`);
+         }
       });
       var nav_height = $('#nav').outerHeight();
       var content_height = $('.content-body').innerHeight();
@@ -190,6 +193,16 @@
            </ul>
          </div>
        </nav>
+       <div id="loading" class="svg_bg">
+        <svg x="0px" y="0px" viewBox="0 0 300 62">
+          <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="39.894,62.457 0,62.457 8,0 47.894,0"/>
+          <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="89.561,62.457 49.667,62.457 57.667,0 97.561,0 "/>
+          <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="139.228,62.457 99.334,62.457 107.334,0 147.228,0 "/>
+          <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="188.895,62.457 149.001,62.457 157.001,0 196.895,0 "/>
+          <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="238.562,62.457 198.668,62.457 206.668,0 246.562,0 "/>
+          <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="288.229,62.457 248.335,62.457 256.335,0 296.229,0 "/>
+        </svg>
+      </div>
        <div id="container">
          <div class="index p-1" style="display: none;">
 

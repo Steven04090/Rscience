@@ -140,7 +140,7 @@
       }
     });</script>
 
-  <script>
+<script>
     $(document).ready(function(){
       var winHeight = window.innerHeight;
     window.addEventListener('resize', function(event){
@@ -149,6 +149,9 @@
     // true for mobile device
       $('body').css("height",`${winHeight}px`);
       $('.content-body').css("height",`calc(${winHeight}px - ${nav_height}px`);
+       }
+       else{
+        $('.content-body').css("height",`calc(${winHeight}px`);
        }
     });
     var nav_height = $('#nav').outerHeight();
@@ -189,9 +192,18 @@
       </ul>
     </div>
   </nav>
-  
+  <div id="loading" class="svg_bg">
+    <svg x="0px" y="0px" viewBox="0 0 300 62">
+      <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="39.894,62.457 0,62.457 8,0 47.894,0"/>
+      <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="89.561,62.457 49.667,62.457 57.667,0 97.561,0 "/>
+      <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="139.228,62.457 99.334,62.457 107.334,0 147.228,0 "/>
+      <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="188.895,62.457 149.001,62.457 157.001,0 196.895,0 "/>
+      <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="238.562,62.457 198.668,62.457 206.668,0 246.562,0 "/>
+      <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="288.229,62.457 248.335,62.457 256.335,0 296.229,0 "/>
+    </svg>
+  </div>
   <div id="container">
-    <div class="svg_bg svg_decoration w-100 h-100">
+    <div class="svg_bg w-100 h-100">
       <div class="svg_bg" style="width:60px;height:60px;right:30px;top:10px;">
       <svg x="0px" y="0px" viewBox="0 0 62 62">
       <path fill="#5FCCF5" d="M52.834,62.453l-8.584-6.058V18.202H6.059L0,9.617L9.158,0h53.295v53.292L52.834,62.453z M46.234,55.367l6.412,4.525l7.822-7.45V1.985H10.008l-7.447,7.82l4.525,6.413h39.148V55.367L46.234,55.367z"/>
@@ -206,16 +218,6 @@
         <svg x="0px" y="0px" viewBox="0 0 62 62">
         <path fill="#5FCCF5" d="M0,62.457L-0.023,9.164l9.611-9.168l8.588,6.055l0.018,38.193l38.193-0.02l6.061,8.586l-9.154,9.621L0,62.457z M1.961,10.014l0.021,50.459l50.459-0.023l7.445-7.824l-4.527-6.414L16.21,46.23L16.191,7.082L9.776,2.559L1.961,10.014z"
           />
-        </svg>
-      </div>
-      <div class="svg_bg" style="width:100px;left:30px;top:30px;">
-        <svg x="0px" y="0px" viewBox="0 0 300 62">
-          <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="39.894,62.457 0,62.457 8,0 47.894,0"/>
-          <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="89.561,62.457 49.667,62.457 57.667,0 97.561,0 "/>
-          <polygon fill="#5FCCF5" stroke="#5FCCF5" stroke-width="4" points="139.228,62.457 99.334,62.457 107.334,0 147.228,0 "/>
-          <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="188.895,62.457 149.001,62.457 157.001,0 196.895,0 "/>
-          <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="238.562,62.457 198.668,62.457 206.668,0 246.562,0 "/>
-          <polygon fill="none" stroke="#5FCCF5" stroke-width="4" points="288.229,62.457 248.335,62.457 256.335,0 296.229,0 "/>
         </svg>
       </div>
       <div class="svg_bg" style="left:-20px;top:calc(50% - 25px);color:rgb(170, 184, 190);transform: rotateZ(-90deg);">Ragnarok</div>
@@ -314,9 +316,9 @@
             });
       });
     });
- 
+  
   $(document).on('pjax:end', function(event) {
-        $('#container').fadeIn(500);
+        $('#container').fadeIn(300);
         if(page_path == 'index.html'){
           var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
           var binary = ((x >>> 0).toString(2)).padStart(8,'0');
