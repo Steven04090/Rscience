@@ -21,7 +21,7 @@ https://steven04090.github.io/Rscience/
 主要使用套件:Chart.js  
 資料蒐集:自身經驗  
 資料來源:自身經驗  
-圖表:目前僅有自身的評分，預計讓玩家輸入，上傳到某地方，能夠有數據更客觀的評價各職業。
+圖表:目前僅有自身的評分，預計讓有興趣的玩家輸入，上傳到某地方，能夠有數據更客觀的評價各職業。  
 ### 停權人數(Suspension)  
 主要使用套件:Chart.js  
 資料蒐集:python crawer  
@@ -35,6 +35,7 @@ https://steven04090.github.io/Rscience/
 ### 每周or每月熱門主題(Hot Topic)  
 預計作法:撈巴哈前三頁?  
 推文跟發文分開  
+不會使用玩家ID、僅title與內文，再用結疤分詞，提取前30多字，拼貼的圖片看要用遊戲內的怪物or?  
 ### 伺服器穩定度(Stability)  
 主要使用套件:js-year-calendar.js  
 資料蒐集:python crawer  
@@ -45,7 +46,7 @@ https://steven04090.github.io/Rscience/
 資料蒐集:人工蒐集  
 資料來源:Ro官網  
 圖表:無解釋  
-### 官方活動(Activity)
+### 官方活動(Activity)  
 主要使用套件:google chart.js  
 資料蒐集:人工蒐集  
 資料來源:Ro官網  
