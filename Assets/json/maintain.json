@@ -1,4 +1,5 @@
 {"items":[
+{"date": "2023-01-04","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2022-12-27","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
 {"date": "2022-12-20","normal_maintain": 0,"temporary_maintain": 1,"status": "臨時維護","color":"#E6321B"},
 {"date": "2022-12-20","normal_maintain": 1,"temporary_maintain": 0,"status": "正常維護","color":"#2C82C9"},
