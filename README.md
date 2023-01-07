@@ -71,3 +71,4 @@ Blender
 3. 檢測tag的value時，分開寫成js，寫法改變?  
     `const val = $(this).attributes.value`  
     `const val = $(this)[0].attributes.value.value`  
+4. chart.js的tooltip在mobile操作詭異(Job radar)  
