@@ -189,8 +189,9 @@
       </ul>
     </div>
   </nav>
+  
   <div id="container">
-    <div class="svg_bg">
+    <div class="svg_bg svg_decoration w-100 h-100">
       <div class="svg_bg" style="width:60px;height:60px;right:30px;top:10px;">
       <svg x="0px" y="0px" viewBox="0 0 62 62">
       <path fill="#5FCCF5" d="M52.834,62.453l-8.584-6.058V18.202H6.059L0,9.617L9.158,0h53.295v53.292L52.834,62.453z M46.234,55.367l6.412,4.525l7.822-7.45V1.985H10.008l-7.447,7.82l4.525,6.413h39.148V55.367L46.234,55.367z"/>
@@ -301,11 +302,21 @@
   if ($.support.pjax) {
     let page_path=null;
     $(document).on('click', 'a[data-pjax]', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
       page_path = $(this).attr('href');
-    })
-  $(document).on('ready pjax:end', function(event) {
-    
-   // var server_temp_len = $('script[src="Assets/javascript/server_temp.js"]').length;
+      $('#container').fadeOut( function(){
+            $.pjax({
+                url: page_path,
+                container: "#container",
+                fragment: "#container",
+                timeout: 10000,
+            });
+      });
+    });
+ 
+  $(document).on('pjax:end', function(event) {
+        $('#container').fadeIn(500);
         if(page_path == 'index.html'){
           var x = (Number(moment().format('MM')) + Number(moment().format('D'))) * 5;
           var binary = ((x >>> 0).toString(2)).padStart(8,'0');
@@ -354,9 +365,6 @@
           return;
         }  
   });
-  $(document).on('ready pjax:start', function(event) {
-      $(document).pjax('[data-pjax] a, a[data-pjax]', '#container',{ fragment: '#container' });
-  })
 }
 </script>
 </html>
