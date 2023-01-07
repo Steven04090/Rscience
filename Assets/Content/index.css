@@ -70,7 +70,6 @@ a{
 }
 
 /****************   content   ******************/
-.svg_bg{position:fixed;}
 #carouselExampleIndicators{
   width:500px;
   margin: 0 auto;
@@ -245,6 +244,33 @@ color:black;
   align-items: center;
   justify-content: center;
 }
+/************* loading *************/
+.svg_bg{
+  position:fixed;
+}
+#loading{
+  width:100px;
+  left:30px;
+  top:20px;
+}
+#loading svg polygon{
+  animation-name: Battery;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+#loading svg polygon:nth-child(4){
+  animation-delay: 0.1s;
+}
+#loading svg polygon:nth-child(5){
+  animation-delay: 0.2s;
+}
+#loading svg polygon:nth-child(6){
+  animation-delay: 0.3s;
+}
+@keyframes Battery {
+  0% {fill: #5FCCF5;}
+  100% {fill:none}
+  }
 /************ button  *************/
 .svg-btn_svg {
   position: absolute;
