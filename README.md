@@ -64,7 +64,7 @@ Blender
 
 ## 低成本三王  
 
-##### 無解Bug
+##### 無解
 1. google charts載入後離開頁面，如果有  
 `window.addEventListener('resize', drawTimeline, false)`  
 2. google charts-timeline 沒內建pan、zoom等功能(explore不能用)，filter也只能day調整。  
@@ -73,6 +73,9 @@ Blender
     `const val = $(this)[0].attributes.value.value`  
 4. chart.js的tooltip在mobile操作詭異(Job radar)  
 5. google chart tooltip在scroll down，位移嚴重，(測mouse位置做調整?)  
+6.取得線上遊戲人數
 ##### 有時間調整
 1. select選擇後，裡面的字會全部改變  
 2. 停權人數 物價走勢 等級經驗值 tooltip內容過小
+3. wordcloud的內容
+4. get user input(radar chart) by using static pages
