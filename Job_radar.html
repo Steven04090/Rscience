@@ -341,37 +341,37 @@
                     <div class="d-flex radar_score_box">
                         <span>起手推薦度</span>
                         <span id="start" class="statitic_value ml-auto">0</span>
-                        <input id="custom_start" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                        <input id="custom_start" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>低技術需求</span>
                         <span id="tech" class="statitic_value ml-auto">0</span>
-                        <input id="custom_tech" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                        <input id="custom_tech" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>裝備便宜</span>
                         <span id="cheap" class="statitic_value ml-auto">0</span>
-                        <input id="custom_cheap" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                        <input id="custom_cheap" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>裝備通用性</span>
                         <span id="equip" class="statitic_value ml-auto">0</span>
-                        <input id="custom_equip" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                        <input id="custom_equip" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>低消耗</span>
                         <span id="consumer" class="statitic_value ml-auto">0</span>
-                        <input id="custom_consumer" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                        <input id="custom_consumer" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>練等速度</span>
                         <span id="skill" class="statitic_value ml-auto">0</span>
-                        <input id="custom_skill" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                        <input id="custom_skill" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                     </div>
                     <div class="d-flex radar_score_box">
                       <span>團隊需求度</span>
                       <span id="need" class="statitic_value ml-auto">0</span>
-                      <input id="custom_need" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="1" maxlength = "2">
+                      <input id="custom_need" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                   </div>
                 </div>
             </div>
@@ -661,6 +661,8 @@ $(document).on("click", function(event){
     chart.update();
 }
 function custom_value(value) {
+    if (value.value < 0) value.value = 0;
+    if (value.value > 10) value.value = 10;
     //找到位置 & input數值位置
     input_order = 0;
     switch(value.id){
