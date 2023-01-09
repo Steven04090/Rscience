@@ -336,8 +336,27 @@
                     </div>
                 </div>
             </div>
+            <form class="w-100" id="google_form">
             <div class="radar_score_table">
                 <div class="radar_score_table_panel">
+                    <div id="custom_Job_selector" class="radar_score_box">
+                        <span>職業</span>
+                          <select id="custom_selector" class="ml-auto select" style="width:100px;">
+                            <option value="盧恩">盧恩</option>
+                            <option value="皇家">皇家</option>
+                            <option value="斬首">斬首</option>
+                            <option value="魅影">魅影</option>
+                            <option value="咒術">咒術</option>
+                            <option value="元素">元素</option>
+                            <option value="機匠">機匠</option>
+                            <option value="基因">基因</option>
+                            <option value="主教">主教</option>
+                            <option value="修羅">修羅</option>
+                            <option value="遊俠">遊俠</option>
+                            <option value="詩人">詩人</option>
+                            <option value="舞孃">舞孃</option>
+                          </select>
+                    </div>
                     <div class="d-flex radar_score_box">
                         <span>起手推薦度</span>
                         <span id="start" class="statitic_value ml-auto">0</span>
@@ -374,7 +393,13 @@
                       <input id="custom_need" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
                   </div>
                 </div>
+                <div id="submit_button" class="text-center m-1" >
+                  <button class="btn" style="min-width:120px">
+                    送出
+                  </button>
+                </div>
             </div>
+          </form>
         </div>
       </div>
     </div>
@@ -401,7 +426,6 @@ $(document).on("click", function(event){
       $this.find(".default_option").html(currentele);
       $(this).parents(".select_wrap").removeClass("active");
     })
-
   var chart_job_radar = null;
   var sites_job_radar = [];
     const label = [
@@ -457,7 +481,10 @@ $(document).on("click", function(event){
         };
         if(job_number<=12){
           $(".custom_user_value").css("display","none");
+          $("#custom_Job_selector").css("display","none");
           $(".statitic_value").css("display","block");
+          $("#submit_button").css("display","none");
+          
            //json to array 得到一個7個項目的分數
           job_array = json_file.items[job_number][0].average_score;
           //評價
@@ -480,6 +507,8 @@ $(document).on("click", function(event){
         else if(job_number===999){
           $(".custom_user_value").css("display","block");
           $(".statitic_value").css("display","none");
+          $("#custom_Job_selector").css("display","flex");
+          $("#submit_button").css("display","block");
           var v1 = parseInt(document.getElementById("custom_start").value);
           var v2 = parseInt(document.getElementById("custom_tech").value);
           var v3 = parseInt(document.getElementById("custom_cheap").value);
@@ -680,7 +709,6 @@ function custom_value(value) {
           sum += chart_job_radar.config.data.datasets[0].data[i];
         };
       sum = (sum/(chart_job_radar.config.data.datasets[0].data.length)).toFixed(2);
-    console.log(chart_job_radar.config.data.datasets[0].data);
     $("#sum").text(sum);
     chart_job_radar.update();
 }
@@ -699,6 +727,41 @@ function custom_value(value) {
         //目前切換會重複
         JsonTransition();
       });
+</script>
+
+<script>
+    $('#google_form').submit(function (e) {
+      
+      //在這裡我們要先擋掉form默認事件
+      e.preventDefault();
+        $.ajax({
+          // url為Google Form按下submit的action
+          url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdg8Wxkth9J0hpiAljX-mHAyLikXwAMWschhk4rHWsDJgWgqw/formResponse",
+          crossDomain: true,//解決跨網域CORS的問題
+          data: {// entry.xxxxx 這些需要填寫您表單裡面的值，與其相互對應
+            "entry.34927375": $('#custom_start').val(),
+            "entry.1966483213": $('#custom_tech').val(),
+            "entry.24376229": $('#custom_cheap').val(),
+            "entry.869415380": $('#custom_equip').val(),
+
+            "entry.1866130169": $('#custom_consumer').val(),
+            "entry.1252053595": $('#custom_skill').val(),
+            "entry.1077167546": $('#custom_need').val(),
+            "entry.186143691": $('#custom_selector').val(),
+          },
+          type: "POST", //因為是要進行insert的動作
+          dataType: "JSONP",
+          contentType: "application/json;charset=utf-8",
+          success: function(returnData){
+           console.log(returnData);
+          },
+          error: function(xhr, ajaxOptions, thrownError){
+            console.log(xhr.status);
+            console.log(thrownError);
+          }
+       
+        });
+    });
 </script>
 </div>
 </body>
