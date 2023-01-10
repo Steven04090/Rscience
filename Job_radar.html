@@ -317,17 +317,13 @@
             <h4 style="color:#8a8d99;font-size:14px;">玩家評分表:</h4>
             <div>無</div>
           </div>
-          <div class="mt-3">
-            <h4 style="color:#8a8d99;font-size:14px;">我的雷達圖:</h4>
-            <div>無</div>
-          </div>
         </div>
         <div class="chart-container">
           <canvas id="canvas_job_radar"></canvas>
         </div>
         <div class="d-flex flex-column align-items-center justify-content-center main_text_color" style="min-width:400px;padding:4px 20px;">
             <div class="d-flex align-items-center w-100 pb-3 justify-content-between">
-                <div style="height: 200px;">
+                <div style="height: 150px;">
                     <img style="height:100%;" src="Assets/image/job1.png">
                 </div>
                 <div class="d-flex flex-column justify-content-end h-100">
@@ -360,41 +356,41 @@
                     <div class="d-flex radar_score_box">
                         <span>起手推薦度</span>
                         <span id="start" class="statitic_value ml-auto">0</span>
-                        <input id="custom_start" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                        <input id="custom_start" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>低技術需求</span>
                         <span id="tech" class="statitic_value ml-auto">0</span>
-                        <input id="custom_tech" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                        <input id="custom_tech" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>裝備便宜</span>
                         <span id="cheap" class="statitic_value ml-auto">0</span>
-                        <input id="custom_cheap" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                        <input id="custom_cheap" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>裝備通用性</span>
                         <span id="equip" class="statitic_value ml-auto">0</span>
-                        <input id="custom_equip" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                        <input id="custom_equip" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>低消耗</span>
                         <span id="consumer" class="statitic_value ml-auto">0</span>
-                        <input id="custom_consumer" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                        <input id="custom_consumer" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="d-flex radar_score_box">
                         <span>練等速度</span>
                         <span id="skill" class="statitic_value ml-auto">0</span>
-                        <input id="custom_skill" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                        <input id="custom_skill" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                     </div>
                     <div class="d-flex radar_score_box">
                       <span>團隊需求度</span>
                       <span id="need" class="statitic_value ml-auto">0</span>
-                      <input id="custom_need" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2">
+                      <input id="custom_need" class="custom_user_value ml-auto" style="width:80px;" oninput="custom_value(this)" type="number" value="10" max="10" min="0" maxlength = "2" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                   </div>
                 </div>
                 <div id="submit_button" class="text-center m-1" >
-                  <button class="btn" style="min-width:120px">
+                  <button class="btn w-100">
                     送出
                   </button>
                 </div>
@@ -730,37 +726,40 @@ function custom_value(value) {
 </script>
 
 <script>
-    $('#google_form').submit(function (e) {
-      
+    $('#google_form').on('submit', function (e) {
+      // abort any pending request
       //在這裡我們要先擋掉form默認事件
       e.preventDefault();
-        $.ajax({
-          // url為Google Form按下submit的action
-          url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdg8Wxkth9J0hpiAljX-mHAyLikXwAMWschhk4rHWsDJgWgqw/formResponse",
-          crossDomain: true,//解決跨網域CORS的問題
-          data: {// entry.xxxxx 這些需要填寫您表單裡面的值，與其相互對應
-            "entry.34927375": $('#custom_start').val(),
-            "entry.1966483213": $('#custom_tech').val(),
-            "entry.24376229": $('#custom_cheap').val(),
-            "entry.869415380": $('#custom_equip').val(),
+      $.ajax({
+		// url為Google Form按下submit的action
+		
+		url: "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdg8Wxkth9J0hpiAljX-mHAyLikXwAMWschhk4rHWsDJgWgqw/formResponse",
+		crossDomain: true,//解決跨網域CORS的問題
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+		headers: {'content-type': 'application/json' },
+		data: {// entry.xxxxx 這些需要填寫您表單裡面的值，與其相互對應
+		  "entry.34927375": $('#custom_start').val(),
+		  "entry.1966483213": $('#custom_tech').val(),
+		  "entry.24376229": $('#custom_cheap').val(),
+		  "entry.869415380": $('#custom_equip').val(),
 
-            "entry.1866130169": $('#custom_consumer').val(),
-            "entry.1252053595": $('#custom_skill').val(),
-            "entry.1077167546": $('#custom_need').val(),
-            "entry.186143691": $('#custom_selector').val(),
-          },
-          type: "POST", //因為是要進行insert的動作
-          dataType: "JSONP",
-          contentType: "application/json;charset=utf-8",
-          success: function(returnData){
-           console.log(returnData);
-          },
-          error: function(xhr, ajaxOptions, thrownError){
-            console.log(xhr.status);
-            console.log(thrownError);
-          }
-       
-        });
+		  "entry.1866130169": $('#custom_consumer').val(),
+		  "entry.1252053595": $('#custom_skill').val(),
+		  "entry.1077167546": $('#custom_need').val(),
+		  "entry.186143691": $('#custom_selector').val(),
+		},
+		type: "POST", //因為是要進行insert的動作
+		dataType: "JSONP",
+		success: function(returnData){
+			console.log(returnData);
+		   },
+		   error: function(xhr, ajaxOptions, thrownError){
+			 console.log(xhr.status);
+			 console.log(thrownError);
+		   }
+	  });
+
+  
     });
 </script>
 </div>
