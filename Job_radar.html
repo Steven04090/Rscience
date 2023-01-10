@@ -19,7 +19,7 @@
        <link rel="stylesheet" href="Assets/Content/bootstrap.css">
        <link rel="stylesheet" href="Assets/Content/index.css">
        <link rel="stylesheet" href="Assets/Content/font-awesome.css">
-       <script src="Assets/javascript/jquery.min.js"></script>  
+       <script src="Assets/javascript/jquery-3.2.1.min.js"></script>
        <script src="Assets/javascript/bootstrap.min.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
        <script src="Assets/javascript/chart.umd.js"></script>
@@ -64,7 +64,7 @@
             }
           },
           meridiem: function (hour, minute, isLower) {
-            const hm = hour * 100 + minute;
+            var hm = hour * 100 + minute;
             if (hm < 600) {
               return '凌晨';
             } else if (hm < 900) {
@@ -404,7 +404,18 @@
         </div>
       </div>
     </div>
-    
+    <div id="complete_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-dialog-centered">
+        
+          <div class="modal-content text-center" style="background-color: transparent;">
+            <button type="button" class="close position-absolute" style="right:0;top: -30px;color:#fff;text-shadow: none;opacity: 1;" data-dismiss="modal" aria-hidden="true">×</button> 
+              <div class="modal-body" style="font-size: 1.4em;background-color: #2d9595; 
+              border-radius: 40px;font-weight: bold;color: #fff;">
+                上傳成功
+              </div>
+          </div>
+      </div>
+    </div>
 </div>
 <script>
 //點外面關掉menu
@@ -430,7 +441,7 @@ $(document).on("click", function(event){
     })
   var chart_job_radar = null;
   var sites_job_radar = [];
-    const label = [
+    var radar_label = [
     '起手推薦度',
     '低技術需求',
     '裝備便宜',
@@ -439,7 +450,7 @@ $(document).on("click", function(event){
     '練等速度',
     '團隊需求度',
   ];
-  const imageURLs2 = [ 
+  var imageURLs2 = [ 
       'Assets/image/radar/start.png',//start
       'Assets/image/radar/tech.png',//tech
       'Assets/image/radar/cheap.png',//cheap
@@ -448,12 +459,12 @@ $(document).on("click", function(event){
       'Assets/image/radar/skill.png',//skill
       'Assets/image/radar/need.png',//need
   ];
-  const images = imageURLs2.map(v => {
+  var images_radar = imageURLs2.map(v => {
   var image = new Image();
   image.src = v;
   return image;
   });
-  var data_job_radar = {labels:label, datasets: sites_job_radar};
+  var data_job_radar = {labels:radar_label, datasets: sites_job_radar};
   ctx_job_radar = document.getElementById('canvas_job_radar').getContext('2d');
   
   //json轉檔
@@ -549,7 +560,7 @@ $(document).on("click", function(event){
     });
   };
 
-  const options ={
+  var options_radar ={
         maintainAspectRatio:false,
         responsive: true,
         layout: {
@@ -643,15 +654,15 @@ $(document).on("click", function(event){
             },
          },
         };
-  const config = {
+  var config_radar = {
       type: 'radar',
       data: data_job_radar,
-      options:options,
+      options:options_radar,
       plugins: [{
       id: 'custom_labels',
       beforeDraw: (chart, args) => {
-        if (images) {
-          const scale = chart.scales.r;
+        if (images_radar) {
+          var scale = chart.scales.r;
           drawTextAtIndex(scale, 0, 'start', '起手難易度');
           drawTextAtIndex(scale, 1, 'tech', '低技術需求');
           drawTextAtIndex(scale, 2, 'cheap', '裝備便宜');
@@ -660,24 +671,24 @@ $(document).on("click", function(event){
           drawTextAtIndex(scale, 5, 'skill', '練等速度');
           drawTextAtIndex(scale, 6, 'need', '團隊需求度');
         } else {
-          images.onload = () => chart.draw();
+          images_radar.onload = () => chart.draw();
         }
       }
     }]
   };
   function drawTextAtIndex(scale, index, icon, text) {
-  const offset = 32;
-  const r = scale.drawingArea + offset;
-  const angle = scale.getIndexAngle(index) - Math.PI / 2;
-  const x = scale.xCenter + Math.cos(angle) * r;
-  const y = scale.yCenter + Math.sin(angle) * r;
-  const ctx = scale.ctx;
+  var offset = 32;
+  var r = scale.drawingArea + offset;
+  var angle = scale.getIndexAngle(index) - Math.PI / 2;
+  var x = scale.xCenter + Math.cos(angle) * r;
+  var y = scale.yCenter + Math.sin(angle) * r;
+  var ctx = scale.ctx;
   ctx.save();
   ctx.translate(x, y);
   //ctx.rotate(angle + Math.PI / 2);
   ctx.textAlign = 'center';
 
-  ctx.drawImage(images[index], -15, -8, 30, 30);
+  ctx.drawImage(images_radar[index], -15, -8, 30, 30);
 
   ctx.fillStyle = 'white';
   ctx.fillText(text, -1, -15);
@@ -685,7 +696,7 @@ $(document).on("click", function(event){
 }
 
   function init() {
-    chart_job_radar = new Chart(ctx_job_radar, config);
+    chart_job_radar = new Chart(ctx_job_radar, config_radar);
     };
 </script>
 <script>
@@ -726,7 +737,7 @@ function custom_value(value) {
 
     $('.select_ul .job_option').on('click',  function() {
         //分開js後 寫法變了???
-        const val = $(this)[0].attributes.value.value;
+        var val = $(this)[0].attributes.value.value;
         console.log(val);
         //目前切換會重複
         JsonTransition();
@@ -756,6 +767,7 @@ function custom_value(value) {
 		dataType: "JSONP",
 		complete: function(returnData){
       $("#complete_modal").modal("show");
+      console.log("complete");
 		   },
 	  });
 
@@ -763,18 +775,7 @@ function custom_value(value) {
     });
 </script>
 </div>
-<div id="complete_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered">
-    
-      <div class="modal-content text-center" style="background-color: transparent;">
-        <button type="button" class="close position-absolute" style="right:0;top: -30px;color:#fff;text-shadow: none;opacity: 1;" data-dismiss="modal" aria-hidden="true">×</button> 
-          <div class="modal-body" style="font-size: 1.4em;background-color: #2d9595; 
-          border-radius: 40px;font-weight: bold;color: #fff;">
-            上傳成功
-          </div>
-      </div>
-  </div>
-</div>
+
 </body>
 
 <script>

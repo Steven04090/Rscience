@@ -18,7 +18,7 @@
      <link rel="stylesheet" href="Assets/Content/bootstrap.css">
      <link rel="stylesheet" href="Assets/Content/index.css">
      <link rel="stylesheet" href="Assets/Content/font-awesome.css">
-     <script src="Assets/javascript/jquery.min.js"></script>  
+     <script src="Assets/javascript/jquery-3.2.1.min.js"></script>  
      <script src="Assets/javascript/bootstrap.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
      <script src="Assets/javascript/chart.umd.js"></script>
@@ -224,7 +224,7 @@
   var chart_good_price;
   var sites_good_price = [];
   var data_good_price = {datasets: sites_good_price};
-  const ctx = document.getElementById('canvas_good_price').getContext('2d');
+  var ctx_good_price = document.getElementById('canvas_good_price').getContext('2d');
 
   //json轉檔
   JsonTransition();
@@ -281,7 +281,7 @@
   });
 };
 
-  const zoomOptions = {
+  var zoomOptions_goodsprice = {
     limits:{
         y:{min:'original',max:'original'},
         x:{min:'original', max: 'original',minRange:3600*1000*24 },//time base on 1000
@@ -305,7 +305,7 @@
        }
       },
     }
-  const options ={
+  var options_goodsprice ={
         maintainAspectRatio:false,
         responsive: true,
         interaction: {
@@ -314,7 +314,7 @@
           mode: 'nearest',
         },
          plugins:{  
-            zoom: zoomOptions,
+            zoom: zoomOptions_goodsprice,
             title:{
               display:false,
               color:'#fff',
@@ -367,10 +367,10 @@
           },
         };
   
-  const config = {
+  var config_goodsprice = {
       type: 'line',
       data: data_good_price,
-      options:options,
+      options:options_goodsprice,
       plugins: [{
         id:'vertical_line_and_x_axis_text',
         afterDraw: chart_good_price => {
@@ -400,7 +400,7 @@
       }]
       };
   function init() {
-  chart_good_price = new Chart(ctx, config);
+  chart_good_price = new Chart(ctx_good_price, config_goodsprice);
     };
 </script>
 <script>

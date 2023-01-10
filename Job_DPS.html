@@ -18,7 +18,7 @@
          <link rel="stylesheet" href="Assets/Content/bootstrap.css">
          <link rel="stylesheet" href="Assets/Content/index.css">
          <link rel="stylesheet" href="Assets/Content/font-awesome.css">
-         <script src="Assets/javascript/jquery.min.js"></script>  
+         <script src="Assets/javascript/jquery-3.2.1.min.js"></script>  
          <script src="Assets/javascript/bootstrap.min.js"></script>
          <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
          <script src="Assets/javascript/chart.umd.js"></script>
@@ -458,7 +458,7 @@
     })
   
       var chart_job;
-      const imageURLs = [ 
+      var imageURLs = [ 
       'Assets/image/job/Dragon_Knight.bmp',//盧
       'Assets/image/job/ImperialGuard.bmp',//皇
       'Assets/image/job/Shadow_cross.bmp',//斬
@@ -473,7 +473,7 @@
       'Assets/image/job/Troubadour.bmp',//詩
       'Assets/image/job/dancing.bmp',//舞
       ];
-      const images = imageURLs.map(v => {
+      var images = imageURLs.map(v => {
       var image = new Image();
       image.src = v;
       return image;
@@ -497,7 +497,7 @@
       var onclick_temp = 0;
       var delayed;
   
-      const ctx = document.getElementById('canvas_job').getContext('2d');
+      var ctx_dps = document.getElementById('canvas_job').getContext('2d');
       //json轉檔
       JsonTransition();
       function JsonTransition(){
@@ -531,7 +531,7 @@
       });
     };
     
-      const zoomOptions = {
+      var zoomOptions = {
           limits:{
             y:{min:0,max:60000,minRange:3000},//minRange控制滾輪放大程度
             x:{min:0,max:12000,minRange:500},
@@ -559,7 +559,7 @@
           },
           
         }
-      const options ={
+      var options ={
             maintainAspectRatio:false,
             responsive: true,
             clip: false,
@@ -703,7 +703,7 @@
             }
         };
     
-      const config = {
+      var config_dps = {
           type: 'scatter',
           data: data,
           options:options,
@@ -759,7 +759,7 @@
                       
             id:'yscaleText',
             afterDraw(chart, args,options){
-              const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart_job;
+              var{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart_job;
               ctx.save();
               ctx.font ='12px Arial';
               ctx.fillStyle = '#f1f1f1';
@@ -839,7 +839,7 @@
         ]
           };
       function init() {
-        chart_job = new Chart(ctx, config);
+        chart_job = new Chart(ctx_dps, config_dps);
         };
   
       //job部分

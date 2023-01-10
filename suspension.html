@@ -19,7 +19,7 @@
          <link rel="stylesheet" href="Assets/Content/bootstrap.css">
          <link rel="stylesheet" href="Assets/Content/index.css">
          <link rel="stylesheet" href="Assets/Content/font-awesome.css">
-         <script src="Assets/javascript/jquery.min.js"></script>  
+         <script src="Assets/javascript/jquery-3.2.1.min.js"></script>  
          <script src="Assets/javascript/bootstrap.min.js"></script>
          <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
          <script src="Assets/javascript/chart.umd.js"></script>
@@ -244,7 +244,7 @@
             });
           };
           
-            const zoomOptions = {
+            var zoomOptions_suspension = {
               limits:{
                   y:{min:0},
                   x:{min:'original', max: 'original',minRange:3600*1000*24*24 },//time base on 1000
@@ -264,16 +264,16 @@
                   //zoom 改變x軸顯示
                   onZoomComplete({chart}) {
                     if ((chart.getZoomLevel()) > (1.2)) {
-                    options.scales.x.time.unit = "day";
+                      options_suspension.scales.x.time.unit = "day";
                   }
                   else{
-                    options.scales.x.time.unit = "month";
+                    options_suspension.scales.x.time.unit = "month";
                   }
                   chart_suspension.update('none');
                  }
                 },
               }
-            const options ={
+            var options_suspension ={
                   maintainAspectRatio:false,
                   responsive: true,
                   interaction: {
@@ -281,7 +281,7 @@
                     mode: 'x',
                   },
                    plugins:{
-                      zoom: zoomOptions,
+                      zoom: zoomOptions_suspension,
                       title:{
                         display:false,
                         color:'#fff',
@@ -326,13 +326,13 @@
                     },
                   };
             
-            const config = {
+            var config_suspension = {
                 type: 'bar',
                 data: data,
-                options:options,
+                options:options_suspension,
                 };
             function init() {
-              chart_suspension = new Chart(ctx_suspension, config);
+              chart_suspension = new Chart(ctx_suspension, config_suspension);
               };
           
             function load_data(){

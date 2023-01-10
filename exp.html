@@ -19,7 +19,7 @@
        <link rel="stylesheet" href="Assets/Content/bootstrap.css">
        <link rel="stylesheet" href="Assets/Content/index.css">
        <link rel="stylesheet" href="Assets/Content/font-awesome.css">
-       <script src="Assets/javascript/jquery.min.js"></script>  
+       <script src="Assets/javascript/jquery-3.2.1.min.js"></script>  
        <script src="Assets/javascript/bootstrap.min.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
        <script src="Assets/javascript/chart.umd.js"></script>
@@ -245,7 +245,7 @@
   });
 };
 
-  const options ={
+  var options_exp ={
         maintainAspectRatio:false,
         responsive: true,
         interaction: {
@@ -301,15 +301,15 @@
           },
         };
   
-  const config = {
+  var config_exp = {
       type: 'line',
       data: data_exp,
-      options:options,
+      options:options_exp,
       plugins: [{
         id:'vertical_line_and_x_axis_text',
         afterDraw: chart_exp => {
             //x axis
-            const{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart_exp;
+            var{ ctx, chartArea:{top,bottom,right},scales:{x,y}}= chart_exp;
             ctx.save();
             ctx.font ='12px Arial';
             ctx.fillStyle = '#f1f1f1';
@@ -333,7 +333,7 @@
         }]
       };
   function init() {
-    chart_exp = new Chart(ctx_exp, config);
+    chart_exp = new Chart(ctx_exp, config_exp);
     };
 </script>
 <script>
