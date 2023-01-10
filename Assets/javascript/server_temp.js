@@ -1,7 +1,7 @@
     var number_array = [];
     var tooltip = null;
     // dataSource json use fetch api
-    let dataSource =  function({year}) {
+    var dataSource =  function({year}) {
     return fetch('Assets/json/maintain.json')
       .then(result => result.json())
       .then(result => {
@@ -17,7 +17,7 @@
         return [];  
       });
     }
-    const calendar = new Calendar('#calendar', {
+    var calendar = new Calendar('#calendar', {
       
     language: 'zh-TW',
     dataSource: dataSource,
