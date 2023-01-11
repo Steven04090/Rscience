@@ -21,7 +21,7 @@
 主要使用套件:Chart.js  
 資料蒐集:自身經驗  
 資料來源:自身經驗  
-圖表:目前僅有自身的評分，預計讓有興趣的玩家輸入，上傳到某地方，能夠有數據更客觀的評價各職業。  
+圖表:目前僅有自身的評分，預計讓有興趣的玩家輸入，上傳google sheet，能夠有數據更客觀的評價各職業。  
 ### 停權人數(Suspension)  
 主要使用套件:Chart.js  
 資料蒐集:python crawer  
@@ -73,7 +73,7 @@ Blender
     `const val = $(this)[0].attributes.value.value`  
 4. chart.js的tooltip在mobile操作詭異(Job radar)  
 5. google chart tooltip在scroll down，位移嚴重，(測mouse位置做調整?)  
-6.取得線上遊戲人數
+6. 取得線上遊戲人數
 ##### 有時間調整
 1. select選擇後，裡面的字會全部改變  
 2. 停權人數 物價走勢 等級經驗值 tooltip內容過小
