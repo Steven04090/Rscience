@@ -79,3 +79,4 @@ Blender
 2. 停權人數 物價走勢 等級經驗值 tooltip內容過小
 3. wordcloud的內容
 4. get user input(radar chart) by using static pages
+5. light/dark mode switch
